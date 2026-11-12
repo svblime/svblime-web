@@ -1,0 +1,58 @@
+/* ============================================================
+   SVBLIME · Typography tokens
+   ------------------------------------------------------------
+   Borscha carries every headline — heavy, wide, confident.
+   Hanken Grotesk does the reading work. JetBrains Mono marks
+   the technical / stage-cue eyebrows (like a timecode label).
+   ============================================================ */
+
+:root {
+  /* ---------- Families ---------- */
+  --font-display: "Borscha", "Hanken Grotesk", system-ui, sans-serif;
+  --font-sans:    "Hanken Grotesk", system-ui, -apple-system, sans-serif;
+  --font-mono:    "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
+
+  /* ---------- Weights ---------- */
+  --fw-light:     300;   /* @kind font */
+  --fw-regular:   400;   /* @kind font */
+  --fw-medium:    500;   /* @kind font */
+  --fw-semibold:  600;   /* @kind font */ /* Borscha ships here */
+  --fw-bold:      700;   /* @kind font */
+  --fw-black:     800;   /* @kind font */
+
+  /* ---------- Display scale (Borscha) ----------
+     Wide, tight tracking, uppercase for the biggest statements. */
+  --text-display-2xl: 128px;  /* hero wordmark statements */
+  --text-display-xl:  88px;
+  --text-display-lg:  64px;
+  --text-display-md:  48px;
+  --text-display-sm:  36px;
+
+  /* ---------- Text scale (Hanken Grotesk) ---------- */
+  --text-title:   28px;   /* section titles */
+  --text-xl:      22px;   /* lead / standfirst */
+  --text-lg:      18px;
+  --text-base:    16px;   /* body */
+  --text-sm:      14px;
+  --text-xs:      13px;
+
+  /* ---------- Mono / label scale (JetBrains Mono) ---------- */
+  --text-label:   12px;   /* eyebrows, tags */
+  --text-label-sm:11px;
+
+  /* ---------- Line heights ---------- */
+  --lh-tight:     0.98;   /* @kind font */ /* big display — bars stack close */
+  --lh-snug:      1.08;   /* @kind font */
+  --lh-heading:   1.15;   /* @kind font */
+  --lh-body:      1.6;    /* @kind font */ /* comfortable reading */
+  --lh-relaxed:   1.75;   /* @kind font */
+
+  /* ---------- Letter spacing ----------
+     Borscha is wide already — headlines pull IN slightly.
+     Mono labels push OUT into a spaced technical cue. */
+  --tracking-display: -0.02em;  /* @kind font */
+  --tracking-tight:   -0.01em;  /* @kind font */
+  --tracking-normal:  0;         /* @kind font */
+  --tracking-label:   0.18em;   /* @kind font */ /* eyebrow labels */
+  --tracking-wide:    0.24em;   /* @kind font */
+}

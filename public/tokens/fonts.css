@@ -1,0 +1,18 @@
+/* ============================================================
+   SVBLIME · Fonts
+   Display  : Borscha SemiBold  (brand primary, local .otf)
+   Text/UI  : Hanken Grotesk    (secondary — Google Fonts)
+   Mono     : JetBrains Mono    (technical labels / eyebrows)
+   ============================================================ */
+
+@font-face {
+  font-family: "Borscha";
+  src: url("../assets/fonts/borscha-semibold.otf") format("opentype");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Secondary + mono are loaded from Google Fonts via <link> in each page's <head>.
+   Hanken Grotesk complements Borscha with a neutral, legible workhorse;
+   JetBrains Mono carries the stage/timecode technical accent. */

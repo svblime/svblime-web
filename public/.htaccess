@@ -1,0 +1,35 @@
+# SVBLIME · configuración de Apache
+
+# Páginas sin .html → redirigen a la versión .html (las URLs públicas terminan en .html)
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteCond %{REQUEST_FILENAME}.html -f
+  RewriteRule ^(.+)$ /$1.html [R=301,L]
+</IfModule>
+
+# Compresión de texto
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/css application/javascript text/javascript application/json image/svg+xml text/plain application/xml
+</IfModule>
+
+# Caché: imágenes, videos y fuentes 30 días; CSS y JS 7 días; HTML siempre fresco
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType image/jpeg "access plus 30 days"
+  ExpiresByType image/png "access plus 30 days"
+  ExpiresByType image/x-icon "access plus 30 days"
+  ExpiresByType video/mp4 "access plus 30 days"
+  ExpiresByType font/otf "access plus 30 days"
+  ExpiresByType application/font-sfnt "access plus 30 days"
+  ExpiresByType text/css "access plus 7 days"
+  ExpiresByType application/javascript "access plus 7 days"
+  ExpiresByType text/javascript "access plus 7 days"
+  ExpiresByType text/html "access plus 0 seconds"
+</IfModule>
+
+AddType font/otf .otf
+AddType video/mp4 .mp4
+
+Options -Indexes

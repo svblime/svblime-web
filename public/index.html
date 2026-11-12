@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Agencia Creativa Integral de Eventos | SVBLIME</title>
+<meta name="description" content="Agencia creativa integral de eventos: dirección creativa, experiencias visuales, producción integral y branding de eventos corporativos en Chile.">
+<link rel="canonical" href="https://svblime.cl/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Agencia Creativa Integral de Eventos | SVBLIME">
+<meta property="og:description" content="Dirección creativa, experiencias visuales, producción integral y branding de eventos corporativos en Chile.">
+<meta property="og:url" content="https://svblime.cl/">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Organization","name":"SVBLIME","url":"https://svblime.cl/","email":"hola@svblime.cl","description":"Agencia creativa integral de eventos: dirección creativa, experiencias visuales, producción integral y branding de eventos.","areaServed":"CL","makesOffer":[
+{"@type":"Offer","itemOffered":{"@type":"Service","name":"Producción Integral de Eventos","url":"https://svblime.cl/servicios/produccion-integral.html"}},
+{"@type":"Offer","itemOffered":{"@type":"Service","name":"Dirección Creativa","url":"https://svblime.cl/servicios/direccion-creativa.html"}},
+{"@type":"Offer","itemOffered":{"@type":"Service","name":"Experiencias Visuales","url":"https://svblime.cl/servicios/experiencias-visuales.html"}},
+{"@type":"Offer","itemOffered":{"@type":"Service","name":"Branding de Eventos","url":"https://svblime.cl/servicios/branding-eventos.html"}}]}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=JetBrains+Mono:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="styles.css">
+<style>
+  /* svb-noscroll-x: kill the horizontal gutter marquees/nowrap rows create on phones */
+  html,body{max-width:100%;overflow-x:hidden;overscroll-behavior-x:none}
+  .svb-brand{position:relative;display:inline-flex;flex:none;align-items:center;transition:opacity .3s ease}
+  .svb-brand img{display:block;transition:opacity .3s ease}
+  .svb-brand::after{content:"";position:absolute;inset:0;opacity:0;transition:opacity .3s ease;-webkit-mask-image:var(--m);mask-image:var(--m);-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-size:contain;mask-size:contain;-webkit-mask-position:center;mask-position:center;background:var(--c)}
+  .svb-brand.flash{opacity:1!important}
+  .svb-brand.flash img{opacity:0}
+  .svb-brand.flash::after{opacity:1;animation:svbFlash .62s steps(1,end) 1 forwards}
+  @keyframes svbFlash{0%,24%{background:var(--svb-blue)}25%,49%{background:var(--svb-amber)}50%,74%{background:var(--svb-violet)}75%,100%{background:var(--svb-white)}}
+  .svb-grad *{opacity:1!important}
+  .svb-grad{background-image:linear-gradient(180deg,var(--svb-blue) 0%,#7fd4ff 22%,var(--svb-amber) 50%,#ff9ad5 76%,var(--svb-violet) 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent}
+  .svb-name{transition:-webkit-text-fill-color .25s ease,color .25s ease}
+  .svb-name:hover{-webkit-text-fill-color:var(--svb-white);color:var(--svb-white)}
+  .svb-navlink{transition:color .22s ease}
+  .svb-navlink:hover{color:var(--svb-amber)!important}
+  @media (max-width: 860px) {
+    .svb-bars { display: none !important; }
+    .svb-chev { display: block !important; }
+    .svb-gtags { display: none !important; }
+    .svb-gcap { gap: 0 !important; }
+    .svb-fest-lockup { width: 92vw !important; }
+    .svb-lu-sub { font-size: 15px !important; line-height: 1.5; max-width: 34ch !important; }
+    .svb-lu-head { font-size: 27px !important; line-height: 1.14 !important; }
+    .svb-lu-main { font-size: 19px !important; line-height: 1.2 !important; }
+    .svb-lu-sup { font-size: 14px !important; line-height: 1.45 !important; }
+    .svb-lu-head span, .svb-lu-main span, .svb-lu-sup span { text-align: center; }
+  }
+  @media (max-width: 640px) {
+    :root { --section-y: 68px; }
+    .svb-lu-head { font-size: 24px !important; }
+    .svb-lu-main { font-size: 17px !important; }
+  }
+  @media (max-width: 860px) {
+    .svb-nav { position: fixed !important; top: 58px; left: 0; width: 100% !important; max-width: 100% !important;
+      flex-direction: column !important; align-items: flex-start !important; gap: 0 !important;
+      background: rgba(8,8,10,0.96); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border-soft);
+      max-height: 0; overflow: hidden !important;
+      transition: max-height 420ms var(--ease-out), opacity 300ms var(--ease-standard) !important; }
+    .svb-nav[data-open="true"] { max-height: 60vh; overflow-y: auto !important; }
+    .svb-nav a { display: block; width: 100%; padding: 15px clamp(20px,5vw,56px) !important; font-size: 16px !important;
+      border-bottom: 1px solid var(--border-soft); transform: none !important; }
+    .svb-workgrid { grid-template-columns: 1fr !important; }
+    .svb-tabs { flex-wrap: nowrap !important; overflow-x: auto; -webkit-overflow-scrolling: touch; padding-bottom: 4px; scrollbar-width: none; }
+    .svb-tabs::-webkit-scrollbar { display: none; }
+    .svb-tabs > * { flex: none; }
+  }
+  @media (max-width: 560px) {
+    .svb-gitem { border-radius: 4px; }
+  }
+  html { scroll-behavior: smooth; }
+  body { margin: 0; }
+  .svb-pillargrid a > div > div:first-child > span > span { display: none !important; }
+  @media (max-width: 720px) { .svb-navx { display: none !important; } }
+  @media (max-width: 760px) { .svb-h1line { white-space: normal !important; font-size: 11px !important; max-width: 40ch !important; } }
+  @media (max-width: 860px) {
+    .svb-svcmenu { position: static !important; left: auto !important; top: auto !important;
+      width: 100% !important; min-width: 0 !important; border: none !important; border-radius: 0 !important;
+      background: rgba(255,255,255,0.03) !important; transform: none !important;
+      max-height: 0; overflow: hidden !important; transition: max-height 420ms var(--ease-out), opacity 260ms linear !important; }
+    .svb-svcmenu[data-open="true"] { max-height: 320px; }
+    .svb-svcmenu a { padding: 14px clamp(20px,5vw,56px) !important; font-size: 15px !important; }
+  }
+</style>
+<link rel="preload" href="assets/fonts/borscha-semibold.otf" as="font" type="font/otf" crossorigin>
+</head>
+<body>
+<div id="root"></div>
+<noscript>
+  <h1>Agencia Creativa Integral | Dirección, Experiencias, Producción, Branding</h1>
+  <p>SVBLIME cierra la distancia entre imaginarlo y vivirlo. Cuatro servicios integrados para eventos corporativos, festivales y televisión en Chile.</p>
+  <h2>Nuestros cuatro servicios</h2>
+  <ul>
+    <li><a href="servicios/direccion-creativa.html">Dirección Creativa</a> — concepto y narrativa ejecutable.</li>
+    <li><a href="servicios/experiencias-visuales.html">Experiencias Visuales</a> — luz, pantallas, contenido y motion.</li>
+    <li><a href="servicios/produccion-integral.html">Producción Integral</a> — planificación, coordinación y ejecución.</li>
+    <li><a href="servicios/branding-eventos.html">Branding de Eventos</a> — identidad coherente antes, durante y después.</li>
+  </ul>
+  <p>Escríbenos a hola@svblime.cl</p>
+</noscript>
+<script src="vendor/react.production.min.js" defer></script>
+<script src="vendor/react-dom.production.min.js" defer></script>
+<script src="js/app.min.js" defer></script>
+<script>
+document.addEventListener("mouseover", function(e){
+  var el = e.target.closest && e.target.closest(".svb-brand");
+  if (!el || el.classList.contains("flash")) return;
+  el.classList.add("flash");
+  var done = function(){ el.classList.remove("flash"); el.removeEventListener("animationend", done); };
+  el.addEventListener("animationend", done);
+  setTimeout(done, 900);
+}, true);
+</script>
+</body>
+</html>
