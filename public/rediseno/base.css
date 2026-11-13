@@ -1,0 +1,53 @@
+/* Base compartida del rediseño de SVBLIME */
+@font-face { font-family: "Borscha"; src: url("../assets/fonts/borscha-semibold.otf") format("opentype"); font-weight: 600; font-display: swap; }
+
+:root {
+  --black: #000; --ink: #08080A; --bone: #F4F1EA;
+  --blue: #4EA9FF; --amber: #FFCD59; --violet: #8F00FF;
+  --muted: #B4B4BC; --faint: #74747E;
+  --display: "Borscha", "Hanken Grotesk", sans-serif;
+  --alt: "Instrument Serif", Georgia, serif;
+  --sans: "Hanken Grotesk", system-ui, sans-serif;
+  --mono: "JetBrains Mono", ui-monospace, monospace;
+  --pad: clamp(18px, 3.4vw, 56px);
+  --spectrum: linear-gradient(90deg, var(--blue) 0 33.33%, var(--amber) 33.33% 66.66%, var(--violet) 66.66% 100%);
+}
+*, *::before, *::after { box-sizing: border-box; }
+html, body { margin: 0; background: var(--black); color: #fff; font-family: var(--sans); -webkit-font-smoothing: antialiased; }
+html.lenis, html.lenis body { height: auto; }
+.lenis.lenis-smooth { scroll-behavior: auto !important; }
+.lenis.lenis-stopped { overflow: hidden; }
+img, video { display: block; max-width: 100%; }
+a { color: inherit; text-decoration: none; }
+.nw { display: inline-block; white-space: nowrap; }
+em.alt { font-family: var(--alt); font-style: italic; font-weight: 400; letter-spacing: 0; }
+.mono { font-family: var(--mono); font-size: 11px; letter-spacing: .22em; text-transform: uppercase; }
+.bars { display: inline-flex; width: 72px; height: 4px; background: var(--spectrum); }
+
+/* Seguidor de luz: capa oscura con un agujero donde está el mouse */
+.veil {
+  position: absolute; inset: 0; pointer-events: none;
+  background: rgba(0, 0, 0, .84);
+  -webkit-backdrop-filter: grayscale(1); backdrop-filter: grayscale(1);
+  -webkit-mask-image: radial-gradient(circle var(--r, 260px) at var(--x, 50%) var(--y, 50%), transparent 0, transparent 35%, #000 100%);
+          mask-image: radial-gradient(circle var(--r, 260px) at var(--x, 50%) var(--y, 50%), transparent 0, transparent 35%, #000 100%);
+}
+.particles { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+
+/* Tarjetas de galería */
+.tile { position: relative; margin: 0; overflow: hidden; background: #111; cursor: pointer; }
+.tile img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transform: scale(1.06); transition: opacity 1.1s ease, transform 6s ease; }
+.tile img.on { opacity: 1; transform: scale(1); }
+.tile figcaption {
+  position: absolute; left: 0; right: 0; bottom: 0; padding: 22px 22px 20px;
+  display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 12px;
+  background: linear-gradient(to top, rgba(0,0,0,.75), transparent);
+  opacity: 0; transform: translateY(12px); transition: opacity .45s ease, transform .45s ease;
+}
+.tile:hover figcaption { opacity: 1; transform: none; }
+.tile .t { font-family: var(--display); font-size: 18px; }
+.tile .v { font-size: 14px; color: var(--muted); }
+.tile .tags { width: 100%; font-family: var(--mono); font-size: 10px; letter-spacing: .18em; text-transform: uppercase; color: var(--faint); }
+@media (hover: none) { .tile figcaption { opacity: 1; transform: none; padding: 14px; } .tile .t { font-size: 15px; } }
+
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { transition: none !important; animation: none !important; } }

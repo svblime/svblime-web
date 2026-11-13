@@ -21,7 +21,12 @@ block = (open(tpl, encoding="utf-8").read()
          .replace("__LABEL__", esc(label))
          .replace("__CLAVE__", esc(clave.strip().lower())))
 extra = '<meta name="robots" content="noindex, nofollow, noarchive, nosnippet">\n'
-s = s.replace("<head>", "<head>\n" + extra + block, 1)
+# Va después de <meta charset> (si existe), para que tildes y eñes se lean bien.
+m = re.search(r"<meta[^>]+charset[^>]*>", s[:1024], re.I)
+if m:
+    s = s[:m.end()] + "\n" + extra + block + s[m.end():]
+else:
+    s = s.replace("<head>", '<head>\n<meta charset="utf-8">\n' + extra + block, 1)
 open(page, "w", encoding="utf-8").write(s)
 print("Contraseña agregada a", page)
 PY

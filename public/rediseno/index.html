@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
+<style>
+#svb-gate{position:fixed;inset:0;z-index:99999;background:#000;color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;font-family:-apple-system,BlinkMacSystemFont,'Helvetica Neue',Arial,sans-serif;padding:24px;text-align:center}
+#svb-gate .bar{display:flex;width:220px;height:6px}
+#svb-gate .bar i{flex:1}
+#svb-gate h1{font-size:13px;letter-spacing:.28em;text-transform:uppercase;color:#B4B4BC;font-weight:400;margin:0}
+#svb-gate p{font-size:15px;color:#74747E;margin:0}
+#svb-gate form{display:flex;gap:8px;margin-top:6px}
+#svb-gate input{background:#0F0F12;border:1px solid #26262C;color:#fff;padding:12px 14px;font-size:16px;border-radius:4px;outline:none;min-width:220px}
+#svb-gate input:focus{border-color:#4EA9FF}
+#svb-gate button{background:#fff;color:#000;border:0;padding:12px 20px;font-size:15px;border-radius:4px;cursor:pointer}
+@media (max-width:900px){ #svb-gate input{min-width:0;width:100%} #svb-gate form{width:100%;max-width:320px} }
+#svb-gate .err{color:#FFCD59;font-size:13px;min-height:16px}
+body.svb-locked{overflow:hidden}
+</style>
+<script>
+(function(){
+  var KEY='svb-propuesta-rediseno';
+  if(sessionStorage.getItem(KEY)==='1') return;
+  document.addEventListener('DOMContentLoaded',function(){
+    document.body.classList.add('svb-locked');
+    var g=document.createElement('div');
+    g.id='svb-gate';
+    g.innerHTML='<div class="bar"><i style="background:#4EA9FF"></i><i style="background:#FFCD59"></i><i style="background:#8F00FF"></i></div>'+
+      '<h1>SVBLIME</h1><p>Rediseño web · versión de prueba</p>'+
+      '<form><input type="password" placeholder="Contrase\u00f1a" autocomplete="off" autofocus><button type="submit">Entrar</button></form>'+
+      '<div class="err"></div>';
+    document.body.appendChild(g);
+    var f=g.querySelector('form'), i=g.querySelector('input'), e=g.querySelector('.err');
+    f.addEventListener('submit',function(ev){
+      ev.preventDefault();
+      if(i.value.trim().toLowerCase()==='svblime'){
+        sessionStorage.setItem(KEY,'1');
+        document.body.classList.remove('svb-locked');
+        g.remove();
+      } else { e.textContent='Contrase\u00f1a incorrecta'; i.value=''; i.focus(); }
+    });
+  });
+})();
+</script>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Rediseño · SVBLIME</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500&family=Instrument+Serif:ital@1&family=JetBrains+Mono:wght@400&display=swap">
+<link rel="stylesheet" href="base.css">
+<style>
+  body { min-height: 100vh; display: flex; flex-direction: column; padding: var(--pad); gap: 40px; }
+  header { display: flex; justify-content: space-between; align-items: center; }
+  header img { height: 26px; }
+  h1 { font-family: var(--display); font-weight: 600; letter-spacing: -.04em; line-height: .92; font-size: clamp(44px, 7vw, 120px); margin: 0; }
+  .ideas { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(12px, 2vw, 28px); flex: 1; }
+  .idea { position: relative; overflow: hidden; border-radius: 10px; min-height: 52vh; display: flex; flex-direction: column; justify-content: flex-end; padding: clamp(22px, 3vw, 40px); color: #fff; }
+  .idea img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform 1.2s cubic-bezier(.2,.8,.2,1), filter .6s; filter: grayscale(.6) brightness(.55); }
+  .idea:hover img { transform: scale(1.05); filter: none; }
+  .idea > * { position: relative; }
+  .idea h2 { font-family: var(--display); font-weight: 600; letter-spacing: -.04em; font-size: clamp(36px, 4.4vw, 76px); line-height: .95; margin: 10px 0 14px; }
+  .idea p { margin: 0; max-width: 44ch; line-height: 1.55; color: #ddd; }
+  .idea .go { margin-top: 22px; align-self: flex-start; border: 1px solid #fff; border-radius: 999px; padding: 10px 18px; }
+  .i2 { background: #4EA9FF; }
+  @media (max-width: 760px) { .ideas { grid-template-columns: 1fr; } .idea { min-height: 60vh; } }
+</style>
+</head>
+<body>
+  <header><img src="../assets/svblime-logo-white-transparent.png" alt="SVBLIME"><span class="mono">Rediseño · versión de prueba</span></header>
+  <h1>Dos caminos para la nueva <em class="alt">web</em>.</h1>
+  <div class="ideas">
+    <a class="idea i1" href="idea-1.html">
+      <img src="../work/min/movistar13-1.jpg" alt="">
+      <span class="mono">Idea 1</span>
+      <h2>Escenario</h2>
+      <p>Editorial, entre negro y crema. El mouse es un seguidor de luz que enciende el video. Secciones que se alejan, servicios que avanzan hacia el lado y fotos grandes.</p>
+      <span class="go mono">Ver idea 1</span>
+    </a>
+    <a class="idea i2" href="idea-2.html">
+      <img src="../work/min/polima-1.jpg" alt="">
+      <span class="mono">Idea 2</span>
+      <h2>Señal</h2>
+      <p>Bloques de color de marca a pantalla completa. El video aparece dentro de una lente que sigue al mouse, con títulos gigantes y bandas que corren con el scroll.</p>
+      <span class="go mono">Ver idea 2</span>
+    </a>
+  </div>
+</body>
+</html>
