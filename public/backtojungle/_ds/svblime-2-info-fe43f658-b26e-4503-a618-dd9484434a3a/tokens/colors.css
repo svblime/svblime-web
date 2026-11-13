@@ -1,0 +1,76 @@
+/* ============================================================
+   SVBLIME · Color tokens
+   ------------------------------------------------------------
+   The brand lives on the stage: deep black canvas, white light,
+   and three signal accents (blue · amber · violet) used as a
+   restrained spectrum — never all three competing at once.
+   ============================================================ */
+
+:root {
+  /* ---------- Brand core ---------- */
+  --svb-black:        #000000;  /* the stage — primary canvas */
+  --svb-white:        #FFFFFF;  /* light on the stage */
+
+  /* ---------- Accent spectrum ----------
+     Ordered as they appear in the logo mark (top→bottom).
+     Blue is the primary interactive accent; amber the highlight;
+     violet the creative / tertiary signal. */
+  --svb-blue:         #4EA9FF;  /* señal · primary accent */
+  --svb-amber:        #FFCD59;  /* señal · highlight */
+  --svb-violet:       #8F00FF;  /* señal · creative accent */
+
+  /* Accent tints/shades for hover, focus rings, subtle fills */
+  --svb-blue-strong:  #2E93F5;
+  --svb-blue-soft:    rgba(78, 169, 255, 0.14);
+  --svb-amber-strong: #F5BB37;
+  --svb-amber-soft:   rgba(255, 205, 89, 0.16);
+  --svb-violet-strong:#7A00DB;
+  --svb-violet-soft:  rgba(143, 0, 255, 0.16);
+
+  /* ---------- Neutrals — dark scale (default UI context) ----------
+     Near-black surfaces that read as "black" but hold layering. */
+  --svb-ink-900:      #000000;  /* absolute stage black */
+  --svb-ink-800:      #08080A;  /* page background */
+  --svb-ink-700:      #0F0F12;  /* raised surface */
+  --svb-ink-600:      #17171B;  /* card surface */
+  --svb-ink-500:      #1F1F25;  /* elevated card / input */
+  --svb-ink-400:      #2A2A31;  /* hairline-strong / hover fill */
+  --svb-line:         #26262C;  /* default 1px border on dark */
+  --svb-line-soft:    rgba(255, 255, 255, 0.08);
+
+  /* ---------- Neutrals — light scale (documents, print, light UI) ---------- */
+  --svb-paper:        #FFFFFF;
+  --svb-paper-soft:   #F4F4F2;  /* warm off-white (manual pages) */
+  --svb-paper-line:   #E4E4E0;
+  --svb-gray-100:     #E8E8E6;
+  --svb-gray-300:     #B6B6B8;
+  --svb-gray-500:     #77777C;
+  --svb-gray-700:     #3A3A3F;
+
+  /* ---------- Text on dark ---------- */
+  --svb-text:         #FFFFFF;
+  --svb-text-muted:   #B4B4BC;  /* secondary copy */
+  --svb-text-faint:   #74747E;  /* captions, meta */
+  --svb-text-on-accent:#000000; /* text sitting on blue/amber fills */
+
+  /* ---------- Semantic aliases (consume these in UI) ---------- */
+  --bg-page:          var(--svb-ink-800);
+  --bg-stage:         var(--svb-ink-900);
+  --surface-raised:   var(--svb-ink-700);
+  --surface-card:     var(--svb-ink-600);
+  --surface-input:    var(--svb-ink-500);
+  --surface-hover:    var(--svb-ink-400);
+
+  --border-default:   var(--svb-line);
+  --border-soft:      var(--svb-line-soft);
+  --border-strong:    #3A3A42;
+
+  --text-heading:     var(--svb-white);
+  --text-body:        var(--svb-text-muted);
+  --text-meta:        var(--svb-text-faint);
+
+  --accent-primary:   var(--svb-blue);
+  --accent-highlight: var(--svb-amber);
+  --accent-creative:  var(--svb-violet);
+  --focus-ring:       var(--svb-blue);
+}

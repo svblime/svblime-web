@@ -36,3 +36,17 @@ Después de cambiar `src/site.jsx` hay que compilar para que el cambio llegue a 
 Usa FTPS (FTP cifrado). Si el hosting no lo soporta, cambiar `protocol: ftps` por `protocol: ftp` en `.github/workflows/deploy-ftp.yml`.
 
 **Manual:** subir el contenido de `public/` a la carpeta del sitio con el cliente FTP de siempre (por ejemplo, FileZilla).
+
+## Propuestas para clientes
+
+Cada propuesta vive en su propia carpeta dentro de `public/` y se ve en `svblime.cl/<carpeta>/` (por ejemplo `public/backtojungle/` → `svblime.cl/backtojungle/`).
+
+Para agregar una propuesta nueva exportada de Claude Design:
+
+```bash
+scripts/optimizar-propuesta.sh <carpeta-exportada> public/<nombre-carpeta>
+```
+
+La herramienta deja fuera los archivos que la página no usa y comprime fotos, videos y audio sin cambiar cómo se ve. El código de la página no se toca: la pantalla de contraseña y las protecciones (clic derecho, captura de pantalla, pantalla negra al cambiar de ventana) siguen igual. Requiere `ffmpeg` e ImageMagick.
+
+Para subirla al hosting basta con subir esa carpeta de `public/` con FileZilla.

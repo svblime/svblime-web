@@ -1,0 +1,51 @@
+/* ============================================================
+   SVBLIME · Effects — radii, borders, shadows, motion
+   ------------------------------------------------------------
+   Sharp, precise, technical. The mark is built from straight
+   bars, so geometry stays crisp: tight radii, hairline borders,
+   restrained elevation. Motion is calm and exact — no bounce.
+   ============================================================ */
+
+:root {
+  /* ---------- Corner radii (tight — the brand is rectilinear) ---------- */
+  --radius-none:  0;
+  --radius-xs:    2px;
+  --radius-sm:    4px;    /* default control radius */
+  --radius-md:    8px;    /* cards */
+  --radius-lg:    12px;   /* large panels */
+  --radius-pill:  999px;  /* tags / pills only */
+
+  /* ---------- Borders ---------- */
+  --border-hair:  1px solid var(--border-default);
+  --border-focus: 2px solid var(--focus-ring);
+
+  /* ---------- Elevation ----------
+     On dark UI, elevation reads through lighter surfaces + subtle
+     shadow, never heavy drop shadows. */
+  --shadow-none:  none;
+  --shadow-sm:    0 1px 2px rgba(0, 0, 0, 0.4);
+  --shadow-md:    0 8px 24px rgba(0, 0, 0, 0.45);
+  --shadow-lg:    0 24px 60px rgba(0, 0, 0, 0.55);
+  /* Signal glow — sparingly, on interactive/hero accents */
+  --glow-blue:    0 0 0 1px rgba(78,169,255,0.5), 0 8px 32px rgba(78,169,255,0.28);
+  --glow-violet:  0 0 0 1px rgba(143,0,255,0.5), 0 8px 32px rgba(143,0,255,0.30);
+
+  /* ---------- Focus ring ---------- */
+  --ring: 0 0 0 2px var(--bg-page), 0 0 0 4px var(--focus-ring);
+
+  /* ---------- Motion ----------
+     Calm under pressure: quick, precise eases; fades over bounces. */
+  --ease-standard: cubic-bezier(0.22, 0.61, 0.36, 1); /* @kind other */
+  --ease-out:      cubic-bezier(0.16, 1, 0.3, 1);      /* @kind other */
+  --ease-in-out:   cubic-bezier(0.65, 0, 0.35, 1);     /* @kind other */
+  --dur-fast:      120ms;  /* @kind other */
+  --dur-base:      200ms;  /* @kind other */
+  --dur-slow:      360ms;  /* @kind other */
+  --dur-slower:    600ms;  /* @kind other */
+
+  /* ---------- The spectrum bar (signature divider) ---------- */
+  --spectrum: linear-gradient(90deg,
+    var(--svb-blue) 0%, var(--svb-blue) 33.33%,
+    var(--svb-amber) 33.33%, var(--svb-amber) 66.66%,
+    var(--svb-violet) 66.66%, var(--svb-violet) 100%); /* @kind other */
+}
