@@ -44,8 +44,12 @@ Cada propuesta vive en su propia carpeta dentro de `public/` y se ve en `svblime
 Para agregar una propuesta nueva exportada de Claude Design:
 
 ```bash
-scripts/optimizar-propuesta.sh <carpeta-exportada> public/<nombre-carpeta>
+python3 scripts/descargar-propuesta.py https://www.svblime.cl/<carpeta> /tmp/orig-<carpeta>   # si ya está publicada
+scripts/optimizar-propuesta.sh /tmp/orig-<carpeta> public/<carpeta>
+node scripts/verificar-propuesta.mjs /tmp/orig-<carpeta> public/<carpeta>                       # compara con la original
 ```
+
+El paso a paso completo está en `.claude/skills/publicar-propuesta/SKILL.md` (Claude Code lo usa solo).
 
 La herramienta deja fuera los archivos que la página no usa y comprime fotos, videos y audio sin cambiar cómo se ve. El código de la página no se toca: la pantalla de contraseña y las protecciones (clic derecho, captura de pantalla, pantalla negra al cambiar de ventana) siguen igual. Requiere `ffmpeg` e ImageMagick.
 
