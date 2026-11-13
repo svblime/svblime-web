@@ -1,0 +1,95 @@
+/* Ideas 7 y 8 — correcciones sobre la idea 6 (se carga después de nueva.css) */
+
+/* Inicio: al terminar el video queda en su último cuadro; el resto es negro total y el círculo lo deja ver */
+.v7 .hero .veil { background: #000; -webkit-backdrop-filter: none; backdrop-filter: none; }
+.v7 .kicker { top: 92px; }
+
+/* Texto de trazo a relleno (todos los títulos grandes) */
+.sf { -webkit-text-stroke: 1.4px var(--sf); color: transparent; }
+.sf em.alt { -webkit-text-stroke: 1.2px var(--sf); }
+
+/* Bienvenidos a SVBLIME + galería superior (igual que la web actual) */
+.welcome { height: 340vh; background: #000; }
+.welcome-stage { position: sticky; top: 0; height: 100vh; overflow: hidden; background: #000; }
+.welcome-logo { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 22px; z-index: 3; pointer-events: none; }
+.welcome-logo .wl { margin: 0; color: #fff; letter-spacing: .34em; text-transform: uppercase; font-size: 13px; }
+.welcome-logo img { width: min(46vw, 520px); height: auto; }
+.topgal-wrap { position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: center; gap: 14px; opacity: 0; }
+.topgal { display: flex; flex-direction: column; gap: 14px; }
+.grow { height: clamp(150px, 26vh, 300px); overflow: hidden; }
+.gtrack { display: flex; width: max-content; height: 100%; will-change: transform; }
+.gseq { display: flex; align-items: center; gap: 14px; padding-right: 14px; height: 100%; }
+.gi { position: relative; height: 100%; flex: 0 0 auto; overflow: hidden; border-radius: 6px; background: #111; }
+.gi.sm { height: 62%; }
+.gi img, .gi video { width: 100%; height: 100%; object-fit: cover; display: block; }
+.gcap { position: absolute; inset: auto 0 0 0; padding: 40px 12px 10px; background: linear-gradient(to top, rgba(0,0,0,.82) 0%, rgba(0,0,0,.28) 55%, transparent 100%); color: #fff; display: flex; flex-direction: column; gap: 6px; }
+.gcap span { font-family: var(--display); font-weight: 600; letter-spacing: -.02em; font-size: 15px; line-height: 1.1; }
+.gcap div { display: flex; flex-wrap: wrap; gap: 4px; }
+.gcap i { font-style: normal; font-family: var(--mono); font-size: 9px; letter-spacing: .12em; text-transform: uppercase; border: 1px solid rgba(255,255,255,.35); border-radius: 999px; padding: 2px 7px; }
+.gi.sm .gcap span { font-size: 12px; }
+.gi.sm .gcap i { display: none; }
+.vign { position: absolute; inset: 0; pointer-events: none; background: radial-gradient(130% 100% at 50% 50%, transparent 45%, rgba(0,0,0,.7) 100%); }
+
+/* Pilares: textos de las fotos en dos líneas si hace falta */
+.v7 .pill-col .pv { white-space: normal; max-width: 22ch; }
+
+/* Servicios: el cuadro blanco parte a pantalla completa y se achica a la izquierda */
+.v7 .services-intro { flex: 0 0 auto; width: 100vw; box-sizing: border-box; overflow: hidden; }
+.v7 .services-intro > * { width: min(86vw, 640px); }
+.v7 .services-intro .big { font-size: clamp(44px, 6vw, 110px); }
+.v7 .service { justify-content: space-between; border-left: 1px solid rgba(0,0,0,.14); --sub: rgba(0,0,0,.55); }
+.v7 .service .bar { width: 6px; }
+.plus .service:nth-child(4) .bar { background: #111 !important; }
+.v7 .service a { font-size: 13px; }
+.v7 .service a:hover { opacity: .65; }
+
+/* Equipo: toda la sección en magenta, sin fotos; al pasar el mouse cambia a amarillo */
+.v7 .crew { background: #8F00FF; color: #fff; --line: rgba(255,255,255,.35); }
+.v7 .crew .eyebrow { color: #fff; opacity: .85; }
+.v7 .names li { display: flex; justify-content: space-between; align-items: baseline; }
+.v7 .names .r, .v7 .names .n { transition: color .3s, transform .5s cubic-bezier(.2,.8,.2,1); }
+.v7 .names li:hover .r { color: #FFCD59; }
+.v7 .names li:hover .n, .v7 .names li:hover .n * { color: #FFCD59 !important; -webkit-text-stroke-color: #FFCD59; }
+/* Idea 8: el nombre gira como una ruleta al pasar el mouse */
+.roll { display: inline-flex; flex-direction: column; height: 1em; overflow: hidden; line-height: 1; vertical-align: bottom; }
+.roll > span { display: block; height: 1em; line-height: 1; transition: transform .55s cubic-bezier(.7,0,.2,1); }
+.names li:hover .roll > span { transform: translateY(-100%); }
+.plus .names li:hover .n { transform: none; }
+
+/* Clientes estilo SVBLIME Fest: tres tamaños, todo en movimiento */
+.fest { background: #000; color: #fff; padding: 16vh 0 12vh; overflow: hidden; }
+.fest-head { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 18px; margin-bottom: 8vh; }
+.fest-head img { width: min(70vw, 560px); height: auto; }
+.fest-head .eyebrow { margin: 0; }
+.day { margin-bottom: 7vh; }
+.day-label { display: flex; align-items: center; gap: 16px; padding: 0 var(--pad); margin: 0 0 2.6vh; color: var(--tint); letter-spacing: .32em; text-transform: uppercase; }
+.day-label span { flex: 1; height: 1px; background: currentColor; opacity: .4; }
+.tier { overflow: hidden; white-space: nowrap; }
+.ttrack { display: flex; width: max-content; will-change: transform; }
+.tseq { display: flex; align-items: center; flex: 0 0 auto; }
+.tier span { font-family: var(--display); font-weight: 600; letter-spacing: -.04em; line-height: 1; -webkit-text-stroke: 1.2px #fff; transition: color .3s; }
+.tier i { font-style: normal; color: var(--tint); padding: 0 .55em; font-size: .4em; }
+.t1 span { font-size: clamp(56px, 10vw, 190px); }
+.t1 i { font-size: clamp(22px, 4vw, 70px); }
+.t2 { margin-top: .6vh; }
+.t2 span { font-size: clamp(30px, 4.6vw, 86px); -webkit-text-stroke-width: 1px; }
+.t2 i { font-size: clamp(14px, 1.8vw, 32px); }
+.t3 { margin-top: 1vh; }
+.t3 span { font-family: var(--mono); font-weight: 400; letter-spacing: .18em; text-transform: uppercase; font-size: clamp(13px, 1.25vw, 20px); -webkit-text-stroke-width: .4px; }
+.t3 i { font-size: 10px; }
+.plus .tier span:hover { color: var(--tint) !important; -webkit-text-stroke-color: var(--tint); }
+.fest-note { color: #74747E; text-align: center; margin: 4vh auto 0; max-width: 60ch; }
+
+/* Idea 8: cursor propio */
+.cursor { position: fixed; left: 0; top: 0; z-index: 9999; width: 18px; height: 18px; margin: -9px 0 0 -9px; border: 1px solid #fff; border-radius: 50%; pointer-events: none; mix-blend-mode: difference; transition: width .3s, height .3s, margin .3s, opacity .3s; }
+.cursor.big { width: 64px; height: 64px; margin: -32px 0 0 -32px; }
+.cursor.hide { opacity: 0; }
+
+@media (max-width: 760px) {
+  .grow { height: 22vh; }
+  .gcap i { display: none; }
+  .v7 .services-intro > * { width: 78vw; }
+  .v7 .names li { flex-direction: column; gap: 8px; }
+  .v7 .names .r { text-align: left; }
+  .welcome-logo img { width: 70vw; }
+}
