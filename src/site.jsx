@@ -578,7 +578,7 @@ function Servicios() {
           <div style={{ fontFamily: "var(--font-display)", fontSize: "clamp(30px,5vw,52px)", color: "var(--svb-white)", letterSpacing: "-0.02em", lineHeight: 1.05 }}>
             El poder de un equipo conectado.
           </div>
-          <p style={{ margin: 0, fontSize: "17px", lineHeight: 1.6, color: "var(--text-body)", maxWidth: "none", width: "max-content", whiteSpace: "nowrap" }}>
+          <p style={{ margin: 0, fontSize: "17px", lineHeight: 1.6, color: "var(--text-body)", maxWidth: "60ch" }}>
             Cuatro formas de trabajar, una sola misión: <em>hacer que tu idea cobre vida.</em>
           </p>
         </div>
