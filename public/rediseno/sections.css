@@ -1,0 +1,70 @@
+/* Secciones compartidas de las ideas 3 y 4. Cada idea define sus colores con variables. */
+:root { --fg: #fff; --sub: #8a8a92; --line: rgba(255,255,255,.14); }
+.disp { font-family: var(--display); font-weight: 600; letter-spacing: -.04em; line-height: .9; margin: 0; }
+.big { font-size: clamp(44px, 8.4vw, 150px); }
+.huge { font-size: clamp(48px, 10vw, 190px); }
+.lead { font-size: clamp(16px, 1.5vw, 21px); line-height: 1.55; max-width: 46ch; margin: 32px 0 0; opacity: .8; }
+.lead em, .bands-copy em { font-family: var(--alt); font-size: 1.15em; }
+.eyebrow { color: var(--sub); margin: 0 0 26px; }
+
+/* Inicio */
+.hero { position: relative; height: 100vh; overflow: hidden; background: #000; color: #fff; }
+.hero-video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.hero-title { position: absolute; left: var(--pad); right: var(--pad); bottom: clamp(70px, 12vh, 130px); font-size: clamp(52px, 9.6vw, 176px); line-height: .88; }
+.hero-title .l { display: block; overflow: hidden; padding-bottom: .04em; }
+.hero-extra { position: absolute; margin: 0; color: #9a9aa2; }
+
+/* Servicios horizontales */
+.services-h { height: 100vh; overflow: hidden; display: flex; align-items: center; }
+.services-track { display: flex; align-items: stretch; height: 100vh; will-change: transform; }
+.services-intro { flex: 0 0 min(92vw, 900px); padding: 120px var(--pad); display: flex; flex-direction: column; justify-content: center; }
+.service { flex: 0 0 min(86vw, 640px); padding: 120px clamp(28px, 4vw, 64px) 70px; display: flex; flex-direction: column; justify-content: space-between; border-left: 1px solid var(--line); position: relative; }
+.service .num { font-family: var(--mono); font-size: 12px; letter-spacing: .2em; color: var(--sub); }
+.service h3 { font-family: var(--display); font-weight: 600; letter-spacing: -.035em; line-height: .92; font-size: clamp(48px, 6.4vw, 110px); margin: 0; }
+.service p { font-size: 17px; line-height: 1.6; color: var(--sub); max-width: 34ch; margin: 0; }
+.service a, .card a { font-family: var(--mono); font-size: 11px; letter-spacing: .2em; text-transform: uppercase; }
+.service a { border-bottom: 1px solid currentColor; align-self: flex-start; padding-bottom: 4px; margin-top: 24px; }
+.service .bar { position: absolute; top: 0; left: -1px; width: 3px; height: 100%; }
+
+/* Servicios apilados */
+.cards { position: relative; }
+.card { position: sticky; top: 12vh; min-height: 72vh; margin-bottom: 6vh; border-radius: 22px; padding: clamp(26px, 4vw, 60px); display: grid; grid-template-columns: 1fr 1fr; gap: 30px; align-content: space-between; transform-origin: 50% 0; overflow: hidden; }
+.card .n { font-family: var(--mono); font-size: 13px; letter-spacing: .2em; }
+.card h3 { grid-column: 1 / -1; font-family: var(--display); font-weight: 600; letter-spacing: -.045em; line-height: .86; font-size: clamp(54px, 9vw, 170px); margin: 0; align-self: end; }
+.card p { font-size: clamp(16px, 1.4vw, 20px); line-height: 1.55; max-width: 36ch; margin: 0; }
+.card a { justify-self: end; align-self: end; border: 1px solid currentColor; border-radius: 999px; padding: 12px 18px; }
+@media (max-width: 760px) { .card { grid-template-columns: 1fr; } .card a { justify-self: start; } }
+
+/* Galería */
+.work-grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: clamp(10px, 1.4vw, 22px); }
+.work-grid .tile { grid-column: span 7; aspect-ratio: 16 / 10; }
+.work-grid .tile:nth-child(4n+2), .work-grid .tile:nth-child(4n+3) { grid-column: span 5; }
+@media (max-width: 760px) { .work-grid .tile, .work-grid .tile:nth-child(n) { grid-column: 1 / -1; } }
+
+/* Equipo */
+.names { list-style: none; margin: 0; padding: 0; }
+.names li { border-top: 1px solid var(--line); padding: 2.2vh 0; display: flex; justify-content: space-between; align-items: baseline; gap: 20px; position: relative; z-index: 2; }
+.names li:last-child { border-bottom: 1px solid var(--line); }
+.names .n { font-family: var(--display); font-weight: 600; letter-spacing: -.045em; line-height: .9; font-size: clamp(48px, 9vw, 168px); transition: transform .5s cubic-bezier(.2,.8,.2,1), color .3s; }
+.names li:hover .n { transform: translateX(2vw); }
+.names .r { font-family: var(--mono); font-size: 11px; letter-spacing: .2em; text-transform: uppercase; text-align: right; }
+.names .d { display: block; font-family: var(--sans); text-transform: none; letter-spacing: 0; font-size: 14px; opacity: .8; margin-top: 6px; }
+.crew-photo { position: fixed; left: 0; top: 0; width: 300px; aspect-ratio: 3/4; object-fit: cover; pointer-events: none; z-index: 40; opacity: 0; border-radius: 8px; transform: translate(-50%, -50%); }
+@media (hover: none) { .crew-photo { display: none; } .names .r { max-width: 40%; } }
+
+/* Clientes */
+.clients { overflow: hidden; }
+.row { white-space: nowrap; font-family: var(--display); font-weight: 600; letter-spacing: -.03em; line-height: 1.04; font-size: clamp(42px, 7.2vw, 128px); will-change: transform; }
+.row span { margin-right: .5em; }
+.row span.o { color: transparent; -webkit-text-stroke: 1px var(--stroke, currentColor); }
+.row .dot { display: inline-block; width: .22em; height: .22em; margin: 0 .5em .18em 0; vertical-align: middle; }
+
+/* Hablemos y final */
+.end { padding: 14vh 0 30px; overflow: hidden; min-height: 100vh; display: flex; flex-direction: column; }
+.giant { display: block; white-space: nowrap; font-family: var(--display); font-weight: 600; letter-spacing: -.05em; line-height: .9; font-size: clamp(90px, 22vw, 420px); }
+.giant-track { display: inline-block; will-change: transform; }
+.giant:hover { color: var(--amber); }
+.end-row { padding: 6vh var(--pad) 0; display: flex; justify-content: space-between; align-items: end; gap: 30px; flex-wrap: wrap; }
+.end-copy { font-family: var(--display); font-size: clamp(24px, 3vw, 48px); letter-spacing: -.02em; line-height: 1.08; max-width: 18ch; margin: 0; }
+.mail { border-bottom: 1px solid currentColor; padding-bottom: 4px; }
+.end footer { margin-top: auto; padding: 8vh var(--pad) 0; display: flex; gap: 18px 30px; flex-wrap: wrap; align-items: center; justify-content: space-between; font-size: 14px; color: var(--sub); }
