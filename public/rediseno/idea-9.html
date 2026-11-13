@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
+<style>
+#svb-gate{position:fixed;inset:0;z-index:99999;background:#000;color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;font-family:-apple-system,BlinkMacSystemFont,'Helvetica Neue',Arial,sans-serif;padding:24px;text-align:center}
+#svb-gate .bar{display:flex;width:220px;height:6px}
+#svb-gate .bar i{flex:1}
+#svb-gate h1{font-size:13px;letter-spacing:.28em;text-transform:uppercase;color:#B4B4BC;font-weight:400;margin:0}
+#svb-gate p{font-size:15px;color:#74747E;margin:0}
+#svb-gate form{display:flex;gap:8px;margin-top:6px}
+#svb-gate input{background:#0F0F12;border:1px solid #26262C;color:#fff;padding:12px 14px;font-size:16px;border-radius:4px;outline:none;min-width:220px}
+#svb-gate input:focus{border-color:#4EA9FF}
+#svb-gate button{background:#fff;color:#000;border:0;padding:12px 20px;font-size:15px;border-radius:4px;cursor:pointer}
+@media (max-width:900px){ #svb-gate input{min-width:0;width:100%} #svb-gate form{width:100%;max-width:320px} }
+#svb-gate .err{color:#FFCD59;font-size:13px;min-height:16px}
+body.svb-locked{overflow:hidden}
+</style>
+<script>
+(function(){
+  var KEY='svb-propuesta-rediseno';
+  if(sessionStorage.getItem(KEY)==='1') return;
+  document.addEventListener('DOMContentLoaded',function(){
+    document.body.classList.add('svb-locked');
+    var g=document.createElement('div');
+    g.id='svb-gate';
+    g.innerHTML='<div class="bar"><i style="background:#4EA9FF"></i><i style="background:#FFCD59"></i><i style="background:#8F00FF"></i></div>'+
+      '<h1>SVBLIME</h1><p>Rediseño web · versión de prueba</p>'+
+      '<form><input type="password" placeholder="Contrase\u00f1a" autocomplete="off" autofocus><button type="submit">Entrar</button></form>'+
+      '<div class="err"></div>';
+    document.body.appendChild(g);
+    var f=g.querySelector('form'), i=g.querySelector('input'), e=g.querySelector('.err');
+    f.addEventListener('submit',function(ev){
+      ev.preventDefault();
+      if(i.value.trim().toLowerCase()==='svblime'){
+        sessionStorage.setItem(KEY,'1');
+        document.body.classList.remove('svb-locked');
+        g.remove();
+      } else { e.textContent='Contrase\u00f1a incorrecta'; i.value=''; i.focus(); }
+    });
+  });
+})();
+</script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Idea 9 · SVBLIME</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@300;400;500&family=Instrument+Serif:ital@1&family=JetBrains+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="base.css">
+<link rel="stylesheet" href="sections.css">
+<link rel="stylesheet" href="nueva.css">
+<link rel="stylesheet" href="nueva7.css">
+<link rel="stylesheet" href="nueva9.css">
+</head>
+<body class="v7 plus v9">
+
+<div class="loader" aria-hidden="true">
+  <div class="lf" style="background:#fff"><img src="media/assets/svblime-mono.png" alt=""></div>
+  <div class="lf" style="background:#4EA9FF"><img src="media/assets/svblime-mono-blanco.png" alt=""></div>
+  <div class="lf" style="background:#FFCD59"><img src="media/assets/svblime-mono-blanco.png" alt=""></div>
+  <div class="lf" style="background:#8F00FF"><img src="media/assets/svblime-mono-blanco.png" alt=""></div>
+  <div class="lf" style="background:#000"><img src="media/assets/svblime-negativo.png" alt=""></div>
+</div>
+
+<header class="svb-header">
+  <button type="button" class="svb-burger" aria-label="Abrir menú" aria-expanded="false">
+    <span class="svb-bars"></span><span class="svb-bars"></span><span class="svb-bars"></span>
+    <svg class="svb-chev" width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="#fff" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 8l5 5 5-5"></path></svg>
+  </button>
+  <nav class="svb-nav" data-open="false">
+    <a href="#agencia">SVBLIME</a>
+    <a href="#servicios" class="svc-link" aria-expanded="false">Servicios <svg width="10" height="10" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M2.5 4.5 6 8l3.5-3.5"/></svg></a>
+    <div class="svb-svcmenu" data-open="false">
+      <a href="../servicios/direccion-creativa.html">Dirección Creativa</a>
+      <a href="../servicios/experiencias-visuales.html">Experiencias Visuales</a>
+      <a href="../servicios/produccion-integral.html">Producción Integral</a>
+      <a href="../servicios/branding-eventos.html">Branding de Eventos</a>
+    </div>
+    <a href="#clientes">Portafolio</a>
+    <a href="#trabajo">Galeria</a>
+  </nav>
+  <a href="#contacto" class="svb-talk" aria-label="Hablemos" title="Hablemos">
+    <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-5Z"/><path d="M21 11h-3a2 2 0 0 0-2 2v3a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-5Z"/><path d="M3 11v-1a9 9 0 0 1 18 0v1"/><path d="M21 16v2a4 4 0 0 1-4 4h-5"/></svg>
+  </a>
+</header>
+
+<main>
+  <div class="intro">
+  <section id="inicio" class="hero" data-name="Inicio">
+    <video class="hero-video" src="media/hero.mp4" poster="media/hero-poster.jpg" muted playsinline preload="auto"></video>
+    <div class="veil"></div>
+    <canvas class="swarm"></canvas>
+    <svg class="beams" viewBox="0 0 1440 900" preserveAspectRatio="none" aria-hidden="true">
+      <line x1="0" y1="0" x2="1440" y2="900"/><line x1="1440" y1="0" x2="0" y2="900"/>
+      <line x1="720" y1="0" x2="720" y2="900"/><line x1="0" y1="450" x2="1440" y2="450"/>
+      <circle cx="720" cy="450" r="330"/><circle cx="720" cy="450" r="520"/>
+      <rect x="520" y="250" width="400" height="400"/>
+    </svg>
+    <p class="mono hero-extra kicker">Agencia creativa de producción de eventos y experiencias visuales</p>
+    <h1 class="disp hero-title" data-accent>
+      <span class="l">Cerramos la distancia</span>
+      <span class="l">entre imagin[a]rlo</span>
+      <span class="l">y viv[i]rlo.</span>
+    </h1>
+    <div class="welcome-stage">
+      <div class="topgal-wrap"><div class="topgal"></div><div class="vign"></div></div>
+      <div class="welcome-logo"><p class="mono wl">Bienvenidos a</p><img src="media/assets/svblime-negativo.png" alt="SVBLIME"></div>
+    </div>
+  </section>
+  </div>
+
+  <section id="agencia" class="act manifesto" data-name="Lo que hacemos">
+    <div class="curtain"><i></i><i></i><i></i></div>
+    <p class="mono eyebrow">01 · Lo que hacemos</p>
+    <h2 class="disp big scrub" data-accent>Lo que merece ser rec[o]rdado, lo hacemos realid[a]d.</h2>
+    <p class="lead">Transformamos tus ideas en experiencias que inspiran, conectan e impactan, con un propósito: <em>hacerlas inolvidables.</em></p>
+  </section>
+
+  <section class="act triptych" data-name="Pilares">
+    <div class="curtain"><i></i><i></i><i></i></div>
+    <div class="tri"></div>
+  </section>
+
+  <section id="servicios" class="act services-h" data-name="Servicios">
+    <div class="curtain"><i></i><i></i><i></i></div>
+    <div class="services-track">
+      <div class="services-intro">
+        <p class="mono eyebrow">02 · Servicios</p>
+        <h2 class="disp big" data-accent>El poder de un equip[o] conectado.</h2>
+        <p class="lead">Cuatro formas de trabajar, una sola misión: <em>hacer que tu idea cobre vida.</em></p>
+      </div>
+    </div>
+  </section>
+
+  <section id="trabajo" class="act work" data-name="Trabajo">
+    <div class="curtain"><i></i><i></i><i></i></div>
+    <p class="mono eyebrow">03 · Trabajo</p>
+    <h2 class="disp big" data-accent>Lo mejor de nuestro trabajo es verl[o] en acción.</h2>
+    <div class="work-grid"></div>
+  </section>
+
+  <section id="equipo" class="act crew" data-name="Equipo">
+    <p class="mono eyebrow">04 · La experiencia nos une.</p>
+    <ul class="names"></ul>
+  </section>
+
+  <section id="clientes" class="act fest" data-name="Clientes">
+    <div class="curtain"><i></i><i></i><i></i></div>
+    <div class="fest-head pad">
+      <img src="media/assets/svblime-fest-lockup.png" alt="SVBLIME presenta · SVBLIME Fest">
+      <p class="mono eyebrow">05 · Marcas, corporaciones y artistas que han confiado.</p>
+    </div>
+    <div class="fest-days"></div>
+  </section>
+
+  <section id="contacto" class="act end" data-name="Hablemos">
+    <div class="curtain"><i></i><i></i><i></i></div>
+    <a class="giant" href="mailto:hola@svblime.cl"><span class="giant-track" data-accent>Habl[e]mos · Habl[e]mos · Habl[e]mos · Habl[e]mos ·</span></a>
+    <div class="end-row">
+      <p class="end-copy">Tu idea, cuidada desde el concepto hasta la experiencia final.</p>
+      <form class="contact-form" novalidate>
+        <input name="nombre" placeholder="Nombre" aria-label="Nombre" autocomplete="name">
+        <input name="email" type="email" placeholder="Email" aria-label="Email" autocomplete="email">
+        <textarea name="mensaje" rows="4" placeholder="Cuéntanos tu idea: objetivo del evento, público, lugar y fecha." aria-label="Cuéntanos tu idea"></textarea>
+        <button type="submit" class="mono">Enviar</button>
+        <p class="form-msg"></p>
+      </form>
+    </div>
+    <div class="brand-strip" aria-label="Marcas, corporaciones y artistas que han confiado"></div>
+    <footer><span class="bars"></span><span>SVBLIME existe para que ninguna gran idea se pierda.</span><span class="mono">Chile · 2026</span></footer>
+  </section>
+</main>
+
+<script src="js/idea-9.min.js" defer></script>
+</body>
+</html>
