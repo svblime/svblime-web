@@ -1,4 +1,4 @@
-/* @ds-bundle: {"format":4,"namespace":"SVBLIMEDesignSystem_fe43f6","components":[{"name":"Card","sourcePath":"components/content/Card.jsx"},{"name":"FounderCard","sourcePath":"components/content/FounderCard.jsx"},{"name":"ServiceCard","sourcePath":"components/content/ServiceCard.jsx"},{"name":"QuoteBlock","sourcePath":"components/content/QuoteBlock.jsx"},{"name":"StatBlock","sourcePath":"components/content/StatBlock.jsx"},{"name":"Badge","sourcePath":"components/core/Badge.jsx"},{"name":"Button","sourcePath":"components/core/Button.jsx"},{"name":"Eyebrow","sourcePath":"components/core/Eyebrow.jsx"},{"name":"SpectrumBar","sourcePath":"components/core/SpectrumBar.jsx"}],"sourceHashes":{"SVBLIME-web-optimizado/site.js":"dc4506be8f1d","components/content/Card.jsx":"c7d5e7ecb622","components/content/FounderCard.jsx":"a8ac1aa6f918","components/content/ServiceCard.jsx":"0bb0b20bced2","components/content/QuoteBlock.jsx":"5889c7e48f81","components/content/StatBlock.jsx":"4f369dcc58f6","components/core/Badge.jsx":"1566e9973984","components/core/Button.jsx":"c100444c646f","components/core/Eyebrow.jsx":"2e3e9f72364a","components/core/SpectrumBar.jsx":"a6051be3ffdb","deck-stage.js":"f3d3d0a662c0","ui_kits/casi-ultimo-elvis/SiteCasiUltimoElvis.jsx":"941027b69865","ui_kits/casi-ultimo-elvis/doc-page.js":"5957844bb066","ui_kits/casi-ultimo-elvis/standalone-Site.jsx":"e73745017898","ui_kits/web-seo/SiteSeo.jsx":"806939ee8873","ui_kits/website/Site.jsx":"3ae4fcdb4643","ui_kits/website/doc-page.js":"5957844bb066","ui_kits/website/standalone-Site.jsx":"ca07ba45f371"},"inlinedExternals":[],"unexposedExports":[]} */
+/* @ds-bundle: {"format":4,"namespace":"SVBLIMEDesignSystem_fe43f6","components":[{"name":"Card","sourcePath":"components/content/Card.jsx"},{"name":"FounderCard","sourcePath":"components/content/FounderCard.jsx"},{"name":"PillarCard","sourcePath":"components/content/PillarCard.jsx"},{"name":"QuoteBlock","sourcePath":"components/content/QuoteBlock.jsx"},{"name":"StatBlock","sourcePath":"components/content/StatBlock.jsx"},{"name":"Badge","sourcePath":"components/core/Badge.jsx"},{"name":"Button","sourcePath":"components/core/Button.jsx"},{"name":"Eyebrow","sourcePath":"components/core/Eyebrow.jsx"},{"name":"SpectrumBar","sourcePath":"components/core/SpectrumBar.jsx"}],"sourceHashes":{"SVBLIME-web-optimizado/site.js":"dc4506be8f1d","components/content/Card.jsx":"c7d5e7ecb622","components/content/FounderCard.jsx":"a8ac1aa6f918","components/content/PillarCard.jsx":"0bb0b20bced2","components/content/QuoteBlock.jsx":"5889c7e48f81","components/content/StatBlock.jsx":"4f369dcc58f6","components/core/Badge.jsx":"1566e9973984","components/core/Button.jsx":"c100444c646f","components/core/Eyebrow.jsx":"2e3e9f72364a","components/core/SpectrumBar.jsx":"a6051be3ffdb","deck-stage.js":"f3d3d0a662c0","ui_kits/casi-ultimo-elvis/SiteCasiUltimoElvis.jsx":"941027b69865","ui_kits/casi-ultimo-elvis/doc-page.js":"5957844bb066","ui_kits/casi-ultimo-elvis/standalone-Site.jsx":"e73745017898","ui_kits/web-seo/SiteSeo.jsx":"806939ee8873","ui_kits/website/Site.jsx":"3ae4fcdb4643","ui_kits/website/doc-page.js":"5957844bb066","ui_kits/website/standalone-Site.jsx":"ca07ba45f371"},"inlinedExternals":[],"unexposedExports":[]} */
 
 (() => {
 
@@ -435,13 +435,13 @@ function Eyebrow({
 Object.assign(__ds_scope, { Eyebrow });
 })(); } catch (e) { __ds_ns.__errors.push({ path: "components/core/Eyebrow.jsx", error: String((e && e.message) || e) }); }
 
-// components/content/ServiceCard.jsx
+// components/content/PillarCard.jsx
 try { (() => {
 /**
  * One of SVBLIME's four service pillars.
  * number "01".."04", title, description, accent + optional icon.
  */
-function ServiceCard({
+function PillarCard({
   number = "01",
   title,
   description,
@@ -504,8 +504,8 @@ function ServiceCard({
     }
   }, description));
 }
-Object.assign(__ds_scope, { ServiceCard });
-})(); } catch (e) { __ds_ns.__errors.push({ path: "components/content/ServiceCard.jsx", error: String((e && e.message) || e) }); }
+Object.assign(__ds_scope, { PillarCard });
+})(); } catch (e) { __ds_ns.__errors.push({ path: "components/content/PillarCard.jsx", error: String((e && e.message) || e) }); }
 
 // components/core/SpectrumBar.jsx
 try { (() => {
@@ -595,7 +595,7 @@ Object.assign(__ds_scope, { QuoteBlock });
 })(); } catch (e) { __ds_ns.__errors.push({ path: "components/content/QuoteBlock.jsx", error: String((e && e.message) || e) }); }
 __ds_ns.Card = __ds_scope.Card;
 __ds_ns.FounderCard = __ds_scope.FounderCard;
-__ds_ns.ServiceCard = __ds_scope.ServiceCard;
+__ds_ns.PillarCard = __ds_scope.PillarCard;
 __ds_ns.QuoteBlock = __ds_scope.QuoteBlock;
 __ds_ns.StatBlock = __ds_scope.StatBlock;
 __ds_ns.Badge = __ds_scope.Badge;

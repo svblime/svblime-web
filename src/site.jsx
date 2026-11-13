@@ -1,7 +1,7 @@
 /* global React */
 const { useState } = React;
 const NS = window.SVBLIMEDesignSystem_fe43f6;
-const { Button, Badge, Eyebrow, SpectrumBar, ServiceCard, QuoteBlock, FounderCard, StatBlock, Card } = NS;
+const { Button, Badge, Eyebrow, SpectrumBar, PillarCard, QuoteBlock, FounderCard, StatBlock, Card } = NS;
 
 /* ---- shared stage-light background (on-brand: colored beams over black) ---- */
 const stage = (a = "78,169,255", b = "143,0,255") => ({
@@ -74,7 +74,7 @@ function Header({ onCta }) {
   React.useEffect(() => () => { if (svcTimer.current) clearTimeout(svcTimer.current); }, []);
   const links = [
     ["SVBLIME", "#agencia"],
-    ["Servicios", "#servicios"],
+    ["Servicios", "#pilares"],
     ["Portafolio", "#lineup"],
     ["Galeria", "#trabajo"],
   ];
@@ -193,7 +193,7 @@ const smoothstep = (a, b, x) => { const t = Math.min(1, Math.max(0, (x - a) / (b
 const GALLERY_META = {
   hiphop: { t: "Hip Hop al Parque · Colombia", tags: ["Contenido", "Luz"] },
   vina: { t: "Festival de Viña", tags: ["Iluminación", "TV"] },
-  polima: { t: "Polimá & Pailita · Movistar Arena", tags: ["Dirección creativa", "Iluminación"] },
+  polima: { t: "Polima & Pailita · Movistar Arena", tags: ["Dirección creativa", "Iluminación"] },
   icare: { t: "Meeting Empresa · Icare", tags: ["Pantalla", "Producción técnica"] },
   tecate: { t: "Tecate Pa'l Norte · México", tags: ["Iluminación"] },
   chystemc: { t: "ChysteMC · 20 años", tags: ["Iluminación", "Visuales"] },
@@ -214,7 +214,7 @@ const GALLERY_META = {
   finalrojo: { t: "Final ROJO TVN", tags: ["Programación", "Iluminación"] },
   lctenvivo: { t: "Video clip en vivo · LCT", tags: ["Iluminación", "Videoclip"] },
   mesobrabas: { t: "Video clip LCT · Me Sobrabas Tú", tags: ["Iluminación", "Videoclip"] },
-  alanis: { t: "Alanis Lagos en vivo · Olmué", tags: ["Dirección creativa"] },
+  alanis: { t: "Alanis Lago en vivo · Olmué", tags: ["Dirección creativa"] },
   entremares: { t: "Entremares · Arena Monticello", tags: ["Dirección de iluminación"] },
   movistar13: { t: "Movistar Arena · LCT 13 años", tags: ["Programación", "Código de tiempo"] },
   ciberseg: { t: "Evento Empresa · Ciberseguridad", tags: ["Producción", "Contenido"] },
@@ -228,7 +228,7 @@ const GALLERY_META = {
   santotomas: { t: "Charla Santo Tomás", tags: ["Contenido", "Branding"] },
   astara: { t: "Capacitación Empresa · Astara", tags: ["Producción técnica", "Contenido"] },
   pailita: { t: "Iluminación y Visuales · Pailita", tags: ["Diseño", "Programación"] },
-  pampilla: { t: "Festival La Pampilla · Pablito Pesadilla", tags: ["Iluminación"] },
+  pampilla: { t: "Festival La Pampilla · Pablito Pesadilla", tags: ["Iluminación", "+100.000 personas"] },
   gino: { t: "Teletón 2025 · Gino Mella", tags: ["Dirección creativa", "Contenido"] },
   dulsonico: { t: "Dirección Video Clip · Dulsónico", tags: ["Dirección de arte", "Edición"] },
   movistar: { t: "Movistar Empresas · HISPAM Digital Forum", tags: ["Contenido", "3D"] },
@@ -546,8 +546,8 @@ function Hero() {
   );
 }
 
-/* ============================ Servicios ============================ */
-function Servicios() {
+/* ============================ Pilares ============================ */
+function Pilares() {
   const hrefs = {
     "Dirección Creativa": "servicios/direccion-creativa.html",
     "Experiencias Visuales": "servicios/experiencias-visuales.html",
@@ -561,9 +561,10 @@ function Servicios() {
     ["", "blue", "Branding de Eventos", "Identidad, mensaje, sistema visual y puntos de contacto, coherentes antes, durante y después."],
   ];
   return (
-    <section id="servicios" style={{ position: "relative", padding: "var(--section-y) clamp(20px,5vw,56px)", background: "var(--bg-page)" }}>
+    <section id="pilares" style={{ position: "relative", padding: "var(--section-y) clamp(20px,5vw,56px)", background: "var(--bg-page)" }}>
       <div style={{ maxWidth: "var(--container-max)", margin: "0 auto" }}>
         <div className="svb-reveal" style={{ display: "flex", flexDirection: "column", gap: "16px", marginBottom: "48px", maxWidth: "60ch" }}>
+          <Eyebrow tickColor="var(--svb-amber)" style={{ display: "none" }}>Cuatro pilares · una sola dirección</Eyebrow>
           <div style={{ position: "absolute", width: "1px", height: "1px", overflow: "hidden", clipPath: "inset(50%)", whiteSpace: "nowrap", margin: "-1px", padding: 0, border: 0, fontFamily: "var(--font-mono)", fontSize: "clamp(11px,1.5vw,14px)", letterSpacing: "0.22em", textTransform: "uppercase", color: "var(--text-meta)", fontWeight: 400, display: "flex", alignItems: "center", flexWrap: "wrap", gap: "0.62em" }}>
             <span>Dirección</span>
             <span aria-hidden="true" style={{ color: "var(--text-meta)" }}>|</span>
@@ -572,6 +573,8 @@ function Servicios() {
             <span>Producción</span>
             <span aria-hidden="true" style={{ color: "var(--text-meta)" }}>|</span>
             <span>Branding</span>
+            <span aria-hidden="true" style={{ color: "var(--bg-page)" }}>|</span>
+            <span style={{ color: "var(--bg-page)" }}>Productora 360</span>
           </div>
           <h2 style={{ position: "absolute", width: "1px", height: "1px", overflow: "hidden", clipPath: "inset(50%)", whiteSpace: "nowrap", margin: "-1px", padding: 0, border: 0, fontFamily: "var(--font-mono)", fontSize: "clamp(11px,1.5vw,14px)", letterSpacing: "0.22em", textTransform: "uppercase", color: "var(--text-meta)", fontWeight: 400 }}>
             Servicios: dirección creativa, producción de eventos y experiencias visuales
@@ -579,14 +582,14 @@ function Servicios() {
           <div style={{ fontFamily: "var(--font-display)", fontSize: "clamp(30px,5vw,52px)", color: "var(--svb-white)", letterSpacing: "-0.02em", lineHeight: 1.05 }}>
             El poder de un equipo conectado.
           </div>
-          <p style={{ margin: 0, fontSize: "17px", lineHeight: 1.6, color: "var(--text-body)", maxWidth: "60ch" }}>
+          <p style={{ margin: 0, fontSize: "17px", lineHeight: 1.6, color: "var(--text-body)", maxWidth: "none", width: "max-content", whiteSpace: "nowrap" }}>
             Cuatro formas de trabajar, una sola misión: <em>hacer que tu idea cobre vida.</em>
           </p>
         </div>
         <div className="svb-reveal svb-pillargrid" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(240px,1fr))", gap: "16px" }}>
           {pillars.map((p) => (
             <a key={p[2]} href={hrefs[p[2]]} style={{ display: "block", textDecoration: "none", color: "inherit" }}>
-              <ServiceCard number={p[0]} accent={p[1]} title={p[2]} description={p[3]} />
+              <PillarCard number={p[0]} accent={p[1]} title={p[2]} description={p[3]} />
             </a>
           ))}
         </div>
@@ -804,7 +807,7 @@ const WORK = [
   { t: "Festival del Huaso de Olmué", v: "Garras de Amor", tags: ["Operación de iluminación en vivo"], cat: "TV", beam: ["143,0,255", "78,169,255"], video: "work/garras-olmue-video.mp4" },
   { t: "Movistar Empresas", v: "HISPAM Digital Forum", tags: ["Contenido", "3D", "Dirección creativa"], cat: "Corporativo", beam: ["78,169,255", "143,0,255"], video: "work/movistar-empresas-video.mp4" },
   { t: "Banco BCI", v: "Programación de iluminación", tags: ["Código de tiempo", "Iluminación"], cat: "Corporativo", beam: ["78,169,255", "255,205,89"], videos: ["work/bci-video-2.mp4", "work/bci-video.mp4"] },
-  { t: "Festival La Pampilla", v: "Pablito Pesadilla", tags: ["Iluminación"], cat: "Show", beam: ["78,169,255", "255,205,89"], photos: ["work/min/pampilla-1.jpg", "work/min/pampilla-2.jpg", "work/min/pampilla-3.jpg"] },
+  { t: "Festival La Pampilla", v: "Pablito Pesadilla", tags: ["Iluminación", "+100.000 personas"], cat: "Show", beam: ["78,169,255", "255,205,89"], photos: ["work/min/pampilla-1.jpg", "work/min/pampilla-2.jpg", "work/min/pampilla-3.jpg"] },
   { t: "Iluminación y Visuales", v: "Pailita", tags: ["Diseño", "Programación", "Código de tiempo"], cat: "Show", beam: ["255,205,89", "78,169,255"], photos: ["work/min/pailita-1.jpg", "work/min/pailita-2.jpg", "work/min/pailita-3.jpg"] },
   { t: "Entremares", v: "Arena Monticello", tags: ["Dirección de iluminación"], cat: "Show", beam: ["255,205,89", "143,0,255"], photos: ["work/min/entremares-1.jpg", "work/min/entremares-2.jpg", "work/min/entremares-3.jpg"] },
   { t: "Movistar Arena", v: "LCT · 13 años", tags: ["Programación", "Código de tiempo"], cat: "Show", beam: ["78,169,255", "143,0,255"], photos: ["work/min/movistar13-1.jpg", "work/min/movistar13-2.jpg"] },
@@ -812,18 +815,18 @@ const WORK = [
   { t: "Final ROJO TVN", v: "Iluminación en vivo", tags: ["Programación", "Iluminación", "TV"], cat: "TV", beam: ["255,205,89", "143,0,255"], video: "work/finalrojo-video.mp4" },
   { t: "Video clip en vivo", v: "La Combo Tortuga", tags: ["Programación", "Iluminación"], cat: "Show", beam: ["78,169,255", "143,0,255"], video: "work/lctenvivo-video.mp4" },
   { t: "Video clip · LCT", v: "Me Sobrabas Tú", tags: ["Programación", "Iluminación"], cat: "Show", beam: ["143,0,255", "255,205,89"], video: "work/mesobrabas-video.mp4" },
-  { t: "Alanis Lagos en vivo", v: "Festival del Huaso de Olmué", tags: ["Dirección creativa", "Contenido visual"], cat: "TV", beam: ["78,169,255", "255,205,89"], video: "work/alanis-video.mp4" },
+  { t: "Alanis Lago en vivo", v: "Festival del Huaso de Olmué", tags: ["Dirección creativa", "Contenido visual"], cat: "TV", beam: ["78,169,255", "255,205,89"], video: "work/alanis-video.mp4" },
   { t: "Yandel Sinfónico", v: "Festival de Viña 2025", tags: ["Operación", "Diseño", "Contenido"], cat: "TV", beam: ["143,0,255", "255,205,89"], video: "work/yandel-video.mp4" },
   { t: "Stand Publicitario", v: "Branding Chevrolet", tags: ["Pantalla", "Contenido visual", "Punto de encuentro"], cat: "Corporativo", beam: ["78,169,255", "143,0,255"], video: "work/chevrolet-video.mp4", photos: ["work/min/chevrolet-1.jpg"] },
   { t: "Hip Hop al Parque · Colombia", v: "+65.000 asistentes", tags: ["Contenido", "Luz"], cat: "Festival", beam: ["143,0,255", "255,205,89"], photos: ["work/min/hiphop-1.jpg", "work/min/hiphop-2.jpg", "work/min/hiphop-3.jpg"] },
   { t: "Meeting Empresa", v: "Icare", tags: ["Pantalla", "Producción técnica", "Operación"], cat: "Corporativo", beam: ["143,0,255", "78,169,255"], photos: ["work/min/icare-1.jpg", "work/min/icare-2.jpg", "work/min/icare-3.jpg"] },
   { t: "ChysteMC · 20 años", v: "Teatro Coliseo", tags: ["Iluminación", "Visuales"], cat: "Show", beam: ["78,169,255", "143,0,255"], photos: ["work/min/chystemc-1.jpg", "work/min/chystemc-2.jpg", "work/min/chystemc-3.jpg"] },
   { t: "Experiencia inmersiva de lujo", v: "Branding Blue Label", tags: ["Pantalla", "Operación", "Audio inmersivo"], cat: "Corporativo", beam: ["78,169,255", "143,0,255"], photos: ["work/min/blue-1.jpg", "work/min/blue-2.jpg", "work/min/blue-3.jpg"] },
-  { t: "Lollapalooza", v: "Lara Project", tags: ["Programación", "Código de tiempo"], cat: "Festival", beam: ["78,169,255", "255,205,89"], photos: ["work/min/lara-1.jpg", "work/min/lara-2.jpg", "work/min/lara-3.jpg"] },
+  { t: "Lollapalooza", v: "Lara Poyect", tags: ["Programación", "Código de tiempo"], cat: "Festival", beam: ["78,169,255", "255,205,89"], photos: ["work/min/lara-1.jpg", "work/min/lara-2.jpg", "work/min/lara-3.jpg"] },
   { t: "Conferencia Doctores", v: "Breast Cancer Summit", tags: ["Media Server", "Branding", "Producción técnica"], cat: "Corporativo", beam: ["143,0,255", "78,169,255"], photos: ["work/min/summit-1.jpg", "work/min/summit-2.jpg", "work/min/summit-3.jpg"] },
-  { t: "Polimá & Pailita", v: "Movistar Arena 360", tags: ["Dirección creativa", "Iluminación"], cat: "Show", beam: ["143,0,255", "78,169,255"], photos: ["work/min/polima-1.jpg", "work/min/polima-2.jpg", "work/min/polima-3.jpg"] },
+  { t: "Polima & Pailita", v: "Movistar Arena 360", tags: ["Dirección creativa", "Iluminación"], cat: "Show", beam: ["143,0,255", "78,169,255"], photos: ["work/min/polima-1.jpg", "work/min/polima-2.jpg", "work/min/polima-3.jpg"] },
   { t: "Lanzamiento de Marca", v: "Evento corporativo", tags: ["Contenido visual", "Producción técnica"], cat: "Corporativo", beam: ["78,169,255", "143,0,255"], photos: ["work/min/muno-1.jpg", "work/min/muno-2.jpg", "work/min/muno-3.jpg"] },
-  { t: "Festival de Viña", v: "Polimá Westcoast", tags: ["Iluminación", "TV"], cat: "TV", beam: ["78,169,255", "143,0,255"], video: "work/vina-video.mp4" },
+  { t: "Festival de Viña", v: "Polima Westcoast", tags: ["Iluminación", "TV"], cat: "TV", beam: ["78,169,255", "143,0,255"], video: "work/vina-video.mp4" },
   { t: "Cuenta Pública", v: "Municipalidades", tags: ["Operación visuales", "Producción técnica"], cat: "Corporativo", beam: ["143,0,255", "255,205,89"], photos: ["work/min/cuenta-1.jpg", "work/min/cuenta-2.jpg", "work/min/cuenta-3.jpg"] },
   { t: "Video clip · 3am", v: "La Combo Tortuga", tags: ["Diseño", "Código de tiempo"], cat: "Show", beam: ["255,205,89", "78,169,255"], video: "work/combo-video.mp4" },
   { t: "Tecate Pal Norte · México", v: "DJ Pablito Pesadilla", tags: ["Iluminación"], cat: "Show", beam: ["143,0,255", "78,169,255"], photos: ["work/min/tecate-1.jpg", "work/min/tecate-2.jpg", "work/min/tecate-3.jpg"] },
@@ -975,6 +978,12 @@ function Equipo() {
           <FounderCard name="Jaime Lagos" role="Creatividad & Arte" accent="blue" photo="assets/team/jaime-lagos.jpg" hoverPhotos={["team/min/jaime-hover.jpg"]} disciplines={["Dirección de arte", "Contenido visual", "3D"]} />
           <FounderCard name="Luis Ulloa" role="Producción & Media Server" accent="amber" photo="assets/team/luis-ulloa.jpg" hoverPhotos={["team/min/luis-hover.jpg"]} disciplines={["Producción general", "Coordinación", "Visuales"]} />
           <FounderCard name="Elvis Coloma" role="Iluminación & Técnica" accent="violet" photo="assets/team/elvis-coloma.jpg" hoverPhotos={["team/min/elvis-2.jpg"]} disciplines={["Diseño de luz", "Programación", "Escenario"]} />
+        </div>
+        <div style={{ display: "none", gridTemplateColumns: "repeat(auto-fit,minmax(160px,1fr))", gap: "24px", marginTop: "64px", paddingTop: "48px", borderTop: "1px solid var(--border-default)" }}>
+          <StatBlock value="+10" label="Años en escenarios en vivo" accent="blue" />
+          <StatBlock value="04" label="Pilares bajo una dirección" accent="amber" />
+          <StatBlock value="03" label="Socios fundadores" accent="violet" />
+          <StatBlock value="65K" label="Máx. asistentes en un show" accent="white" />
         </div>
       </div>
     </section>
@@ -1147,16 +1156,16 @@ function SiteSeo() {
         <div style={{ margin: "0 auto" }}>
           <div className="svb-reveal" style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "24px", textAlign: "center", marginInline: "auto" }}>
             <p style={{ fontFamily: "var(--font-display)", fontSize: "clamp(28px,4vw,52px)", color: "var(--svb-white)", lineHeight: 1.06, letterSpacing: "-0.02em", margin: 0 }}>
-              <span style={{ display: "block", color: "var(--text-muted)", fontSize: "0.62em", letterSpacing: "-0.01em", marginBottom: "0.4em" }}>SVBLIME va más allá de las luces, pantallas y la producción.</span>
-              Aquí, las ideas que merecen<br />ser recordadas se hacen realidad.
+              <span style={{ color: "var(--text-muted)", fontSize: "45px", display: "none", letterSpacing: "-0.01em" }}>Va más allá de las luces, pantallas y la producción.</span>
+              Lo que merece ser recordado,<br />lo hacemos realidad.
             </p>
             <p style={{ margin: 0, fontSize: "clamp(15px,1.4vw,18px)", lineHeight: 1.7, color: "var(--text-body)" }}>
-              Transformamos tus ideas en experiencias visuales que inspiran, conectan e impactan, con un único propósito: <em>hacerlas inolvidables.</em>
+              Transformamos tus ideas en experiencias que inspiran, conectan e impactan, con un propósito: <em>hacerlas inolvidables.</em>
             </p>
           </div>
         </div>
       </section>
-      <Servicios />
+      <Pilares />
       <LineUp />
       <Trabajo />
       <Equipo />
