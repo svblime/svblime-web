@@ -109,6 +109,8 @@ function FounderCard({
     key: i,
     src: src,
     alt: name,
+    loading: "lazy",
+    decoding: "async",
     style: {
       position: "absolute",
       inset: 0,

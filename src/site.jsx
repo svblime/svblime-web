@@ -283,25 +283,26 @@ function Hero() {
   const offsetRef = React.useRef(0);      // accumulated up-scroll → photos slide right
   const introSeenRef = React.useRef(SKIP_INTRO); // once the intro is scrolled past, the logo never returns
 
-  // Download the whole clip as a Blob URL for smooth playback, then autoplay it.
+  // Stream the clip and start as soon as the browser can play it (no full download first).
+  // If it cannot start within 8 s (slow connection, blocked autoplay), skip the intro.
   React.useEffect(() => {
     if (SKIP_INTRO) return;
-    let url;
-    let cancelled = false;
-    fetch("hero.mp4").then((r) => r.blob()).then((b) => {
-      if (cancelled) return;
-      url = URL.createObjectURL(b);
-      const v = videoRef.current;
-      if (v) {
-        v.src = url;
-        v.load();
-        setReady(true);
-        v.playbackRate = 0.75;
-        const p = v.play();
-        if (p) p.catch(() => {});
-      }
-    }).catch(() => { setReady(true); });
-    return () => { cancelled = true; if (url) URL.revokeObjectURL(url); };
+    const v = videoRef.current;
+    if (!v) return;
+    let started = false;
+    const start = () => {
+      if (started) return;
+      started = true;
+      setReady(true);
+      v.playbackRate = 0.75;
+      const p = v.play();
+      if (p) p.catch(() => {});
+    };
+    v.addEventListener("canplay", start);
+    v.src = "hero.mp4";
+    v.load();
+    const fallback = window.setTimeout(() => { if (!started) { started = true; setReady(true); finishIntro(); } }, 8000);
+    return () => { v.removeEventListener("canplay", start); window.clearTimeout(fallback); };
   }, []);
 
   // Lock page scroll until the centered logo is shown; release afterward.
@@ -476,7 +477,7 @@ function Hero() {
                         {row.map((m, ii) => (
                           <div key={copy + "-" + ii} className="svb-gitem" style={{ position: "relative", alignSelf: "center", height: isBig(m.src) ? "100%" : "62%", aspectRatio: m.type === "video" ? "16 / 9" : (ii % 3 === 0 ? "3 / 4" : ii % 3 === 1 ? "1 / 1" : "4 / 3"), borderRadius: "var(--radius-sm)", overflow: "hidden", background: "#111", flex: "none" }}>
                             {m.type === "video" ? (
-                              <video src={m.src} muted loop playsInline autoPlay preload="metadata" style={{ width: "100%", height: "100%", objectFit: "cover", display: "block", opacity: 0.9 }} />
+                              <LazyVideo src={m.src} style={{ width: "100%", height: "100%", objectFit: "cover", display: "block", opacity: 0.9 }} />
                             ) : (
                               <img src={m.src} alt="" loading="lazy" decoding="async" style={{ width: "100%", height: "100%", objectFit: "cover", display: "block", opacity: 0.85 }} />
                             )}
@@ -693,16 +694,54 @@ function LineUp() {
     </section>
   );
 }
+const posterFor = (src) => src.replace(/^work\/(.*)\.mp4$/, "work/poster/$1.jpg");
+
+// Visibility hook: true while the element is on (or near) the screen.
+function useInView(ref, margin = "200px") {
+  const [inView, setInView] = React.useState(false);
+  React.useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    if (!("IntersectionObserver" in window)) { setInView(true); return; }
+    const io = new IntersectionObserver(([e]) => setInView(e.isIntersecting), { rootMargin: margin });
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
+  return inView;
+}
+
+// Gallery video: shows its poster frame, downloads only when it scrolls into view, pauses when it leaves.
+function LazyVideo({ src, style }) {
+  const ref = React.useRef(null);
+  const inView = useInView(ref);
+  const near = useInView(ref, "600px");
+  React.useEffect(() => {
+    const v = ref.current;
+    if (!v) return;
+    if (inView) {
+      if (!v.getAttribute("src")) v.setAttribute("src", src);
+      const p = v.play();
+      if (p) p.catch(() => {});
+    } else if (v.getAttribute("src")) {
+      v.pause();
+    }
+  }, [inView, src]);
+  return <video ref={ref} poster={near ? posterFor(src) : undefined} muted loop playsInline preload="none" style={style} />;
+}
+
 function WorkCard({ w }) {
   const photos = w.photos || [];
   const videos = w.videos || (w.video ? [w.video] : []);
   const slides = [...videos.map((_, i) => "__video" + i + "__"), ...photos];
   const [idx, setIdx] = React.useState(0);
   const videoRef = React.useRef(null);
+  const cardRef = React.useRef(null);
+  const inView = useInView(cardRef);
   const vIdx = idx < videos.length ? idx : -1;
 
   // Rotate through video (played full) then photos every 2s. Lazy-load images so the grid stays fluid.
   React.useEffect(() => {
+    if (!inView) { const v = videoRef.current; if (v) v.pause(); return; }
     const cur = slides[idx];
     if (typeof cur === "string" && cur.indexOf("__video") === 0) {
       const v = videoRef.current;
@@ -714,13 +753,13 @@ function WorkCard({ w }) {
     if (slides.length < 2) return;
     const t = setTimeout(() => setIdx((n) => (n + 1) % slides.length), 3300);
     return () => clearTimeout(t);
-  }, [idx, slides.length]);
+  }, [idx, slides.length, inView]);
 
   const onVideoEnd = () => setIdx((n) => (n + 1) % slides.length);
 
   return (
     <Card interactive padding="0" style={{ overflow: "hidden" }}>
-      <div style={{
+      <div ref={cardRef} style={{
         aspectRatio: "16/10", position: "relative", overflow: "hidden",
         background:
           "radial-gradient(90% 120% at 20% 0%, rgba(" + w.beam[0] + ",0.55), transparent 60%)," +
@@ -729,7 +768,7 @@ function WorkCard({ w }) {
         display: "flex", alignItems: "flex-end", padding: "16px",
       }}>
         {videos.length > 0 && (
-          <video key={vIdx >= 0 ? vIdx : "last"} ref={videoRef} src={videos[vIdx >= 0 ? vIdx : 0]} muted playsInline preload="auto" loop={slides.length === 1} onEnded={onVideoEnd}
+          <video key={vIdx >= 0 ? vIdx : "last"} ref={videoRef} src={inView ? videos[vIdx >= 0 ? vIdx : 0] : undefined} poster={posterFor(videos[vIdx >= 0 ? vIdx : 0])} muted playsInline preload={inView ? "auto" : "none"} loop={slides.length === 1} onEnded={onVideoEnd}
             style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", opacity: vIdx >= 0 ? 1 : 0, transition: "opacity 600ms var(--ease-standard)" }} />
         )}
         {photos.map((src, i) => {
