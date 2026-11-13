@@ -1,6 +1,6 @@
 // Compila el sitio: componentes del design system + src/site.jsx → public/js/app.min.js
 // y copia React en versión de producción a public/vendor/.
-import { transformSync } from "esbuild";
+import { transformSync, buildSync } from "esbuild";
 import { readFileSync, writeFileSync, mkdirSync, copyFileSync } from "node:fs";
 
 const ds = readFileSync("src/ds-components.js", "utf8");
@@ -25,3 +25,11 @@ writeFileSync("public/js/app.min.js", out);
 copyFileSync("node_modules/react/umd/react.production.min.js", "public/vendor/react.production.min.js");
 copyFileSync("node_modules/react-dom/umd/react-dom.production.min.js", "public/vendor/react-dom.production.min.js");
 console.log(`app.min.js: ${(out.length / 1024).toFixed(0)} KB`);
+
+// Rediseño (ideas en revisión): cada idea es un paquete independiente en public/rediseno/js/.
+for (const name of ["idea1", "idea2"]) {
+  try {
+    buildSync({ entryPoints: [`src/rediseno/${name}.js`], bundle: true, minify: true, format: "iife", target: "es2019",
+      outfile: `public/rediseno/js/${name.replace("idea", "idea-")}.min.js`, legalComments: "none", logLevel: "warning" });
+  } catch (e) { if (!String(e.message).includes("Could not resolve")) throw e; }
+}
