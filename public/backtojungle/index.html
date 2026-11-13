@@ -1,6 +1,47 @@
 <!DOCTYPE html>
 <html>
 <head>
+<meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
+<style>
+#svb-gate{position:fixed;inset:0;z-index:99999;background:#000;color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;font-family:-apple-system,BlinkMacSystemFont,'Helvetica Neue',Arial,sans-serif;padding:24px;text-align:center}
+#svb-gate .bar{display:flex;width:220px;height:6px}
+#svb-gate .bar i{flex:1}
+#svb-gate h1{font-size:13px;letter-spacing:.28em;text-transform:uppercase;color:#B4B4BC;font-weight:400;margin:0}
+#svb-gate p{font-size:15px;color:#74747E;margin:0}
+#svb-gate form{display:flex;gap:8px;margin-top:6px}
+#svb-gate input{background:#0F0F12;border:1px solid #26262C;color:#fff;padding:12px 14px;font-size:16px;border-radius:4px;outline:none;min-width:220px}
+#svb-gate input:focus{border-color:#4EA9FF}
+#svb-gate button{background:#fff;color:#000;border:0;padding:12px 20px;font-size:15px;border-radius:4px;cursor:pointer}
+@media (max-width:900px){ #svb-gate input{min-width:0;width:100%} #svb-gate form{width:100%;max-width:320px} }
+#svb-gate .err{color:#FFCD59;font-size:13px;min-height:16px}
+body.svb-locked{overflow:hidden}
+</style>
+<script>
+(function(){
+  var KEY='svb-propuesta-backtojungle';
+  if(sessionStorage.getItem(KEY)==='1') return;
+  document.addEventListener('DOMContentLoaded',function(){
+    document.body.classList.add('svb-locked');
+    var g=document.createElement('div');
+    g.id='svb-gate';
+    g.innerHTML='<div class="bar"><i style="background:#4EA9FF"></i><i style="background:#FFCD59"></i><i style="background:#8F00FF"></i></div>'+
+      '<h1>SVBLIME</h1><p>Propuesta privada · BACK TO JUNGLE</p>'+
+      '<form><input type="password" placeholder="Contrase\u00f1a" autocomplete="off" autofocus><button type="submit">Entrar</button></form>'+
+      '<div class="err"></div>';
+    document.body.appendChild(g);
+    var f=g.querySelector('form'), i=g.querySelector('input'), e=g.querySelector('.err');
+    f.addEventListener('submit',function(ev){
+      ev.preventDefault();
+      if(i.value.trim().toLowerCase()==='gorila'){
+        sessionStorage.setItem(KEY,'1');
+        document.body.classList.remove('svb-locked');
+        g.remove();
+      } else { e.textContent='Contrase\u00f1a incorrecta'; i.value=''; i.focus(); }
+    });
+  });
+})();
+</script>
+
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script src="./support.js"></script>

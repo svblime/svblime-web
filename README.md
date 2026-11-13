@@ -49,4 +49,10 @@ scripts/optimizar-propuesta.sh <carpeta-exportada> public/<nombre-carpeta>
 
 La herramienta deja fuera los archivos que la página no usa y comprime fotos, videos y audio sin cambiar cómo se ve. El código de la página no se toca: la pantalla de contraseña y las protecciones (clic derecho, captura de pantalla, pantalla negra al cambiar de ventana) siguen igual. Requiere `ffmpeg` e ImageMagick.
 
+Para ponerle la pantalla de contraseña de SVBLIME (si la exportación no la trae):
+
+```bash
+scripts/agregar-contrasena.sh public/<nombre-carpeta> "Propuesta privada · <Cliente>" <contraseña>
+```
+
 Para subirla al hosting basta con subir esa carpeta de `public/` con FileZilla.
