@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
+<meta name="viewport" content="width=816">
+<title>Propuesta creativa · KWYK · SVBLIME</title>
+<style>
+html,body{margin:0;padding:0;background:#000 !important}
+body{padding-top:28px}
+doc-page{background:#000 !important;display:block}
+#svb-fit{overflow:hidden;margin:0 auto}
+html{-webkit-text-size-adjust:100% !important;text-size-adjust:100% !important}
+body{-webkit-text-size-adjust:100% !important;text-size-adjust:100% !important}
+doc-page,doc-page *{-webkit-text-size-adjust:100% !important;text-size-adjust:100% !important}
+#svb-note{position:fixed;left:0;right:0;bottom:0;z-index:99997;background:rgba(0,0,0,.9);color:#74747E;font-family:-apple-system,BlinkMacSystemFont,'Helvetica Neue',Arial,sans-serif;font-size:11px;letter-spacing:.12em;text-transform:uppercase;text-align:center;padding:6px 12px;border-top:1px solid #26262C;line-height:1.3}
+body{padding-bottom:34px}
+@media (max-width:900px){ #svb-warn .m{font-size:15px} #svb-gate input{min-width:0;width:100%} #svb-gate form{width:100%;max-width:320px} }
+</style>
+<script>
+(function(){
+  function ready(fn){document.readyState!=='loading'?fn():document.addEventListener('DOMContentLoaded',fn);}
+  var raf, W=816, MAX=816, GUT=28;
+  function fit(){
+    var dp=document.querySelector('doc-page');
+    if(!dp){ return setTimeout(fit,300); }
+    var vw=document.documentElement.clientWidth;
+    var wrapEl=document.getElementById('svb-fit');
+    if(!wrapEl){
+      wrapEl=document.createElement('div'); wrapEl.id='svb-fit';
+      dp.parentNode.insertBefore(wrapEl,dp); wrapEl.appendChild(dp);
+    }
+    var target=Math.min(vw-(vw>W?GUT*2:0), MAX);
+    if(target<320) target=vw;
+    var f=target/W;
+    dp.style.display='block';
+    dp.style.width=W+'px';
+    dp.style.transformOrigin='0 0';
+    dp.style.transform='';
+    var pg=dp.children[0], pad=0;
+    if(pg){ pad=Math.round(pg.getBoundingClientRect().left-dp.getBoundingClientRect().left); }
+    dp.style.transform='translateX('+(-pad*f)+'px) scale('+f+')';
+    wrapEl.style.width=target+'px';
+    wrapEl.style.margin='0 auto';
+    wrapEl.style.height=Math.ceil(dp.getBoundingClientRect().height)+'px';
+  }
+  function schedule(){ cancelAnimationFrame(raf); raf=requestAnimationFrame(fit); }
+  ready(function(){
+    var n=document.createElement('div'); n.id='svb-note';
+    n.textContent='Documento privado · no autorizado para compartir';
+    document.body.appendChild(n);
+    fit();
+    [400,1200,2500,4000].forEach(function(t){setTimeout(fit,t);});
+    window.addEventListener('resize',schedule);
+    window.addEventListener('orientationchange',function(){setTimeout(fit,300);});
+    window.addEventListener('load',schedule);
+    if(window.ResizeObserver){
+      var dp=document.querySelector('doc-page');
+      if(dp) new ResizeObserver(schedule).observe(dp);
+    }
+  });
+})();
+</script>
+
+<style>
+html.svb-guard, html.svb-guard body{-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}
+html.svb-guard img,html.svb-guard video{-webkit-user-drag:none;user-drag:none;pointer-events:auto}
+#svb-blur{position:fixed;inset:0;z-index:99998;background:#000;color:#fff;display:none;align-items:center;justify-content:center;text-align:center;padding:32px;font-family:-apple-system,BlinkMacSystemFont,'Helvetica Neue',Arial,sans-serif;font-size:15px;letter-spacing:.06em;color:#B4B4BC}
+html.svb-hidden #svb-blur{display:flex}
+#svb-warn{position:fixed;inset:0;z-index:99999;background:rgba(0,0,0,.94);color:#fff;display:none;flex-direction:column;align-items:center;justify-content:center;gap:16px;text-align:center;padding:32px;font-family:-apple-system,BlinkMacSystemFont,'Helvetica Neue',Arial,sans-serif}
+#svb-warn.on{display:flex}
+#svb-warn .t{font-size:13px;letter-spacing:.28em;text-transform:uppercase;color:#FFCD59}
+#svb-warn .m{font-size:17px;line-height:1.5;max-width:460px;color:#E8E8E6}
+#svb-warn button{background:#fff;color:#000;border:0;padding:11px 22px;font-size:15px;border-radius:4px;cursor:pointer;margin-top:6px}
+</style>
+<script>
+(function(){
+  document.documentElement.classList.add('svb-guard');
+  function ready(fn){document.readyState!=='loading'?fn():document.addEventListener('DOMContentLoaded',fn);}
+  ready(function(){
+    var b=document.createElement('div');b.id='svb-blur';
+    b.textContent='Documento privado — vuelve a esta ventana para continuar';
+    document.body.appendChild(b);
+    var w=document.createElement('div');w.id='svb-warn';
+    w.innerHTML='<div class="t">Documento privado</div><div class="m">No est\u00e1 autorizado tomar capturas de pantalla ni compartir este material. El intento queda registrado.</div><button type="button">Entendido</button>';
+    document.body.appendChild(w);
+    w.querySelector('button').addEventListener('click',function(){w.classList.remove('on');});
+    function warn(){w.classList.add('on');}
+    document.addEventListener('contextmenu',function(e){e.preventDefault();});
+    document.addEventListener('dragstart',function(e){e.preventDefault();});
+    document.addEventListener('keyup',function(e){ if(e.key==='PrintScreen'){ try{navigator.clipboard.writeText('');}catch(x){} warn(); } });
+    document.addEventListener('keydown',function(e){
+      var k=(e.key||'').toLowerCase();
+      if(e.key==='PrintScreen'){warn();return;}
+      if((e.metaKey&&e.shiftKey&&['3','4','5','6'].indexOf(k)>-1)||(e.metaKey&&e.ctrlKey&&e.shiftKey&&k==='4')){e.preventDefault();warn();return;}
+      if(e.metaKey&&e.shiftKey&&k==='s'){e.preventDefault();warn();return;}
+      if((e.ctrlKey||e.metaKey)&&['s','p','u'].indexOf(k)>-1){e.preventDefault();warn();return;}
+    });
+    document.addEventListener('visibilitychange',function(){
+      document.documentElement.classList.toggle('svb-hidden',document.hidden);
+    });
+    window.addEventListener('blur',function(){document.documentElement.classList.add('svb-hidden');});
+    window.addEventListener('focus',function(){document.documentElement.classList.remove('svb-hidden');});
+    var mo=new MutationObserver(function(){
+      document.querySelectorAll('video').forEach(function(v){
+        v.setAttribute('controlsList','nodownload noplaybackrate');
+        v.disablePictureInPicture=true;
+      });
+    });
+    mo.observe(document.body,{childList:true,subtree:true});
+  });
+})();
+</script>
+
+<style>
+#svb-gate{position:fixed;inset:0;z-index:99999;background:#000;color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;font-family:-apple-system,BlinkMacSystemFont,'Helvetica Neue',Arial,sans-serif;padding:24px;text-align:center}
+#svb-gate .bar{display:flex;width:220px;height:6px}
+#svb-gate .bar i{flex:1}
+#svb-gate h1{font-size:13px;letter-spacing:.28em;text-transform:uppercase;color:#B4B4BC;font-weight:400;margin:0}
+#svb-gate p{font-size:15px;color:#74747E;margin:0}
+#svb-gate form{display:flex;gap:8px;margin-top:6px}
+#svb-gate input{background:#0F0F12;border:1px solid #26262C;color:#fff;padding:12px 14px;font-size:16px;border-radius:4px;outline:none;min-width:220px}
+#svb-gate input:focus{border-color:#4EA9FF}
+#svb-gate button{background:#fff;color:#000;border:0;padding:12px 20px;font-size:15px;border-radius:4px;cursor:pointer}
+#svb-gate .err{color:#FFCD59;font-size:13px;min-height:16px}
+body.svb-locked{overflow:hidden}
+</style>
+<script>
+(function(){
+  var KEY='svb-propuesta-kwyk';
+  if(sessionStorage.getItem(KEY)==='1') return;
+  document.addEventListener('DOMContentLoaded',function(){
+    document.body.classList.add('svb-locked');
+    var g=document.createElement('div');
+    g.id='svb-gate';
+    g.innerHTML='<div class="bar"><i style="background:#4EA9FF"></i><i style="background:#FFCD59"></i><i style="background:#8F00FF"></i></div>'+
+      '<h1>SVBLIME</h1><p>Propuesta privada · KWYK</p>'+
+      '<form><input type="password" placeholder="Contrase\u00f1a" autocomplete="off" autofocus><button type="submit">Entrar</button></form>'+
+      '<div class="err"></div>';
+    document.body.appendChild(g);
+    var f=g.querySelector('form'), i=g.querySelector('input'), e=g.querySelector('.err');
+    f.addEventListener('submit',function(ev){
+      ev.preventDefault();
+      if(i.value.trim().toLowerCase()==='develacion'){
+        sessionStorage.setItem(KEY,'1');
+        document.body.classList.remove('svb-locked');
+        g.remove();
+      } else { e.textContent='Contrase\u00f1a incorrecta'; i.value=''; i.focus(); }
+    });
+  });
+})();
+</script>
+
+<meta charset="utf-8">
+
+<script>
+(function(){
+  function ready(fn){document.readyState!=='loading'?fn():document.addEventListener('DOMContentLoaded',fn);}
+  function wireClips(){
+    var els=document.querySelectorAll('video.svb-clip');
+    if(!els.length) return setTimeout(wireClips,300);
+    els.forEach(function(el){
+      if(el.dataset.wired) return; el.dataset.wired='1';
+      var IN=parseFloat(el.dataset.in)||0, OUT=parseFloat(el.dataset.out)||0;
+      el.muted=true; el.defaultMuted=true; el.playsInline=true; el.controls=false; el.loop=false;
+      function rewind(){ if(el.currentTime<IN-0.1||(OUT&&el.currentTime>=OUT)) el.currentTime=IN; }
+      function start(){ rewind(); var p=el.play(); if(p&&p.catch) p.catch(function(){}); }
+      el.addEventListener('loadedmetadata',start);
+      el.addEventListener('canplay',function(){ var p=el.play(); if(p&&p.catch) p.catch(function(){}); });
+      el.addEventListener('timeupdate',rewind);
+      el.addEventListener('ended',start);
+      if(el.readyState>=1) start();
+      if(window.IntersectionObserver){
+        new IntersectionObserver(function(es){es.forEach(function(e){ if(e.isIntersecting) start(); else el.pause(); });},{threshold:0.2}).observe(el);
+      }
+    });
+  }
+  function wireMain(){
+    var el=document.getElementById('video-propuesta');
+    if(!el) return setTimeout(wireMain,300);
+    if(el.dataset.wired) return; el.dataset.wired='1';
+    el.controls=true; el.loop=true; el.muted=true; el.playsInline=true;
+    var touch = (navigator.maxTouchPoints||0)>0 || (window.matchMedia && window.matchMedia('(pointer: coarse)').matches);
+    if(touch) return;
+    if(window.IntersectionObserver){
+      new IntersectionObserver(function(es){es.forEach(function(e){
+        if(e.isIntersecting){ el.muted=true; var p=el.play(); if(p&&p.catch) p.catch(function(){}); } else { el.pause(); }
+      });},{threshold:0.4}).observe(el);
+    }
+  }
+  function all(){ wireClips(); wireMain(); }
+  ready(function(){ all(); [600,1500,3000,5000,8000].forEach(function(t){setTimeout(all,t);});
+    if(window.MutationObserver){ var mo=new MutationObserver(function(){ all(); }); mo.observe(document.body,{childList:true,subtree:true}); }
+  });
+})();
+</script>
+
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="_ds/svblime-cl-e415844d-f7ef-43b2-8c8e-61b4173db6d4/tokens/fonts.css">
+<link rel="stylesheet" href="_ds/svblime-cl-e415844d-f7ef-43b2-8c8e-61b4173db6d4/tokens/colors.css">
+<link rel="stylesheet" href="_ds/svblime-cl-e415844d-f7ef-43b2-8c8e-61b4173db6d4/tokens/typography.css">
+<link rel="stylesheet" href="_ds/svblime-cl-e415844d-f7ef-43b2-8c8e-61b4173db6d4/tokens/spacing.css">
+<link rel="stylesheet" href="_ds/svblime-cl-e415844d-f7ef-43b2-8c8e-61b4173db6d4/tokens/effects.css">
+<link rel="stylesheet" href="_ds/svblime-cl-e415844d-f7ef-43b2-8c8e-61b4173db6d4/tokens/base.css">
+<link rel="stylesheet" href="_ds/svblime-cl-e415844d-f7ef-43b2-8c8e-61b4173db6d4/styles.css">
+<style>
+doc-page:not(:defined){visibility:hidden}
+a{color:#4EA9FF;text-decoration:none}
+a:hover{color:#FFCD59}
+</style>
+<script src="./doc-page.js?v=3"></script>
+
+</helmet>
+
+<doc-page size="letter">
+
+<section class="page" data-screen-label="00 Portada" style="background:#000">
+  <div style="position:relative;height:100%;overflow:hidden;background:#000">
+    <img loading="lazy" decoding="async" src="assets/portada.jpg" alt="El SUV saliendo de las pantallas LED" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0.7">
+    <div style="position:absolute;inset:0;background:linear-gradient(180deg, rgba(0,0,0,0.86) 0%, rgba(0,0,0,0.28) 40%, rgba(0,0,0,0.95) 100%)"></div>
+    <div style="position:relative;height:100%;box-sizing:border-box;padding:0.8in 0.72in;display:flex;flex-direction:column;color:#FFFFFF">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:24px">
+        <img loading="lazy" decoding="async" src="assets/logo.png" alt="SVBLIME" style="width:1.9in;height:auto;display:block">
+        <div style="font-family:'JetBrains Mono',monospace;font-size:8.5pt;letter-spacing:0.16em;text-transform:uppercase;color:#B4B4BC;text-align:right;line-height:1.7">Propuesta creativa<br>Documento privado</div>
+      </div>
+      <div style="margin-top:auto">
+        <div style="font-family:'JetBrains Mono',monospace;font-size:9pt;letter-spacing:0.22em;text-transform:uppercase;color:#FFCD59;margin-bottom:0.2in">KWYK · Develación SUV</div>
+        <h1 style="font-family:'Borscha',sans-serif;font-size:72pt;line-height:0.9;letter-spacing:-0.025em;margin:0;text-transform:uppercase">Sale de la<br>pantalla</h1>
+        <div role="separator" style="width:2.6in;height:7px;margin:0.32in 0 0.26in 0;background:linear-gradient(90deg, var(--svb-blue) 0 33.33%, var(--svb-amber) 33.33% 66.66%, var(--svb-violet) 66.66% 100%)"></div>
+        <p style="font-family: 'Hanken Grotesk',sans-serif; font-size: 13pt; line-height: 1.5; color: #E8E8E6; max-width: 4.6in; margin: 0; display: none">Un cubo de LED, un efecto 3D y el auto real detrás.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="page" data-screen-label="01 La idea" style="background:#000">
+  <div style="height:100%;box-sizing:border-box;padding:0.85in 0.72in 0.6in;display:flex;flex-direction:column;color:#FFFFFF;background:radial-gradient(110% 60% at 50% 0%, #0F0F16 0%, #000000 60%)">
+    <div style="font-family:'JetBrains Mono',monospace;font-size:8.5pt;letter-spacing:0.2em;text-transform:uppercase;color:#4EA9FF">01 · La idea</div>
+    <div role="separator" style="width:1.1in;height:5px;margin:0.16in 0 0.42in 0;background:linear-gradient(90deg, var(--svb-blue) 0 33.33%, var(--svb-amber) 33.33% 66.66%, var(--svb-violet) 66.66% 100%)"></div>
+
+    <h2 style="font-family: 'Borscha',sans-serif; font-size: 42pt; line-height: 0.98; letter-spacing: -0.02em; margin: 0 0 0.42in 0; text-transform: uppercase">Primero no hay suv.<br>Hay una caja fuerte.</h2>
+
+    <p style="margin:0;max-width:7.2in;font-family:'Hanken Grotesk',sans-serif;font-size:17pt;line-height:1.5;color:#B4B4BC;text-wrap:pretty">Una caja fuerte cerrada al centro del salón simboliza que lo que esta guardado es de alto valor. La pantalla LED muestra un camino en 3D y el auto sale de la pantalla a escala real. Entonces las puertas se abren y detrás aparece el auto verdadero.</p>
+
+    <div style="margin-top:auto;border-top:1px solid #26262C;padding-top:0.3in">
+      <p style="font-family: 'Borscha',sans-serif; font-size: 26pt; line-height: 1.12; margin: 0; text-transform: uppercase; letter-spacing: -0.01em; color: #FFFFFF; display: none">El auto no se muestra.<br><span style="color:#FFCD59">Se aparece.</span></p>
+    </div>
+  </div>
+</section>
+
+<section class="page" data-screen-label="02 Moodboard" style="background:#000">
+  <div style="height:100%;box-sizing:border-box;display:grid;grid-template-rows:minmax(0,1fr) minmax(0,1fr) auto;background:#000;color:#FFFFFF">
+    <div style="position:relative;overflow:hidden;min-height:0;background:#000"><img loading="lazy" decoding="async" src="assets/mood-caja.jpg" alt="Caja fuerte cerrada" style="width:100%;height:100%;object-fit:cover;display:block"></div>
+    <div style="position:relative;overflow:hidden;min-height:0;background:#000"><img loading="lazy" decoding="async" src="assets/mood-paisaje.jpg" alt="Camino de montaña" style="width:100%;height:100%;object-fit:cover;display:block"></div>
+    <div style="padding:0.4in 0.72in 0.55in;display:flex;flex-direction:column;justify-content:flex-end">
+      <div style="display:flex;justify-content:space-between;align-items:baseline;font-family:'JetBrains Mono',monospace;font-size:8.5pt;letter-spacing:0.2em;text-transform:uppercase;color:#74747E;margin-bottom:0.14in"><span style="color:#8F00FF">02 · Moodboard</span><span style="display: none">Referencia madre</span></div>
+      <h2 style="font-family:'Borscha',sans-serif;font-size:30pt;line-height:1.02;letter-spacing:-0.02em;margin:0 0 0.16in 0;text-transform:uppercase">AFUERA HIERRO, ADENTRO EL TERRENO</h2>
+      <p style="font-family: 'Hanken Grotesk',sans-serif; font-size: 11.5pt; line-height: 1.5; color: #B4B4BC; margin: 0; text-wrap: pretty; display: none">Dos imágenes ordenan todo el proyecto: un contenedor pesado y opaco que no deja ver nada, y el territorio abierto que aparece cuando se abre. El contraste es la promesa del auto.</p>
+    </div>
+  </div>
+</section>
+
+<section class="page" data-screen-label="03 Boceto 1" style="background:#000">
+  <div style="height:100%;box-sizing:border-box;display:flex;flex-direction:column;background:#000;color:#FFFFFF">
+    <div style="height:560px;background:#000;display:flex;align-items:center;justify-content:center"><div style="position:relative;width:100%;height:404px;overflow:hidden;background:#000"><video class="svb-clip" data-in="8" data-out="14" src="assets/boceto-1.mp4#t=8,14" autoplay muted playsinline preload="auto" style="position:absolute;left:-3%;top:-44px;width:106%;height:auto;display:block;background:#000"></video></div></div>
+    <div style="flex:1;min-height:0;padding:0.26in 0.72in 0.34in;display:flex;flex-direction:column">
+      <div style="display:flex;justify-content:space-between;align-items:baseline;font-family:'JetBrains Mono',monospace;font-size:8.5pt;letter-spacing:0.2em;text-transform:uppercase;color:#74747E;margin-bottom:0.16in"><span style="color:#4EA9FF">03 · Boceto 1</span><span style="display: none">Estudio volumétrico</span></div>
+      <h2 style="font-family:'Borscha',sans-serif;font-size:34pt;line-height:1;letter-spacing:-0.02em;margin:0 0 0.2in 0;text-transform:uppercase">La ilusión la hace la esquina</h2>
+      <p style="font-family: 'Hanken Grotesk',sans-serif; font-size: 11.5pt; line-height: 1.5; color: #B4B4BC; margin: 0; max-width: 5.6in; text-wrap: pretty; display: none">El primer estudio no dibuja contenido: dibuja geometría. Cuántas caras, en qué ángulo se cierran y a qué altura vuela el auto. El efecto 3D nace del quiebre entre pantallas, no del video.</p>
+      <div style="margin-top:auto;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0.3in;border-top:1px solid #26262C;padding-top:0.24in;font-family:'Hanken Grotesk',sans-serif;font-size:10.5pt;color:#FFFFFF;line-height:1.45">
+        <div><span style="display:block;font-family:'JetBrains Mono',monospace;font-size:8pt;letter-spacing:0.16em;text-transform:uppercase;color:#B4B4BC;margin-bottom:6px">Caras</span>Dos laterales en ángulo + piso</div>
+        <div><span style="display:block;font-family:'JetBrains Mono',monospace;font-size:8pt;letter-spacing:0.16em;text-transform:uppercase;color:#B4B4BC;margin-bottom:6px">Punto de vista</span>Eje frontal calibrado</div>
+        <div><span style="display:block;font-family:'JetBrains Mono',monospace;font-size:8pt;letter-spacing:0.16em;text-transform:uppercase;color:#B4B4BC;margin-bottom:6px">Medidas</span>Se cierran con el recinto</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="page" data-screen-label="04 Boceto 2" style="background:#000">
+  <div style="height:100%;box-sizing:border-box;display:flex;flex-direction:column;background:#000;color:#FFFFFF">
+    <div style="height:700px;background:#000;display:flex;align-items:center;justify-content:center">
+      <div style="position:relative;width:100%;height:404px;overflow:hidden;background:#000"><video class="svb-clip" data-in="0" data-out="0" src="assets/boceto-2.mp4" autoplay muted playsinline preload="auto" style="position:absolute;left:-3%;top:-44px;width:106%;height:auto;display:block;background:#000"></video></div>
+    </div>
+    <div style="flex:1;min-height:0;padding:0.3in 0.72in 0.4in;display:flex;flex-direction:column">
+      <div style="font-family:'JetBrains Mono',monospace;font-size:8.5pt;letter-spacing:0.2em;text-transform:uppercase;color:#FFCD59">04 · Boceto 2</div>
+      <div role="separator" style="width:1.1in;height:5px;margin:0.14in 0 0.2in 0;background:linear-gradient(90deg, var(--svb-blue) 0 33.33%, var(--svb-amber) 33.33% 66.66%, var(--svb-violet) 66.66% 100%)"></div>
+      <h2 style="font-family:'Borscha',sans-serif;font-size:32pt;line-height:1;letter-spacing:-0.02em;margin:0;text-transform:uppercase">La caja se abre</h2>
+      <div style="margin-top:auto;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0.3in;border-top:1px solid #26262C;padding-top:0.22in;font-family:'Hanken Grotesk',sans-serif;font-size:11pt;color:#FFFFFF;line-height:1.4">
+        <div><span style="display:block;font-family:'JetBrains Mono',monospace;font-size:8pt;letter-spacing:0.16em;text-transform:uppercase;color:#B4B4BC;margin-bottom:5px">Cerrado</span>Ninguna pista del auto.</div>
+        <div><span style="display: block; font-family: &quot;JetBrains Mono&quot;, monospace; font-size: 8pt; letter-spacing: 0.16em; text-transform: uppercase; color: rgb(180, 180, 188); margin-bottom: 5px;">Apertura</span>Las caras se abren.</div>
+        <div><span style="display:block;font-family:'JetBrains Mono',monospace;font-size:8pt;letter-spacing:0.16em;text-transform:uppercase;color:#B4B4BC;margin-bottom:5px">Fondo</span>El LED interior sigue vivo.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="page" data-screen-label="05 Diseño" style="background:#000">
+  <div style="height:100%;box-sizing:border-box;display:flex;flex-direction:column;background:#000;color:#FFFFFF">
+    <div style="height:900px;display:grid;grid-template-rows:repeat(3,minmax(0,1fr));gap:3px;background:#000">
+      <div style="overflow:hidden;min-height:0;background:#000"><img loading="lazy" decoding="async" src="assets/dis-a.jpg" alt="La caja fuerte cerrada en el salón" style="width:100%;height:100%;object-fit:cover;display:block"></div>
+      <div style="overflow:hidden;min-height:0;background:#000"><img loading="lazy" decoding="async" src="assets/dis-1.jpg" alt="El auto sale de la pantalla" style="width:100%;height:100%;object-fit:cover;display:block"></div>
+      <div style="overflow:hidden;min-height:0;background:#000"><img loading="lazy" decoding="async" src="assets/dis-c.jpg" alt="Las puertas abiertas y el auto real sobre el paisaje LED" style="width:100%;height:100%;object-fit:cover;display:block"></div>
+    </div>
+    <div style="flex:1;min-height:0;padding:0.2in 0.72in 0.26in;display:flex;flex-direction:column">
+      <div style="display:flex;justify-content:space-between;align-items:baseline;font-family:'JetBrains Mono',monospace;font-size:8.5pt;letter-spacing:0.2em;text-transform:uppercase;color:#74747E"><span style="color:#4EA9FF">05 · Diseño</span><span style="display: none">Secuencia definitiva</span></div>
+      <h2 style="font-family:'Borscha',sans-serif;font-size:22pt;line-height:1.02;letter-spacing:-0.02em;margin:0.08in 0 0 0;text-transform:uppercase">Tres momentos, una sola develación</h2>
+      <div style="margin-top:auto;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0.2in;font-family:'Hanken Grotesk',sans-serif;font-size:10pt;color:#FFFFFF;line-height:1.35">
+        <div><span style="display:block;font-family:'JetBrains Mono',monospace;font-size:7.5pt;letter-spacing:0.16em;text-transform:uppercase;color:#B4B4BC;margin-bottom:4px">01 · La caja</span>Un volumen cerrado, sin pistas.</div>
+        <div><span style="display:block;font-family:'JetBrains Mono',monospace;font-size:7.5pt;letter-spacing:0.16em;text-transform:uppercase;color:#B4B4BC;margin-bottom:4px">02 · La salida</span>La Suv cruza el marco en 3D.</div>
+        <div><span style="display:block;font-family:'JetBrains Mono',monospace;font-size:7.5pt;letter-spacing:0.16em;text-transform:uppercase;color:#B4B4BC;margin-bottom:4px">03 · Lo real</span>Las puertas abren y aparece la Suv.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="page" data-screen-label="06 Video" style="background:#000">
+  <div style="height:100%;box-sizing:border-box;display:flex;flex-direction:column;background:#000;color:#FFFFFF">
+    <div style="height:660px;background:#000;overflow:hidden;display:flex;align-items:center;justify-content:center">
+      <video id="video-propuesta" controls playsinline muted loop preload="metadata" src="assets/video.mp4" poster="assets/portada.jpg" style="width:100%;height:100%;object-fit:contain;display:block;background:#000"></video>
+    </div>
+    <div style="flex:1;min-height:0;padding:0.26in 0.72in 0.34in;display:flex;flex-direction:column">
+      <div style="font-family:'JetBrains Mono',monospace;font-size:8.5pt;letter-spacing:0.2em;text-transform:uppercase;color:#8F00FF">06 · Video</div>
+      <div role="separator" style="width:1.1in;height:5px;margin:0.14in 0 0.2in 0;background:linear-gradient(90deg, var(--svb-blue) 0 33.33%, var(--svb-amber) 33.33% 66.66%, var(--svb-violet) 66.66% 100%)"></div>
+      <h2 style="font-family:'Borscha',sans-serif;font-size:30pt;line-height:1;letter-spacing:-0.02em;margin:0;text-transform:uppercase">La develación en movimiento</h2>
+      <div style="margin-top:auto;display:flex;justify-content:space-between;align-items:flex-end;gap:0.4in;border-top:1px solid #26262C;padding-top:0.2in">
+        <p style="font-family:'Hanken Grotesk',sans-serif;font-size:11pt;line-height:1.45;color:#B4B4BC;margin:0;max-width:4.6in">KWYK · Develación SUV</p>
+        <img loading="lazy" decoding="async" src="assets/logo.png" alt="SVBLIME" style="width:1.2in;height:auto;display:block">
+      </div>
+    </div>
+  </div>
+</section>
+
+</doc-page>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  componentDidMount() {
+    const sync = () => {
+      const el = document.querySelector('doc-page');
+      if (el && typeof el._measure === 'function') el._measure();
+    };
+    [0, 60, 250, 800, 2000].forEach(t => setTimeout(sync, t));
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(sync);
+    const clips = () => {
+      const els = document.querySelectorAll('video.svb-clip');
+      if (!els.length) return setTimeout(clips, 300);
+      els.forEach(el => {
+        if (el.dataset.wired) return;
+        el.dataset.wired = '1';
+        const IN = parseFloat(el.dataset.in) || 0, OUT = parseFloat(el.dataset.out) || 0;
+        el.muted = true; el.defaultMuted = true; el.playsInline = true; el.controls = false; el.loop = false;
+        const rewind = () => { if (el.currentTime < IN - 0.1 || (OUT && el.currentTime >= OUT)) el.currentTime = IN; };
+        const start = () => { rewind(); el.play().catch(() => {}); };
+        el.addEventListener('loadedmetadata', start);
+        el.addEventListener('canplay', () => el.play().catch(() => {}));
+        if (el.readyState >= 1) start();
+        el.addEventListener('timeupdate', rewind);
+        el.addEventListener('ended', start);
+        new IntersectionObserver((es) => es.forEach(e => {
+          if (e.isIntersecting) start(); else el.pause();
+        }), { threshold: 0.2 }).observe(el);
+      });
+    };
+    clips();
+    const v = () => {
+      const el = document.getElementById('video-propuesta');
+      if (!el) return setTimeout(v, 300);
+      el.controls = true; el.loop = true; el.muted = true; el.playsInline = true;
+      new IntersectionObserver((es) => es.forEach(e => {
+        if (e.isIntersecting) { el.muted = true; el.play().catch(() => {}); } else { el.pause(); }
+      }), { threshold: 0.5 }).observe(el);
+    };
+    v();
+  }
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>
