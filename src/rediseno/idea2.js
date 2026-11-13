@@ -14,7 +14,7 @@ SERVICES.forEach(([n, name, desc, href], i) => {
   const c = document.createElement("article");
   c.className = "card";
   c.style.background = CARD[i][0]; c.style.color = CARD[i][1];
-  c.innerHTML = `<span class="n">${n}</span><span></span><h3>${name.replace(" ", "<br>")}</h3><p>${desc}</p><a href="${A}${href}">Ver servicio</a>`;
+  c.innerHTML = `<span class="n">${n}</span><span></span><h3>${name.replace(" ", "<br>")}</h3><p>${desc}</p><a href="../${href}">Ver servicio</a>`;
   cards.appendChild(c);
 });
 

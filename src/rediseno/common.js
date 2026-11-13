@@ -7,8 +7,8 @@ import Lenis from "lenis";
 gsap.registerPlugin(ScrollTrigger, SplitText);
 export { gsap, ScrollTrigger, SplitText };
 
-// Ruta a los archivos de la web (las ideas viven en /rediseno/).
-export const A = "../";
+// Fotos y videos de las ideas: copia propia en /rediseno/media/, para que la carpeta funcione sola.
+export const A = "media/";
 export const REDUCED = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 export const TOUCH = window.matchMedia("(hover: none)").matches;
 

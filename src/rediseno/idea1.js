@@ -17,7 +17,7 @@ SERVICES.forEach(([n, name, desc, href], i) => {
   el.innerHTML = `<span class="bar" style="background:${COLORS[i % 3]}"></span>
     <span class="num">${n}</span>
     <div><h3>${name.replace(" ", "<br>")}</h3></div>
-    <div><p>${desc}</p><a href="${A}${href}">Ver servicio</a></div>`;
+    <div><p>${desc}</p><a href="../${href}">Ver servicio</a></div>`;
   track.appendChild(el);
 });
 

@@ -1,5 +1,5 @@
 /* Base compartida del rediseño de SVBLIME */
-@font-face { font-family: "Borscha"; src: url("../assets/fonts/borscha-semibold.otf") format("opentype"); font-weight: 600; font-display: swap; }
+@font-face { font-family: "Borscha"; src: url("media/assets/fonts/borscha-semibold.otf") format("opentype"); font-weight: 600; font-display: swap; }
 
 :root {
   --black: #000; --ink: #08080A; --bone: #F4F1EA;
