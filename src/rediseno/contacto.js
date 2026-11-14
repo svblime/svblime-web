@@ -1,7 +1,7 @@
-// Idea 11 · página de contacto (el formulario sale de la portada)
+// Rediseño SVBLIME · página de contacto
 import { gsap, ScrollTrigger, TOUCH, REDUCED, smoothScroll, accent } from "./common.js";
-import { BRAND } from "./sections.js";
-import { headerMenu, contactForm, customCursor } from "./nueva11.js";
+const BRAND = ["#4EA9FF", "#FFCD59", "#8F00FF"];
+import { headerMenu, contactForm, customCursor } from "./final.js";
 
 document.querySelectorAll("[data-accent]").forEach((el) => (el.innerHTML = accent(el.innerHTML)));
 headerMenu().reveal();

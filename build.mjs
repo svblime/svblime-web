@@ -26,10 +26,8 @@ copyFileSync("node_modules/react/umd/react.production.min.js", "public/vendor/re
 copyFileSync("node_modules/react-dom/umd/react-dom.production.min.js", "public/vendor/react-dom.production.min.js");
 console.log(`app.min.js: ${(out.length / 1024).toFixed(0)} KB`);
 
-// Rediseño (ideas en revisión): cada idea es un paquete independiente en public/rediseno/js/.
-for (const name of ["idea1", "idea2", "idea3", "idea4", "idea5", "idea6", "idea7", "idea8", "idea9", "idea10", "idea11", "idea11c"]) {
-  try {
-    buildSync({ entryPoints: [`src/rediseno/${name}.js`], bundle: true, minify: true, format: "iife", target: "es2019",
-      outfile: `public/rediseno/js/${name.replace("idea", "idea-")}.min.js`, legalComments: "none", logLevel: "warning" });
-  } catch (e) { if (!String(e.message).includes("Could not resolve")) throw e; }
+// Rediseño (versión final): portada y página de contacto en public/rediseno/js/.
+for (const name of ["inicio", "contacto"]) {
+  buildSync({ entryPoints: [`src/rediseno/${name}.js`], bundle: true, minify: true, format: "iife", target: "es2019",
+    outfile: `public/rediseno/js/${name}.min.js`, legalComments: "none", logLevel: "warning" });
 }

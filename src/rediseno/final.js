@@ -1,8 +1,8 @@
-// Idea 11 · base: idea 10 + la última ronda de correcciones del equipo.
+// Rediseño SVBLIME · versión final (idea 11 + ajustes finales).
 import { gsap, ScrollTrigger, SplitText, A, REDUCED, TOUCH, smoothScroll, accent, followSpot, galleryTile, lazyVideo } from "./common.js";
 import { swarm3 } from "./swarm3.js";
 import { WORK, TEAM, LINEUP, CLIENTS, TOPGALLERY } from "./data.js";
-import { BRAND } from "./sections.js";
+const BRAND = ["#4EA9FF", "#FFCD59", "#8F00FF"];
 
 const $ = (s, r = document) => r.querySelector(s);
 const $$ = (s, r = document) => [...r.querySelectorAll(s)];
@@ -209,7 +209,10 @@ export function build() {
 
   // Servicios: el cuadro blanco parte a pantalla completa y se achica hacia la izquierda
   const intro = $(".services-intro");
-  const introW = () => Math.min(innerWidth * (innerWidth < 760 ? 0.86 : 0.42), 680);
+  const introW = () => {
+    const pad = parseFloat(getComputedStyle(intro).paddingLeft) || 0;
+    return Math.min(innerWidth * 0.94, intro.firstElementChild.offsetWidth + pad * 2);
+  };
   const travel = () => Math.max(0, introW() + $$(".service").reduce((s, el) => s + el.offsetWidth, 0) - innerWidth);
   gsap.timeline({ scrollTrigger: { trigger: ".services-h", start: "top top", end: () => "+=" + (innerHeight * 0.9 + travel()), pin: true, scrub: 1, invalidateOnRefresh: true } })
     .fromTo(intro, { width: () => innerWidth }, { width: introW, ease: "power2.inOut", duration: 1 })
@@ -229,19 +232,26 @@ export function build() {
   $$(".names .roll .a").forEach((n) => strokeFill(n, { trigger: n.closest("li"), start: "top 92%", end: "top 55%" }));
   strokeFill($(".giant-track"), { trigger: ".end", start: "top 75%", end: "top 5%" });
   strokeFill($(".end-copy"), { start: "top 88%", end: "bottom 55%" });
-  $$(".fest .day").forEach((d) => gsap.fromTo($$(".tier span", d), { color: "rgba(255,255,255,0)" }, { color: "rgba(255,255,255,1)", ease: "none",
-    scrollTrigger: { trigger: d, start: "top 88%", end: "top 30%", scrub: true } }));
+  // Un solo degradé recorre todo el bloque, como en la web actual: cada fila toma su tramo.
+  const festDays = $(".fest-days");
+  const paintFest = () => {
+    festDays.style.setProperty("--gh", festDays.offsetHeight + "px");
+    $$(".tier", festDays).forEach((t) => t.style.setProperty("--gy", t.offsetTop - festDays.offsetTop + "px"));
+  };
+  paintFest(); addEventListener("resize", paintFest);
+  $$(".fest .tier").forEach((t) => gsap.fromTo(t, { opacity: 0, y: 30 }, { opacity: 1, y: 0, ease: "none",
+    scrollTrigger: { trigger: t, start: "top 96%", end: "top 70%", scrub: true } }));
 
   // Equipo: el fondo pasa de negro a magenta con el scroll (como la idea 2) y suma un degradé magenta.
   // Va después del pin de servicios para que sus posiciones consideren ese tramo.
   const crew = $(".crew"), glow = document.createElement("div");
   glow.className = "crew-glow"; crew.prepend(glow);
-  gsap.timeline({ scrollTrigger: { trigger: crew, start: "top 95%", end: "bottom 5%", scrub: true } })
-    .fromTo(crew, { backgroundColor: "#050506" }, { backgroundColor: "#8F00FF", ease: "none", duration: 0.3 })
-    .fromTo(glow, { opacity: 0 }, { opacity: 1, ease: "none", duration: 0.3 }, 0)
-    .to({}, { duration: 0.4 })
-    .to(crew, { backgroundColor: "#050506", ease: "none", duration: 0.3 })
-    .to(glow, { opacity: 0, ease: "none", duration: 0.3 }, "<");
+  gsap.timeline({ scrollTrigger: { trigger: crew, start: "top 85%", end: "bottom 15%", scrub: true } })
+    .fromTo(crew, { backgroundColor: "#050506" }, { backgroundColor: "#8F00FF", ease: "none", duration: 0.12 })
+    .fromTo(glow, { opacity: 0 }, { opacity: 1, ease: "none", duration: 0.12 }, 0)
+    .to({}, { duration: 0.76 })
+    .to(crew, { backgroundColor: "#050506", ease: "none", duration: 0.12 })
+    .to(glow, { opacity: 0, ease: "none", duration: 0.12 }, "<");
   if (plus && !TOUCH) {
     // Idea 10: el brillo del degradé sigue al mouse
     const gx = gsap.quickTo(glow, "--gx", { duration: 0.8, ease: "power3" }), gy = gsap.quickTo(glow, "--gy", { duration: 0.8, ease: "power3" });

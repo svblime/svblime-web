@@ -26,7 +26,7 @@ body.svb-locked{overflow:hidden}
     var g=document.createElement('div');
     g.id='svb-gate';
     g.innerHTML='<div class="bar"><i style="background:#4EA9FF"></i><i style="background:#FFCD59"></i><i style="background:#8F00FF"></i></div>'+
-      '<h1>SVBLIME</h1><p>Rediseño web · versión de prueba</p>'+
+      '<h1>SVBLIME</h1><p>Rediseño web · versión final</p>'+
       '<form><input type="password" placeholder="Contrase\u00f1a" autocomplete="off" autofocus><button type="submit">Entrar</button></form>'+
       '<div class="err"></div>';
     document.body.appendChild(g);
@@ -42,127 +42,125 @@ body.svb-locked{overflow:hidden}
   });
 })();
 </script>
-
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Rediseño · SVBLIME</title>
+<title>SVBLIME · Rediseño</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500&family=Instrument+Serif:ital@1&family=JetBrains+Mono:wght@400&display=swap">
-<link rel="stylesheet" href="base.css">
-<style>
-  body { min-height: 100vh; display: flex; flex-direction: column; padding: var(--pad); gap: 40px; }
-  header { display: flex; justify-content: space-between; align-items: center; }
-  header img { height: 26px; }
-  h1 { font-family: var(--display); font-weight: 600; letter-spacing: -.04em; line-height: .92; font-size: clamp(44px, 7vw, 120px); margin: 0; }
-  .ideas { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(12px, 2vw, 28px); flex: 1; }
-  .idea { position: relative; overflow: hidden; border-radius: 10px; min-height: 52vh; display: flex; flex-direction: column; justify-content: flex-end; padding: clamp(22px, 3vw, 40px); color: #fff; }
-  .idea img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform 1.2s cubic-bezier(.2,.8,.2,1), filter .6s; filter: grayscale(.6) brightness(.55); }
-  .idea:hover img { transform: scale(1.05); filter: none; }
-  .idea > * { position: relative; }
-  .idea h2 { font-family: var(--display); font-weight: 600; letter-spacing: -.04em; font-size: clamp(36px, 4.4vw, 76px); line-height: .95; margin: 10px 0 14px; }
-  .idea p { margin: 0; max-width: 44ch; line-height: 1.55; color: #ddd; }
-  .idea .go { margin-top: 22px; align-self: flex-start; border: 1px solid #fff; border-radius: 999px; padding: 10px 18px; }
-  .i2 { background: #4EA9FF; }
-  .new-label { color: #8a8a92; margin: 0 0 -20px; }
-  .ideas.small .idea { min-height: 30vh; }
-  @media (max-width: 760px) { .ideas { grid-template-columns: 1fr; } .idea { min-height: 60vh; } }
-</style>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@300;400;500&family=Instrument+Serif:ital@1&family=JetBrains+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="final.css">
 </head>
-<body>
-  <header><img src="media/assets/svblime-logo-white-transparent.png" alt="SVBLIME"><span class="mono">Rediseño · versión de prueba</span></header>
-  <h1>Once caminos para la nueva <em class="alt">web</em>.</h1>
-  <p class="mono new-label">Ronda 6 · La versión final · correcciones sobre la idea 10</p>
-  <div class="ideas">
-    <a class="idea" href="idea-11.html" style="grid-column:1/-1">
-      <img src="media/extra/yandel-sinfonico.jpg" alt="">
-      <span class="mono">Idea 11 · Nueva</span>
-      <h2>La final</h2>
-      <p>La idea 10 con la última ronda: más letras de contraste en los títulos, del inicio directo a Lo que hacemos, galería superior limpia con texto al pasar el puntero, video de Yandel Sinfónico, servicios en dos filas, equipo con foto, telón de tres colores en todas las secciones, Hablemos con botón a una página de contacto aparte y la huincha de marcas bajo el pie.</p>
-      <span class="go mono">Ver idea 11</span>
-    </a>
+<body class="v7 plus v9 v10 v11">
+
+<div class="loader" aria-hidden="true">
+  <div class="lf" style="background:#fff"><img src="media/assets/svblime-mono.png" alt=""></div>
+  <div class="lf" style="background:#4EA9FF"><img src="media/assets/svblime-mono-blanco.png" alt=""></div>
+  <div class="lf" style="background:#FFCD59"><img src="media/assets/svblime-mono-blanco.png" alt=""></div>
+  <div class="lf" style="background:#8F00FF"><img src="media/assets/svblime-mono-blanco.png" alt=""></div>
+  <div class="lf" style="background:#000"><img src="media/assets/svblime-negativo.png" alt=""></div>
+</div>
+
+<header class="svb-header">
+  <button type="button" class="svb-burger" aria-label="Abrir menú" aria-expanded="false">
+    <span class="svb-bars"></span><span class="svb-bars"></span><span class="svb-bars"></span>
+    <svg class="svb-chev" width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="#fff" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 8l5 5 5-5"></path></svg>
+  </button>
+  <nav class="svb-nav" data-open="false">
+    <a href="#agencia">SVBLIME</a>
+    <a href="#servicios" class="svc-link" aria-expanded="false">Servicios <svg width="10" height="10" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M2.5 4.5 6 8l3.5-3.5"/></svg></a>
+    <div class="svb-svcmenu" data-open="false">
+      <a href="../servicios/direccion-creativa.html">Dirección Creativa</a>
+      <a href="../servicios/experiencias-visuales.html">Experiencias Visuales</a>
+      <a href="../servicios/produccion-integral.html">Producción Integral</a>
+      <a href="../servicios/branding-eventos.html">Branding de Eventos</a>
+    </div>
+    <a href="#clientes">Portafolio</a>
+    <a href="#trabajo">Galeria</a>
+  </nav>
+  <a href="contacto.html" class="svb-talk" aria-label="Hablemos" title="Hablemos">
+    <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-5Z"/><path d="M21 11h-3a2 2 0 0 0-2 2v3a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-5Z"/><path d="M3 11v-1a9 9 0 0 1 18 0v1"/><path d="M21 16v2a4 4 0 0 1-4 4h-5"/></svg>
+  </a>
+</header>
+
+<main>
+  <div class="intro">
+  <section id="inicio" class="hero" data-name="Inicio">
+    <video class="hero-video" src="media/hero.mp4" poster="media/hero-poster.jpg" muted playsinline preload="auto"></video>
+    <div class="veil"></div>
+    <canvas class="swarm"></canvas>
+    <svg class="beams" viewBox="0 0 1440 900" preserveAspectRatio="none" aria-hidden="true">
+      <line x1="0" y1="0" x2="1440" y2="900"/><line x1="1440" y1="0" x2="0" y2="900"/>
+      <line x1="720" y1="0" x2="720" y2="900"/><line x1="0" y1="450" x2="1440" y2="450"/>
+      <circle cx="720" cy="450" r="330"/><circle cx="720" cy="450" r="520"/>
+      <rect x="520" y="250" width="400" height="400"/>
+    </svg>
+    <p class="mono hero-extra kicker">Agencia creativa de producción de eventos y experiencias visuales</p>
+    <h1 class="disp hero-title" data-accent>
+      <span class="l">Cerram[o]s la dist[a]ncia</span>
+      <span class="l">entre imagin[a]rlo</span>
+      <span class="l">y viv[i]rlo.</span>
+    </h1>
+    <div class="welcome-stage">
+      <div class="topgal-wrap"><div class="topgal"></div><div class="vign"></div></div>
+    </div>
+  </section>
   </div>
-  <p class="mono new-label">Ronda 5</p>
-  <div class="ideas">
-    <a class="idea" href="idea-9.html">
-      <img src="media/work/min/polima-1.jpg" alt="">
-      <span class="mono">Idea 9 · Nueva</span>
-      <h2>Las correcciones</h2>
-      <p>La idea 8 con sus cambios: intro de tres colores y menú iguales a la web actual, partículas en dos grupos con estela y explosión, paso a negro con Bienvenidos a SVBLIME, la galería de sorpresa arriba, equipo con degradé magenta y el rol al pasar el mouse, clientes más rápidos, formulario más limpio y la huincha de marcas al final.</p>
-      <span class="go mono">Ver idea 9</span>
-    </a>
-    <a class="idea" href="idea-10.html">
-      <img src="media/work/min/movistar13-1.jpg" alt="">
-      <span class="mono">Idea 10 · Nueva</span>
-      <h2>Las correcciones, mejoradas</h2>
-      <p>Lo mismo de la idea 9 con mejoras: el clic deja una onda en los tres colores y empuja también el polvo de fondo, el brillo magenta del equipo sigue al mouse, los clientes destellan en los tres colores al pasar el mouse y, arriba, la rueda del mouse desliza la galería como en la web actual.</p>
-      <span class="go mono">Ver idea 10</span>
-    </a>
-  </div>
-  <p class="mono new-label">Ronda 4</p>
-  <div class="ideas">
-    <a class="idea" href="idea-7.html">
-      <img src="media/extra/yandel-sinfonico.jpg" alt="">
-      <span class="mono">Idea 7 · Nueva</span>
-      <h2>Las correcciones</h2>
-      <p>La idea 6 con sus cambios: el video queda en su último cuadro y el círculo lo deja ver sobre negro total, partículas fluidas que forman el isotipo en el puntero, Bienvenidos a SVBLIME con la galería de la web actual, títulos de trazo a relleno, servicios que se abren desde el cuadro blanco, equipo en magenta y clientes estilo SVBLIME Fest.</p>
-      <span class="go mono">Ver idea 7</span>
-    </a>
-    <a class="idea" href="idea-8.html">
-      <img src="media/work/min/hiphop-1.jpg" alt="">
-      <span class="mono">Idea 8 · Nueva</span>
-      <h2>Las correcciones, mejoradas</h2>
-      <p>Lo mismo de la idea 7 con mejoras: al bajar, el círculo crece hasta mostrar el último cuadro completo, un clic hace estallar el isotipo, servicios en los colores de marca, nombres del equipo que giran al pasar el mouse, filas de clientes que se detienen al pasar el mouse y cursor propio.</p>
-      <span class="go mono">Ver idea 8</span>
-    </a>
-  </div>
-  <p class="mono new-label">Ronda 3</p>
-  <div class="ideas">
-    <a class="idea" href="idea-5.html">
-      <img src="media/work/min/hiphop-1.jpg" alt="">
-      <span class="mono">Idea 5 · Nueva</span>
-      <h2>La elegida</h2>
-      <p>Armada sección por sección con sus indicaciones: inicio Escenario con un enjambre de partículas atraídas por el mouse, telón de tres colores en toda la web, manifiesto en blanco de trazo a relleno, pilares, servicios, galería, equipo en magenta, clientes y Hablemos.</p>
-      <span class="go mono">Ver idea 5</span>
-    </a>
-    <a class="idea" href="idea-6.html">
-      <img src="media/work/min/tecate-1.jpg" alt="">
-      <span class="mono">Idea 6 · Nueva</span>
-      <h2>La elegida, mejorada</h2>
-      <p>La misma base con mejoras: las partículas forman la E de SVBLIME cuando no mueves el mouse, el telón cambia el orden de colores en cada sección, el menú muestra en qué sección vas, fotos con profundidad, equipo que se abre y formulario de contacto real.</p>
-      <span class="go mono">Ver idea 6</span>
-    </a>
-  </div>
-  <p class="mono new-label">Ronda 2</p>
-  <div class="ideas">
-    <a class="idea" href="idea-3.html">
-      <img src="media/extra/teleton-tv.jpg" alt="">
-      <span class="mono">Idea 3</span>
-      <h2>Cue</h2>
-      <p>La web corre como un show en vivo: un timecode avanza con el scroll, cada sección es un cue que entra con un destello de luz, y los pilares se abren uno tras otro.</p>
-      <span class="go mono">Ver idea 3</span>
-    </a>
-    <a class="idea" href="idea-4.html">
-      <img src="media/work/min/blue-1.jpg" alt="">
-      <span class="mono">Idea 4</span>
-      <h2>Telón</h2>
-      <p>Editorial clara, crema y negro. Cada sección se abre con un telón de tres colores que sube con el scroll, y los pilares aparecen como arcos de escenario.</p>
-      <span class="go mono">Ver idea 4</span>
-    </a>
-  </div>
-  <p class="mono new-label">Primera ronda</p>
-  <div class="ideas small">
-    <a class="idea" href="idea-1.html">
-      <img src="media/work/min/movistar13-1.jpg" alt="">
-      <span class="mono">Idea 1</span>
-      <h2>Escenario</h2>
-      <span class="go mono">Ver idea 1</span>
-    </a>
-    <a class="idea i2" href="idea-2.html">
-      <img src="media/work/min/polima-1.jpg" alt="">
-      <span class="mono">Idea 2</span>
-      <h2>Señal</h2>
-      <span class="go mono">Ver idea 2</span>
-    </a>
-  </div>
+
+  <section id="agencia" class="act manifesto" data-name="Lo que hacemos">
+    <div class="curtain"><i></i><i></i><i></i></div>
+    <p class="mono eyebrow">01 · Lo que hacemos</p>
+    <h2 class="disp big scrub" data-accent>Lo que [merece] ser rec[o]rdado, lo hacemos realid[a]d.</h2>
+    <p class="lead">Transformamos tus ideas en experiencias que inspiran, conectan e impactan, con un propósito: <em>hacerlas inolvidables.</em></p>
+  </section>
+
+  <section class="act triptych" data-name="Pilares">
+    <div class="curtain"><i></i><i></i><i></i></div>
+    <div class="tri"></div>
+  </section>
+
+  <section id="servicios" class="act services-h" data-name="Servicios">
+    <div class="curtain"><i></i><i></i><i></i></div>
+    <div class="services-track">
+      <div class="services-intro">
+        <p class="mono eyebrow">02 · Servicios</p>
+        <h2 class="disp big" data-accent>El [poder] de un equip[o] conect[a]do.</h2>
+        <p class="lead">Cuatro formas de trabajar, una sola misión: <em>hacer que tu idea cobre vida.</em></p>
+      </div>
+    </div>
+  </section>
+
+  <section id="trabajo" class="act work" data-name="Trabajo">
+    <div class="curtain"><i></i><i></i><i></i></div>
+    <p class="mono eyebrow">03 · Trabajo</p>
+    <h2 class="disp big" data-accent>Lo [mejor] de nuestro tr[a]b[a]jo es verl[o] en ac[c]ión.</h2>
+    <div class="work-grid"></div>
+  </section>
+
+  <section id="equipo" class="act crew" data-name="Equipo">
+    <div class="curtain"><i></i><i></i><i></i></div>
+    <p class="mono eyebrow">04 · La experiencia nos une.</p>
+    <ul class="names"></ul>
+  </section>
+
+  <section id="clientes" class="act fest" data-name="Clientes">
+    <div class="curtain"><i></i><i></i><i></i></div>
+    <div class="fest-head pad">
+      <img src="media/assets/svblime-fest-lockup.png" alt="SVBLIME presenta · SVBLIME Fest">
+    </div>
+    <div class="fest-days"></div>
+  </section>
+
+  <section id="contacto" class="act end" data-name="Hablemos">
+    <div class="curtain"><i></i><i></i><i></i></div>
+    <a class="giant" href="contacto.html"><span class="giant-track" data-accent>Habl[e]mos · Habl[e]mos · Habl[e]mos · Habl[e]mos ·</span></a>
+    <div class="end-row end-11">
+      <p class="end-copy">Tu idea, cuidada desde el concepto hasta la experiencia final.</p>
+      <a class="cta-hablemos mono" href="contacto.html">Hablemos <span aria-hidden="true">→</span></a>
+    </div>
+    <footer><span class="bars"></span><span>SVBLIME existe para que ninguna gran idea se pierda.</span><span class="mono">Chile · 2026</span></footer>
+    <div class="brand-strip" aria-label="Marcas, corporaciones y artistas que han confiado"></div>
+  </section>
+</main>
+
+<script src="js/inicio.min.js" defer></script>
 </body>
 </html>
