@@ -1,0 +1,57 @@
+/* Idea 11 — última ronda de correcciones (se carga después de nueva.css, nueva7.css y nueva9.css) */
+
+/* Del inicio se pasa directo a Lo que hacemos (sin "Bienvenidos a") */
+.v11 .intro { height: auto; }
+.v11 .intro .hero { position: relative; }
+
+/* Galería superior limpia: el texto aparece solo al pasar el puntero */
+.v11 .gi img, .v11 .gi video { opacity: 1; }
+.v11 .gcap { opacity: 0; transition: opacity .35s ease; }
+.v11 .gi:hover .gcap { opacity: 1; }
+
+/* Pilar 2 y galería: video de Yandel Sinfónico en reproducción automática */
+.pill-col video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.tile-video video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+
+/* Servicios: cada nombre en dos filas */
+.v11 .service { flex: 0 0 auto; min-width: min(86vw, 640px); box-sizing: border-box; }
+.v11 .service h3 span { display: block; white-space: nowrap; }
+
+/* Equipo: vuelve la foto de la idea 6, con el diseño actual (magenta, nombre que gira al rol) */
+.v11 .names li { display: grid; grid-template-columns: auto minmax(0, 1fr); align-items: center; gap: clamp(14px, 2.4vw, 40px); }
+.v11 .names .strip { min-height: clamp(48px, 7.4vw, 140px); }
+@media (hover: none) {
+  .v11 .names li { grid-template-columns: 1fr; }
+  .v11 .names .strip { clip-path: inset(0 round 6px); min-height: 160px; }
+}
+
+/* Hablemos: la frase final con protagonismo y un solo botón */
+.end-11 { flex-direction: column; align-items: flex-start; justify-content: flex-start; gap: 5vh; padding-top: 8vh; }
+.v11 .end-11 .end-copy { font-family: var(--display); font-weight: 600; font-size: clamp(40px, 6.6vw, 118px); line-height: .94; letter-spacing: -.045em; max-width: 15ch; color: #fff; }
+.cta-hablemos { display: inline-flex; align-items: center; gap: 14px; background: #fff; color: #000; border-radius: 999px; padding: 20px 36px; font-size: 14px; letter-spacing: .24em; text-transform: uppercase; transition: background .3s, transform .5s cubic-bezier(.2,.8,.2,1); }
+.cta-hablemos:hover { background: #FFCD59; transform: translateX(6px); }
+
+/* Pie: barras a la izquierda, frase al centro, Chile · 2026 a la derecha; debajo, la huincha de marcas */
+.v11 .end footer { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 18px; padding-bottom: 3vh; }
+.v11 .end footer > :nth-child(2) { text-align: center; }
+.v11 .end footer > :last-child { justify-self: end; }
+.v11 .brand-strip { margin-top: 0; }
+@media (max-width: 760px) {
+  .v11 .end footer { grid-template-columns: 1fr; justify-items: center; text-align: center; }
+  .v11 .end footer > :last-child { justify-self: center; }
+}
+
+/* Página de contacto */
+.contact-page { position: relative; min-height: 100vh; padding: 18vh var(--pad) 8vh; background: #000; color: #fff; display: flex; flex-direction: column; gap: 4vh; box-sizing: border-box; }
+.contact-page .curtain { position: fixed; height: 100vh; }
+.contact-page h1 { font-family: var(--display); font-weight: 600; font-size: clamp(56px, 10vw, 180px); line-height: .9; letter-spacing: -.05em; margin: 0; }
+.contact-page .lead { max-width: 40ch; color: #B4B4BC; font-size: clamp(17px, 1.4vw, 21px); line-height: 1.55; margin: 0; }
+.contact-page .contact-form { width: min(760px, 100%); margin-top: 2vh; }
+.contact-page .contact-form input, .contact-page .contact-form textarea { font-size: 17px; padding: 16px; }
+.contact-page .alt-mail { color: #8a8a92; margin: 0; }
+.contact-page .alt-mail a { color: #fff; text-decoration: underline; }
+.contact-page .back { color: #8a8a92; align-self: flex-start; }
+.contact-page .back:hover { color: #FFCD59; }
+.contact-page footer { margin-top: auto; padding-top: 8vh; display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 18px; font-size: 14px; color: #8a8a92; }
+.contact-page footer > :last-child { justify-self: end; }
+@media (max-width: 760px) { .contact-page footer { grid-template-columns: 1fr; justify-items: center; text-align: center; } .contact-page footer > :last-child { justify-self: center; } }
