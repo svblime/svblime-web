@@ -1,6 +1,7 @@
 // Rediseño SVBLIME · versión final (idea 11 + ajustes finales).
-import { gsap, ScrollTrigger, SplitText, A, REDUCED, TOUCH, MOBILE, smoothScroll, accent, followSpot, galleryTile, lazyVideo } from "./common.js";
+import { gsap, ScrollTrigger, SplitText, A, REDUCED, TOUCH, MOBILE, smoothScroll, accent, isoSpot, galleryTile, lazyVideo } from "./common.js";
 import { swarm3 } from "./swarm3.js";
+import { mejoras } from "./mejoras.js";
 import { WORK, TEAM, LINEUP, CLIENTS, TOPGALLERY } from "./data.js";
 const BRAND = ["#4EA9FF", "#FFCD59", "#8F00FF"];
 
@@ -40,7 +41,7 @@ export function build() {
   const hero = $(".hero"), video = $(".hero-video"), veil = $(".veil"), canvas = $(".swarm");
   const lines = $$(".hero-title .l"), extras = $$(".hero-extra");
   // En celular no hay partículas: el inicio queda más liviano y fluido
-  if (MOBILE) canvas.remove(); else swarm3(canvas, { shock: plus });
+  if (MOBILE) canvas.remove(); else swarm3(canvas, { iso: false }); // solo las partículas de fondo
   const spot = { radius: Math.max(220, innerWidth * 0.2) };
   if (!REDUCED) {
     gsap.set(veil, { opacity: 0 }); gsap.set(canvas, { opacity: 0 });
@@ -58,7 +59,7 @@ export function build() {
   const goDark = () => {
     if (lit) return; lit = true; showText();
     video.pause(); // queda detenido en el último cuadro
-    Object.assign(spot, followSpot(hero, veil, { radius: spot.radius }));
+    isoSpot(hero, veil);
     gsap.to(veil, { opacity: 1, duration: 1.4, ease: "power2.inOut" });
     header.reveal(); // el menú aparece igual que en la web actual
   };
@@ -110,22 +111,34 @@ export function build() {
   });
 
   // ---------- 5 · Galería ----------
-  const PICK = ["hiphop", "blue", "tecate", "pampilla", "eaton", "movistar13", "polima", "chevrolet", "face", "meli", "summit"]; // + el video de Yandel = 12 piezas
   const grid = $(".work-grid");
-  PICK.map((k) => WORK.find((w) => w.photos[0].includes(`/${k}-`))).filter(Boolean)
-    .forEach((w, i) => grid.appendChild(galleryTile(w, { interval: 3000 + (i % 3) * 400, offset: i * 350 })));
-  const yt = document.createElement("figure");
-  yt.className = "tile tile-video";
-  yt.innerHTML = `<video data-src="${A}extra/yandel-sinfonico.mp4" poster="${A}extra/yandel-sinfonico.jpg" muted loop playsinline preload="none"></video>
-    <figcaption><span class="t">Yandel Sinfónico</span><span class="v">Festival de Viña 2025</span><span class="tags">Operación · Diseño · Contenido</span></figcaption>`;
-  grid.insertBefore(yt, grid.children[1] || null);
-  lazyVideo($("video", yt));
+  const photo = (k) => WORK.find((w) => w.photos[0].includes(`/${k}-`));
+  const VIDEOS = {
+    chevrolet: ["work/chevrolet-video.mp4", "work/poster/chevrolet-video.jpg", "Stand Publicitario", "Branding Chevrolet", "Pantalla · Contenido visual"],
+    bci: ["work/bci-video-2.mp4", "work/poster/bci-video-2.jpg", "Banco BCI", "Evento corporativo", "Código de tiempo · Iluminación"],
+    movistar: ["work/movistar-empresas-video.mp4", "work/poster/movistar-empresas-video.jpg", "Movistar Empresas", "HISPAM Digital Forum", "Contenido · 3D"],
+    yandel: ["extra/yandel-sinfonico.mp4", "extra/yandel-sinfonico.jpg", "Yandel Sinfónico", "Festival de Viña 2025", "Operación · Diseño · Contenido"],
+  };
+  const videoTile = ([src, poster, t, v, tags]) => {
+    const f = document.createElement("figure");
+    f.className = "tile tile-video";
+    f.innerHTML = `<video data-src="${A}${src}" poster="${A}${poster}" muted loop playsinline preload="none"></video>
+      <figcaption><span class="t">${t}</span><span class="v">${v}</span><span class="tags">${tags}</span></figcaption>`;
+    lazyVideo($("video", f));
+    return f;
+  };
+  const ORDER = MOBILE
+    ? ["blue", "eaton", "icare", "meli", "summit", "worktech"]
+    : ["blue", "v:chevrolet", "eaton", "v:yandel", "icare", "hiphop", "meli", "v:bci", "summit", "tecate", "worktech", "v:movistar"];
+  ORDER.forEach((k, i) => grid.appendChild(k.startsWith("v:") ? videoTile(VIDEOS[k.slice(2)])
+    : galleryTile(photo(k), { interval: 3000 + (i % 3) * 400, offset: i * 350 })));
 
   // ---------- 6 · Equipo: solo el nombre; al pasar el mouse gira y muestra el rol en otro color ----------
   const list = $(".names");
-  TEAM.forEach(([n, r, , , photo]) => {
+  TEAM.forEach(([n]) => {
     const li = document.createElement("li");
-    li.innerHTML = `<span class="n roll"><span class="a">${n}</span><span class="b" aria-hidden="true">${r}</span></span><span class="strip"><img src="${A}${photo}" alt="${n}" loading="lazy"></span><span class="r-touch mono">${r}</span>`;
+    const key = n.split(" ")[0].toLowerCase();
+    li.innerHTML = `<span class="n">${n}</span><span class="strip band"><img src="${A}team/pulsera-${key}.webp" alt="Pulsera SVBLIME · ${n}" width="1100" height="140" decoding="async"></span>`;
     list.appendChild(li);
   });
 
@@ -201,7 +214,7 @@ export function build() {
     scrollTrigger: { trigger: m, start: "top 72%", end: "bottom 38%", scrub: true } });
 
   // Pilares que se abren uno tras otro
-  const cols = $$(".pill-col");
+  const cols = MOBILE ? [] : $$(".pill-col");
   const tl = gsap.timeline({ scrollTrigger: { trigger: ".triptych", start: "top top", end: "bottom bottom", scrub: true } });
   cols.forEach((c, i) => {
     tl.to(cols, { flexGrow: (j) => (j === i ? 12 : 0.0001), ease: "power2.inOut", duration: 1 }, i * 1.2);
@@ -230,8 +243,7 @@ export function build() {
   // Trazo → relleno en todos los textos grandes (después del pin de servicios)
   strokeFill($(".services-intro .big"), { trigger: ".services-h", start: "top 85%", end: "top 5%" });
   strokeFill($(".work h2.big"));
-  $$(".names .roll .a").forEach((n) => strokeFill(n, { trigger: n.closest("li"), start: "top 92%", end: "top 55%" }));
-  strokeFill($(".giant-track"), { trigger: ".end", start: "top 75%", end: "top 5%" });
+  $$(".names .n").forEach((n) => strokeFill(n, { trigger: n.closest("li"), start: "top 92%", end: "top 55%" }));
   strokeFill($(".end-copy"), { start: "top 88%", end: "bottom 55%" });
   // Un solo degradé recorre todo el bloque, como en la web actual: cada fila toma su tramo.
   const festDays = $(".fest-days");
@@ -263,7 +275,7 @@ export function build() {
   $$(".names li").forEach((li) => gsap.from(li, { yPercent: 50, opacity: 0, duration: 1, ease: "expo.out", scrollTrigger: { trigger: li, start: "top 94%" } }));
 
   // Clientes: cada fila corre sola hacia su lado (más rápido); el scroll la acelera; el mouse la detiene
-  const tiers = $$(".tier").map((el, i) => ({ el, tr: $(".ttrack", el), dir: +el.dataset.dir, off: 0, base: [0.12, 0.09, 0.075][i % 3], paused: false }));
+  const tiers = $$(".tier").map((el, i) => ({ el, tr: $(".ttrack", el), dir: +el.dataset.dir, off: 0, base: [0.12, 0.09, 0.075][i % 3] * (MOBILE ? 0.4 : 1), paused: false }));
   tiers.forEach((t) => {
     t.el.addEventListener("pointerenter", () => (t.paused = true));
     t.el.addEventListener("pointerleave", () => (t.paused = false));
@@ -272,7 +284,7 @@ export function build() {
   ScrollTrigger.create({ trigger: ".fest", start: "top bottom", end: "bottom top", onToggle: (st) => (festOn = st.isActive) });
   gsap.ticker.add((time, delta) => {
     if (!festOn) return;
-    const boost = Math.abs(scrollVel()) * 1.4;
+    const boost = Math.abs(scrollVel()) * (MOBILE ? 0.5 : 1.4);
     tiers.forEach((t) => {
       const w = cachedWidth(t.tr.firstElementChild);
       const v = t.paused ? 0 : delta * t.base + boost;
@@ -283,8 +295,9 @@ export function build() {
   gsap.from(".fest-head img", { opacity: 0, y: 30, duration: 1.2, ease: "expo.out", scrollTrigger: { trigger: ".fest-head", start: "top 85%" } });
 
   // Hablemos
-  gsap.fromTo(".giant-track", { xPercent: 0 }, { xPercent: -50, ease: "none", scrollTrigger: { trigger: ".end", start: "top bottom", end: "bottom bottom", scrub: true } });
 
+
+  mejoras();
   ScrollTrigger.refresh();
 }
 

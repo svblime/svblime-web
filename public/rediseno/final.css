@@ -576,3 +576,57 @@ input, textarea { -webkit-user-select: text; user-select: text; }
                             #8F00FF 66%, rgba(143,0,255,.6) 76%, rgba(143,0,255,.18) 88%, rgba(143,0,255,0) 100%); }
 /* Fotos y textos de las secciones vecinas quedan por encima del magenta; solo su fondo negro queda debajo */
 .work > :not(.curtain), .fest > :not(.curtain) { position: relative; z-index: 3; }
+
+/* ===== Versión 14 ===== */
+/* Inicio: la luz tiene la forma del isotipo (tres barras), de borde firme */
+.veil.iso { --bx: -999px; --bw: 0px; --bh: 0px; --by1: -999px; --by2: -999px; --by3: -999px;
+  -webkit-mask-image: linear-gradient(#000, #000), linear-gradient(#000, #000), linear-gradient(#000, #000), linear-gradient(#000, #000);
+          mask-image: linear-gradient(#000, #000), linear-gradient(#000, #000), linear-gradient(#000, #000), linear-gradient(#000, #000);
+  -webkit-mask-size: 100% 100%, var(--bw) var(--bh), var(--bw) var(--bh), var(--bw) var(--bh);
+          mask-size: 100% 100%, var(--bw) var(--bh), var(--bw) var(--bh), var(--bw) var(--bh);
+  -webkit-mask-position: 0 0, var(--bx) var(--by1), var(--bx) var(--by2), var(--bx) var(--by3);
+          mask-position: 0 0, var(--bx) var(--by1), var(--bx) var(--by2), var(--bx) var(--by3);
+  -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat;
+  -webkit-mask-composite: xor; mask-composite: exclude; }
+
+/* Servicios: "El poder de un equipo conectado" parte centrado, como "Lo que hacemos", y luego se corre a la izquierda */
+.v11 .services-intro { display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; }
+.v11 .services-intro > * { width: min(86vw, 680px); flex: none; }
+.v11 .services-intro .big { font-size: clamp(44px, 6.4vw, 118px); margin-left: auto; margin-right: auto; }
+.v11 .services-intro .lead { margin-left: auto; margin-right: auto; }
+
+/* Equipo: solo el nombre y la pulsera de cada uno */
+.v11 .names .strip.band { min-height: 0; background: transparent; border-radius: 0; align-self: center; overflow: visible;
+  clip-path: inset(0 50% 0 50%); transition: clip-path .7s cubic-bezier(.2,.8,.2,1); }
+.v11 .names .strip.band img { position: static; display: block; width: 100%; max-width: 760px; height: auto; margin-left: auto; object-fit: contain; transform: translateY(8px) rotate(-1.5deg); transition: transform .9s cubic-bezier(.2,.8,.2,1); }
+.v11 .names li:hover .strip.band { clip-path: inset(-20% 0 -20% 0); }
+.v11 .names li:hover .strip.band img { transform: none; }
+.plus .names li:hover .strip.band { min-height: 0; }
+@media (hover: none) {
+  .v11 .names .strip.band { clip-path: none; }
+  .v11 .names .strip.band img { transform: none; margin: 4px 0 0; }
+}
+
+/* Hablemos quieto, centrado; al pasar el mouse cambia a amarillo */
+.end .giant { text-align: center; font-size: clamp(72px, 19vw, 360px); }
+.end .giant-track { will-change: auto; }
+.end .giant .giant-track, .end .giant .giant-track * { color: #fff; transition: color .35s ease; }
+
+/* Celular: las 3 fotos de los pilares quedan quietas en su tamaño, sin zoom */
+@media (max-width: 760px) {
+  .triptych { height: 100vh; }
+  .triptych .tri { position: relative; }
+  .pill-col { flex: 1 1 0 !important; }
+  .pill-col img, .pill-col video { transform: none !important; }
+}
+
+/* ===== Versión mejorada (privada) ===== */
+.mejorada .veil.iso { --bx2: var(--bx); --bx3: var(--bx);
+  -webkit-mask-position: 0 0, var(--bx) var(--by1), var(--bx2) var(--by2), var(--bx3) var(--by3);
+          mask-position: 0 0, var(--bx) var(--by1), var(--bx2) var(--by2), var(--bx3) var(--by3); }
+.page-wipe { position: fixed; inset: 0; z-index: 9000; display: flex; pointer-events: none; }
+.page-wipe i { flex: 1; }
+.scroll-progress { position: fixed; left: 0; right: 0; top: 0; height: 3px; z-index: 70; transform-origin: 0 50%; transform: scaleX(0);
+  background: linear-gradient(90deg, #4EA9FF 0 33.3%, #FFCD59 33.3% 66.6%, #8F00FF 66.6%); pointer-events: none; }
+.mejorada .names .strip.band { overflow: visible; }
+.mejorada .names .strip.band img { will-change: transform; }

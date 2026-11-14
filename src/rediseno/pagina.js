@@ -1,6 +1,7 @@
 // Rediseño SVBLIME · páginas de servicio y preguntas frecuentes (mismo lenguaje de la portada).
-import { gsap, ScrollTrigger, A, REDUCED, TOUCH, smoothScroll, accent, followSpot, lazyVideo } from "./common.js";
+import { gsap, ScrollTrigger, A, REDUCED, TOUCH, smoothScroll, accent, isoSpot, lazyVideo } from "./common.js";
 import { headerMenu, customCursor, strokeFill, brandStrip } from "./final.js";
+import { mejoras } from "./mejoras.js";
 
 const $ = (s, r = document) => r.querySelector(s);
 const $$ = (s, r = document) => [...r.querySelectorAll(s)];
@@ -27,7 +28,7 @@ if (hero) {
   // El video de fondo parte solo (en celular también, sin sonido)
   const hv = $("video.hero-video", hero);
   if (hv) { hv.muted = true; hv.play().catch(() => {}); }
-  followSpot(hero, veil, { radius: Math.max(200, innerWidth * 0.18) });
+  isoSpot(hero, veil);
   if (!REDUCED) {
     gsap.from($$(".hero-title .l", hero), { yPercent: 110, opacity: 0, duration: 1.2, ease: "expo.out", stagger: 0.1, delay: 0.25 });
     gsap.from($$(".hero-extra", hero), { opacity: 0, y: 14, duration: 1, ease: "power2.out", stagger: 0.12, delay: 0.7 });
@@ -69,9 +70,9 @@ if (REDUCED) {
   // Hablemos gigante
   const giant = $(".giant-track");
   if (giant) {
-    strokeFill(giant, { trigger: ".end", start: "top 75%", end: "top 5%" });
-    gsap.fromTo(giant, { xPercent: 0 }, { xPercent: -50, ease: "none", scrollTrigger: { trigger: ".end", start: "top bottom", end: "bottom bottom", scrub: true } });
+    // Hablemos quieto: solo cambia a amarillo al pasar el mouse
   }
   ScrollTrigger.refresh();
   if (lenis && location.hash) setTimeout(() => { const t = $(location.hash); if (t) lenis.scrollTo(t, { offset: -70 }); }, 300);
 }
+mejoras();

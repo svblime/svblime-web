@@ -178,3 +178,49 @@ export function lazyVideo(video) {
     }
   }, { rootMargin: MOBILE ? "120px" : "200px" }).observe(video);
 }
+
+// Luz del inicio con la forma del isotipo (las tres barras de la E). Sigue al mouse y, mientras se mueve,
+// crece para mostrar más de la foto; al soltarlo vuelve a su tamaño y a su lugar.
+export function isoSpot(area, veil) {
+  veil.classList.add("iso");
+  const home = () => ({ x: area.clientWidth * (MOBILE ? 0.5 : 0.7), y: area.clientHeight * (MOBILE ? 0.36 : 0.42) });
+  const baseW = () => Math.max(180, Math.min(area.clientWidth * (MOBILE ? 0.62 : 0.24), 440));
+  const pos = home(), cur = { ...pos, s: 1 };
+  let energy = 0, lx = null, ly = null, idle = 999, visible = true, last = "";
+  const lagBars = document.body.classList.contains("mejorada");
+  const lag = [0, 1, 2].map(() => ({ x: pos.x, y: pos.y }));
+  const move = (e) => {
+    const r = area.getBoundingClientRect(), x = e.clientX - r.left, y = e.clientY - r.top;
+    if (lx !== null) energy = Math.min(energy + Math.hypot(x - lx, y - ly) / 520, 1.7);
+    lx = x; ly = y; pos.x = x; pos.y = y; idle = 0;
+  };
+  area.addEventListener("pointermove", move);
+  area.addEventListener("pointerleave", () => { lx = null; idle = 999; });
+  new IntersectionObserver(([e]) => (visible = e.isIntersecting)).observe(area);
+  gsap.ticker.add(() => {
+    if (!visible || document.hidden) return;
+    idle += 1;
+    if (idle > 75 || TOUCH) { const h = home(); pos.x = h.x; pos.y = h.y; lx = null; }
+    energy *= idle > 6 ? 0.93 : 0.985;
+    const k = idle > 75 ? 0.06 : 0.12;
+    cur.x += (pos.x - cur.x) * k; cur.y += (pos.y - cur.y) * k;
+    cur.s += (1 + energy * 1.5 - cur.s) * 0.08;
+    const bw = baseW() * cur.s, bh = bw * 0.18, gap = bh * 0.6, total = bh * 3 + gap * 2;
+    const bx = cur.x - bw / 2, by = cur.y - total / 2;
+    // Versión mejorada: cada barra llega con un leve retraso, como una estela del isotipo
+    const ys = [by, by + bh + gap, by + 2 * (bh + gap)], xs = [bx, bx, bx];
+    if (lagBars) for (let i = 0; i < 3; i++) {
+      lag[i].x += (xs[i] - lag[i].x) * (0.35 - i * 0.1); lag[i].y += (ys[i] - lag[i].y) * (0.35 - i * 0.1);
+      xs[i] = lag[i].x; ys[i] = lag[i].y;
+    }
+    const key = [...xs, ...ys, bw].map((v) => v | 0).join(",");
+    if (key === last) return;
+    last = key;
+    const st = veil.style;
+    st.setProperty("--bw", bw.toFixed(1) + "px"); st.setProperty("--bh", bh.toFixed(1) + "px");
+    if (lagBars) {
+      st.setProperty("--bx", xs[0].toFixed(1) + "px"); st.setProperty("--bx2", xs[1].toFixed(1) + "px"); st.setProperty("--bx3", xs[2].toFixed(1) + "px");
+    } else st.setProperty("--bx", bx.toFixed(1) + "px");
+    st.setProperty("--by1", ys[0].toFixed(1) + "px"); st.setProperty("--by2", ys[1].toFixed(1) + "px"); st.setProperty("--by3", ys[2].toFixed(1) + "px");
+  });
+}

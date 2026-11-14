@@ -7,12 +7,13 @@ import { gsap } from "./common.js";
 const BAR = ["78,169,255", "255,205,89", "143,0,255"];
 const AMBIENT = ["255,255,255", "78,169,255", "255,205,89", "143,0,255"];
 
-export function swarm3(canvas, { shock = false } = {}) {
+export function swarm3(canvas, { shock = false, iso = true } = {}) {
   const ctx = canvas.getContext("2d");
   // Livianas: el lienzo se dibuja a resolución normal (en partículas no se nota) y la cantidad
   // se ajusta sola si el computador no alcanza a dibujar fluido.
   const dpr = 1;
   let N = Math.round(Math.min(1500, Math.max(700, (innerWidth * innerHeight) / 900)));
+  if (!iso) N = Math.round(N / 3); // sin isotipo: solo el polvo de fondo
   let w = 0, h = 0, p1 = [], p2 = [], shape = null;
   const anchor = { x: 0, y: 0, px: 0, py: 0 }, target = { x: 0, y: 0 };
   let pointerSeen = false, lastMove = 0, agitation = 0;
@@ -30,7 +31,7 @@ export function swarm3(canvas, { shock = false } = {}) {
     p1 = []; p2 = [];
     for (let i = 0; i < N; i++) {
       const p = { x: Math.random() * w, y: Math.random() * h, vx: 0, vy: 0, ph: Math.random() * Math.PI * 2 };
-      if (i % 4 === 0) {
+      if (!iso || i % 4 === 0) {
         p.s = 0.5 + Math.random() * 1.2; p.c = AMBIENT[(Math.random() * AMBIENT.length) | 0];
         p1.push(p);
       } else {
@@ -81,6 +82,7 @@ export function swarm3(canvas, { shock = false } = {}) {
   const lighten = () => {
     if (N <= 400) return;
     N = Math.round(N * 0.67);
+    if (!iso) { p1 = p1.slice(0, N); return; }
     p1 = p1.slice(0, Math.round(N / 4)); p2 = p2.slice(0, N - Math.round(N / 4));
   };
 
