@@ -27,7 +27,7 @@ copyFileSync("node_modules/react-dom/umd/react-dom.production.min.js", "public/v
 console.log(`app.min.js: ${(out.length / 1024).toFixed(0)} KB`);
 
 // Rediseño (versión final): portada y página de contacto en public/rediseno/js/.
-for (const name of ["inicio", "contacto"]) {
+for (const name of ["inicio", "contacto", "pagina"]) {
   buildSync({ entryPoints: [`src/rediseno/${name}.js`], bundle: true, minify: true, format: "iife", target: "es2019",
     outfile: `public/rediseno/js/${name}.min.js`, legalComments: "none", logLevel: "warning" });
 }

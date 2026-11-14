@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="es" data-media="../media/">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
+<style>
+#svb-gate{position:fixed;inset:0;z-index:99999;background:#000;color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;font-family:-apple-system,BlinkMacSystemFont,'Helvetica Neue',Arial,sans-serif;padding:24px;text-align:center}
+#svb-gate .bar{display:flex;width:220px;height:6px}
+#svb-gate .bar i{flex:1}
+#svb-gate h1{font-size:13px;letter-spacing:.28em;text-transform:uppercase;color:#B4B4BC;font-weight:400;margin:0}
+#svb-gate p{font-size:15px;color:#74747E;margin:0}
+#svb-gate form{display:flex;gap:8px;margin-top:6px}
+#svb-gate input{background:#0F0F12;border:1px solid #26262C;color:#fff;padding:12px 14px;font-size:16px;border-radius:4px;outline:none;min-width:220px}
+#svb-gate input:focus{border-color:#4EA9FF}
+#svb-gate button{background:#fff;color:#000;border:0;padding:12px 20px;font-size:15px;border-radius:4px;cursor:pointer}
+@media (max-width:900px){ #svb-gate input{min-width:0;width:100%} #svb-gate form{width:100%;max-width:320px} }
+#svb-gate .err{color:#FFCD59;font-size:13px;min-height:16px}
+body.svb-locked{overflow:hidden}
+</style>
+<script>
+(function(){
+  var KEY='svb-propuesta-rediseno';
+  if(sessionStorage.getItem(KEY)==='1') return;
+  document.addEventListener('DOMContentLoaded',function(){
+    document.body.classList.add('svb-locked');
+    var g=document.createElement('div');
+    g.id='svb-gate';
+    g.innerHTML='<div class="bar"><i style="background:#4EA9FF"></i><i style="background:#FFCD59"></i><i style="background:#8F00FF"></i></div>'+
+      '<h1>SVBLIME</h1><p>Rediseño web · versión 13</p>'+
+      '<form><input type="password" placeholder="Contrase\u00f1a" autocomplete="off" autofocus><button type="submit">Entrar</button></form>'+
+      '<div class="err"></div>';
+    document.body.appendChild(g);
+    var f=g.querySelector('form'), i=g.querySelector('input'), e=g.querySelector('.err');
+    f.addEventListener('submit',function(ev){
+      ev.preventDefault();
+      if(i.value.trim().toLowerCase()==='svblime'){
+        sessionStorage.setItem(KEY,'1');
+        document.body.classList.remove('svb-locked');
+        g.remove();
+      } else { e.textContent='Contrase\u00f1a incorrecta'; i.value=''; i.focus(); }
+    });
+  });
+})();
+</script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Preguntas Frecuentes | Producción de Eventos SVBLIME</title>
+<meta name="description" content="Preguntas frecuentes sobre producción de eventos, dirección creativa, experiencias visuales y branding: costos, plazos, cobertura y alcance del servicio.">
+<link rel="canonical" href="https://svblime.cl/servicios/preguntas-frecuentes.html">
+<meta name="theme-color" content="#000000">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="SVBLIME">
+<meta property="og:locale" content="es_CL">
+<meta property="og:title" content="Preguntas Frecuentes | Producción de Eventos SVBLIME">
+<meta property="og:description" content="Preguntas frecuentes sobre producción de eventos, dirección creativa, experiencias visuales y branding: costos, plazos, cobertura y alcance del servicio.">
+<meta property="og:url" content="https://svblime.cl/servicios/preguntas-frecuentes.html">
+<meta property="og:image" content="https://svblime.cl/media/og-svblime.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Preguntas Frecuentes | Producción de Eventos SVBLIME">
+<meta name="twitter:description" content="Preguntas frecuentes sobre producción de eventos, dirección creativa, experiencias visuales y branding: costos, plazos, cobertura y alcance del servicio.">
+<meta name="twitter:image" content="https://svblime.cl/media/og-svblime.jpg">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"¿Cuánto cuesta producir un evento corporativo?","acceptedAnswer":{"@type":"Answer","text":"Depende de asistentes, sede y requerimientos técnicos. Con esos tres datos te entregamos un rango realista en pocos días, sin costo."}},{"@type":"Question","name":"¿Con cuánta anticipación hay que contratar?","acceptedAnswer":{"@type":"Answer","text":"Lo ideal son 6 a 8 semanas. Hemos producido eventos empresariales en menos, pero el margen para negociar proveedores se estrecha."}},{"@type":"Question","name":"¿Trabajan fuera de Santiago?","acceptedAnswer":{"@type":"Answer","text":"Sí. Hemos producido eventos en regiones y fuera de Chile, incluyendo festivales en México."}},{"@type":"Question","name":"¿Pueden tomar solo una parte del evento?","acceptedAnswer":{"@type":"Answer","text":"Sí. Podemos entrar únicamente en producción técnica, o sumar dirección creativa y branding según lo que necesites."}},{"@type":"Question","name":"¿Puedo contratar solo dirección creativa?","acceptedAnswer":{"@type":"Answer","text":"Sí. Entregamos concepto, narrativa y dirección de arte documentados para que los ejecute tu productora habitual."}},{"@type":"Question","name":"¿En qué se diferencia de una agencia de publicidad?","acceptedAnswer":{"@type":"Answer","text":"Nosotros pensamos el concepto sabiendo cómo se monta. Cada idea que proponemos es ejecutable con equipo real."}},{"@type":"Question","name":"¿Cuánto demora esta etapa?","acceptedAnswer":{"@type":"Answer","text":"Entre una y tres semanas según la complejidad del evento y las instancias de aprobación."}},{"@type":"Question","name":"¿Entregan más de una propuesta?","acceptedAnswer":{"@type":"Answer","text":"Presentamos una ruta principal argumentada y variantes de la misma idea. Preferimos defender un concepto antes que ofrecer cinco tibios."}},{"@type":"Question","name":"¿Aportan los equipos de iluminación y pantallas?","acceptedAnswer":{"@type":"Answer","text":"Coordinamos el arriendo con proveedores con los que trabajamos hace años y respondemos por el resultado técnico."}},{"@type":"Question","name":"¿Qué es la previsualización 3D?","acceptedAnswer":{"@type":"Answer","text":"Simulamos el diseño de luces y pantallas en software antes del montaje. Permite aprobar el look y reducir horas de ajuste en sede."}},{"@type":"Question","name":"¿Hacen eventos televisados?","acceptedAnswer":{"@type":"Answer","text":"Sí. Tenemos experiencia en festivales y programas donde la luz debe funcionar para cámara y para público a la vez."}},{"@type":"Question","name":"¿Producen el contenido audiovisual?","acceptedAnswer":{"@type":"Answer","text":"Sí, incluye motion graphics, piezas 3D y edición, diseñados para las pantallas específicas del evento."}},{"@type":"Question","name":"¿Sirve si ya tengo manual de marca corporativo?","acceptedAnswer":{"@type":"Answer","text":"Sí. Trabajamos dentro de tu manual y creamos la capa propia del evento sin romper la marca madre."}},{"@type":"Question","name":"¿Incluye impresión y montaje de gráfica?","acceptedAnswer":{"@type":"Answer","text":"Diseñamos las piezas y coordinamos producción e instalación con nuestros proveedores."}},{"@type":"Question","name":"¿Qué recibo al final?","acceptedAnswer":{"@type":"Answer","text":"Los archivos editables, el sistema visual documentado y las piezas aplicadas, listas para reutilizar."}},{"@type":"Question","name":"¿Puede hacerse para un evento anual recurrente?","acceptedAnswer":{"@type":"Answer","text":"Es el caso ideal: definimos un sistema que se adapta cada año sin rediseñar desde cero."}}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Inicio","item":"https://svblime.cl/"},{"@type":"ListItem","position":2,"name":"Preguntas frecuentes","item":"https://svblime.cl/servicios/preguntas-frecuentes.html"}]}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@300;400;500&family=Instrument+Serif:ital@1&family=JetBrains+Mono:wght@400;500&display=swap">
+<link rel="preload" href="../media/assets/fonts/borscha-semibold.otf" as="font" type="font/otf" crossorigin>
+<link rel="stylesheet" href="../final.css">
+</head>
+<body class="v7 plus v9 v10 v11 srv-page faq-page" style="--srv:#FFCD59">
+
+<header class="svb-header">
+  <button type="button" class="svb-burger" aria-label="Abrir menú" aria-expanded="false">
+    <span class="svb-bars"></span><span class="svb-bars"></span><span class="svb-bars"></span>
+    <svg class="svb-chev" width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="#fff" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 8l5 5 5-5"></path></svg>
+  </button>
+  <nav class="svb-nav" data-open="false">
+    <a href="../index.html#agencia">SVBLIME</a>
+    <a href="../index.html#servicios" class="svc-link" aria-expanded="false">Servicios <svg width="10" height="10" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M2.5 4.5 6 8l3.5-3.5"/></svg></a>
+    <div class="svb-svcmenu" data-open="false">
+      <a href="direccion-creativa.html">Dirección Creativa</a>
+      <a href="experiencias-visuales.html">Experiencias Visuales</a>
+      <a href="produccion-integral.html">Producción Integral</a>
+      <a href="branding-eventos.html">Branding de Eventos</a>
+    </div>
+    <a href="../index.html#clientes">Portafolio</a>
+    <a href="../index.html#trabajo">Galeria</a>
+  </nav>
+  <a href="../contacto.html" class="svb-talk" aria-label="Hablemos" title="Hablemos">
+    <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-5Z"/><path d="M21 11h-3a2 2 0 0 0-2 2v3a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-5Z"/><path d="M3 11v-1a9 9 0 0 1 18 0v1"/><path d="M21 16v2a4 4 0 0 1-4 4h-5"/></svg>
+  </a>
+</header>
+
+<main>
+  <section class="hero srv-hero faq-hero">
+    <div class="veil"></div>
+    <svg class="beams" viewBox="0 0 1440 900" preserveAspectRatio="none" aria-hidden="true">
+      <line x1="0" y1="0" x2="1440" y2="900"/><line x1="1440" y1="0" x2="0" y2="900"/>
+      <line x1="720" y1="0" x2="720" y2="900"/><line x1="0" y1="450" x2="1440" y2="450"/>
+      <circle cx="720" cy="450" r="330"/><circle cx="720" cy="450" r="520"/>
+    </svg>
+    <div class="srv-text">
+      <p class="mono hero-extra srv-eyebrow"><span class="dot"></span>Preguntas frecuentes</p>
+      <h1 class="disp hero-title" data-accent><span class="l">Lo que nos pregunt[a]n</span><span class="l">antes de firm[a]r</span></h1>
+      <p class="hero-extra srv-lede">Costos, plazos, cobertura y alcance de cada servicio, respondidos sin rodeos. Si falta algo, escríbenos y lo agregamos.</p>
+    </div>
+  </section>
+
+  <section class="act faq-group" style="--tint:#C77DFF">
+    <div class="curtain"><i></i><i></i><i></i></div>
+    <p class="mono day-label"><span></span>01 · Producción integral<span></span></p>
+    <div class="faq-list">
+      <details class="faq-q" open><summary><span class="q">¿Cuánto cuesta producir un evento corporativo?</span><span class="ico" aria-hidden="true"></span></summary><p>Depende de asistentes, sede y requerimientos técnicos. Con esos tres datos te entregamos un rango realista en pocos días, sin costo.</p></details>
+      <details class="faq-q"><summary><span class="q">¿Con cuánta anticipación hay que contratar?</span><span class="ico" aria-hidden="true"></span></summary><p>Lo ideal son 6 a 8 semanas. Hemos producido eventos empresariales en menos, pero el margen para negociar proveedores se estrecha.</p></details>
+      <details class="faq-q"><summary><span class="q">¿Trabajan fuera de Santiago?</span><span class="ico" aria-hidden="true"></span></summary><p>Sí. Hemos producido eventos en regiones y fuera de Chile, incluyendo festivales en México.</p></details>
+      <details class="faq-q"><summary><span class="q">¿Pueden tomar solo una parte del evento?</span><span class="ico" aria-hidden="true"></span></summary><p>Sí. Podemos entrar únicamente en producción técnica, o sumar dirección creativa y branding según lo que necesites.</p></details>
+    </div>
+    <a class="mono more-link" href="produccion-integral.html">Ver producción integral <span aria-hidden="true">→</span></a>
+  </section>
+  <section class="act faq-group" style="--tint:#4EA9FF">
+    <div class="curtain"><i></i><i></i><i></i></div>
+    <p class="mono day-label"><span></span>02 · Dirección creativa<span></span></p>
+    <div class="faq-list">
+      <details class="faq-q" open><summary><span class="q">¿Puedo contratar solo dirección creativa?</span><span class="ico" aria-hidden="true"></span></summary><p>Sí. Entregamos concepto, narrativa y dirección de arte documentados para que los ejecute tu productora habitual.</p></details>
+      <details class="faq-q"><summary><span class="q">¿En qué se diferencia de una agencia de publicidad?</span><span class="ico" aria-hidden="true"></span></summary><p>Nosotros pensamos el concepto sabiendo cómo se monta. Cada idea que proponemos es ejecutable con equipo real.</p></details>
+      <details class="faq-q"><summary><span class="q">¿Cuánto demora esta etapa?</span><span class="ico" aria-hidden="true"></span></summary><p>Entre una y tres semanas según la complejidad del evento y las instancias de aprobación.</p></details>
+      <details class="faq-q"><summary><span class="q">¿Entregan más de una propuesta?</span><span class="ico" aria-hidden="true"></span></summary><p>Presentamos una ruta principal argumentada y variantes de la misma idea. Preferimos defender un concepto antes que ofrecer cinco tibios.</p></details>
+    </div>
+    <a class="mono more-link" href="direccion-creativa.html">Ver dirección creativa <span aria-hidden="true">→</span></a>
+  </section>
+  <section class="act faq-group" style="--tint:#FFCD59">
+    <div class="curtain"><i></i><i></i><i></i></div>
+    <p class="mono day-label"><span></span>03 · Experiencias visuales<span></span></p>
+    <div class="faq-list">
+      <details class="faq-q" open><summary><span class="q">¿Aportan los equipos de iluminación y pantallas?</span><span class="ico" aria-hidden="true"></span></summary><p>Coordinamos el arriendo con proveedores con los que trabajamos hace años y respondemos por el resultado técnico.</p></details>
+      <details class="faq-q"><summary><span class="q">¿Qué es la previsualización 3D?</span><span class="ico" aria-hidden="true"></span></summary><p>Simulamos el diseño de luces y pantallas en software antes del montaje. Permite aprobar el look y reducir horas de ajuste en sede.</p></details>
+      <details class="faq-q"><summary><span class="q">¿Hacen eventos televisados?</span><span class="ico" aria-hidden="true"></span></summary><p>Sí. Tenemos experiencia en festivales y programas donde la luz debe funcionar para cámara y para público a la vez.</p></details>
+      <details class="faq-q"><summary><span class="q">¿Producen el contenido audiovisual?</span><span class="ico" aria-hidden="true"></span></summary><p>Sí, incluye motion graphics, piezas 3D y edición, diseñados para las pantallas específicas del evento.</p></details>
+    </div>
+    <a class="mono more-link" href="experiencias-visuales.html">Ver experiencias visuales <span aria-hidden="true">→</span></a>
+  </section>
+  <section class="act faq-group" style="--tint:#fff">
+    <div class="curtain"><i></i><i></i><i></i></div>
+    <p class="mono day-label"><span></span>04 · Branding de eventos<span></span></p>
+    <div class="faq-list">
+      <details class="faq-q" open><summary><span class="q">¿Sirve si ya tengo manual de marca corporativo?</span><span class="ico" aria-hidden="true"></span></summary><p>Sí. Trabajamos dentro de tu manual y creamos la capa propia del evento sin romper la marca madre.</p></details>
+      <details class="faq-q"><summary><span class="q">¿Incluye impresión y montaje de gráfica?</span><span class="ico" aria-hidden="true"></span></summary><p>Diseñamos las piezas y coordinamos producción e instalación con nuestros proveedores.</p></details>
+      <details class="faq-q"><summary><span class="q">¿Qué recibo al final?</span><span class="ico" aria-hidden="true"></span></summary><p>Los archivos editables, el sistema visual documentado y las piezas aplicadas, listas para reutilizar.</p></details>
+      <details class="faq-q"><summary><span class="q">¿Puede hacerse para un evento anual recurrente?</span><span class="ico" aria-hidden="true"></span></summary><p>Es el caso ideal: definimos un sistema que se adapta cada año sin rediseñar desde cero.</p></details>
+    </div>
+    <a class="mono more-link" href="branding-eventos.html">Ver branding de eventos <span aria-hidden="true">→</span></a>
+  </section>
+
+  <section id="contacto" class="act end">
+    <div class="curtain"><i></i><i></i><i></i></div>
+    <a class="giant" href="../contacto.html"><span class="giant-track" data-accent>Habl[e]mos · Habl[e]mos · Habl[e]mos · Habl[e]mos ·</span></a>
+    <div class="end-row end-11">
+      <h2 class="end-copy sf-scroll">¿Tu pregunta no está acá?</h2>
+      <p class="end-sub">Cuéntanos el evento y te respondemos con un rango de costos y un plan realista.</p>
+      <a class="cta-hablemos mono" href="../contacto.html">Hablemos <span aria-hidden="true">→</span></a>
+      <p class="mono end-links"><a href="preguntas-frecuentes.html" aria-current="page">Preguntas frecuentes</a> · <a href="mailto:hola@svblime.cl">hola@svblime.cl</a></p>
+    </div>
+    <footer><span class="bars"></span><span>SVBLIME existe para que ninguna gran idea se pierda.</span><span class="mono">Chile · 2026</span></footer>
+    <div class="brand-strip" aria-label="Marcas, corporaciones y artistas que han confiado"></div>
+  </section>
+</main>
+
+<script src="../js/pagina.min.js" defer></script>
+</body>
+</html>

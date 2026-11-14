@@ -28,7 +28,13 @@ export function build() {
   let lenis = null, loading = true;
   const header = headerMenu();
   // Intro de la web actual: el logo pasa rápido por blanco, azul, amarillo, púrpura y negro
-  const loaded = runLoader().then(() => { loading = false; if (lenis) lenis.start(); });
+  const loaded = runLoader().then(() => {
+    loading = false;
+    if (lenis) lenis.start();
+    // Enlaces desde otras páginas (ej. index.html#trabajo): bajar directo a esa sección
+    const t = location.hash.length > 1 && document.querySelector(location.hash);
+    if (t && lenis) setTimeout(() => lenis.scrollTo(t, { offset: -70 }), 200);
+  });
 
   // ---------- 1 · Inicio ----------
   const hero = $(".hero"), video = $(".hero-video"), veil = $(".veil"), canvas = $(".swarm");
@@ -66,8 +72,9 @@ export function build() {
   if (REDUCED) goDark();
 
   // ---------- 2 · Galería superior (aparece arriba, de sorpresa, para quien vuelva a subir) ----------
+  // Se arma recién cuando aparece: así no descarga fotos ni videos al abrir la página.
   const rowsEl = $(".topgal");
-  TOPGALLERY.forEach((row) => {
+  const buildTopGal = () => { if (rowsEl.children.length) return; TOPGALLERY.forEach((row) => {
     const items = row.map((m, ii) => {
       const ar = m.type === "video" ? "16 / 9" : ["3 / 4", "1 / 1", "4 / 3"][ii % 3];
       const media = m.type === "video"
@@ -80,7 +87,7 @@ export function build() {
     r.innerHTML = `<div class="gtrack"><div class="gseq">${items}</div><div class="gseq">${items}</div></div>`;
     rowsEl.appendChild(r);
   });
-  $$(".topgal video").forEach(lazyVideo);
+  $$(".topgal video").forEach(lazyVideo); };
 
   // ---------- 3 · Pilares ----------
   $(".tri").innerHTML = PILLARS.map((p, i) => `<figure class="pill-col p${i + 1}">${p.video
@@ -97,7 +104,7 @@ export function build() {
     el.className = "service";
     el.style.background = ["#4EA9FF", "#FFCD59", "#8F00FF", "#F4F1EA"][i];
     el.style.color = i === 2 ? "#fff" : "#111";
-    el.innerHTML = `<span class="num">${n}</span><h3>${twoLines(name)}</h3><a href="../${href}">Ver servicio <span aria-hidden="true">→</span></a>`;
+    el.innerHTML = `<span class="num">${n}</span><h3>${twoLines(name)}</h3><a href="${href}">Ver servicio <span aria-hidden="true">→</span></a>`;
     track.appendChild(el);
   });
 
@@ -140,15 +147,7 @@ export function build() {
   });
 
   // ---------- 8 · Huincha de marcas (la de la web actual, más pequeña) ----------
-  const seq = BRANDS.map((b, bi) => `<span class="svb-brand" style="--m:url(${A}brands/${b}.png);--c:${["#4EA9FF", "#FFCD59", "#8F00FF"][bi % 3]};--k:${BRAND_SCALE[b] || 1}"><img src="${A}brands/${b}.png" alt="${b}" loading="lazy" decoding="async"></span>`).join("");
-  $(".brand-strip").innerHTML = `<div class="bs-track"><div class="bs-seq">${seq}</div><div class="bs-seq" aria-hidden="true">${seq}</div></div>`;
-  document.addEventListener("mouseover", (e) => {
-    const el = e.target.closest && e.target.closest(".svb-brand");
-    if (!el || el.classList.contains("flash")) return;
-    el.classList.add("flash");
-    const done = () => { el.classList.remove("flash"); el.removeEventListener("animationend", done); };
-    el.addEventListener("animationend", done);
-  });
+  brandStrip($(".brand-strip"));
 
 
   if (!TOUCH) customCursor();
@@ -171,14 +170,15 @@ export function build() {
   // Del inicio se pasa directo a Lo que hacemos. Cuando el inicio salió completo de la pantalla,
   // ese espacio guarda la galería: aparece de sorpresa para quien vuelva a subir.
   const stage = $(".welcome-stage"), gal = $(".topgal-wrap");
-  let introSeen = false;
+  let introSeen = false, gRows = [];
   ScrollTrigger.create({ trigger: ".hero", start: "bottom top", once: true,
     onEnter: () => {
-      introSeen = true; canvas.style.visibility = "hidden";
+      introSeen = true; canvas.style.visibility = "hidden"; buildTopGal();
+      gRows = $$(".grow .gtrack");
       gsap.set(gal, { opacity: 1 }); gsap.set(stage, { opacity: 1 }); stage.style.pointerEvents = "auto";
     } });
   // Las filas de la galería corren solas (como hoy) y el scroll les da velocidad
-  const gRows = $$(".grow .gtrack"), gSpeeds = [0.62, 0.86, 1.12], gOff = [0, 0, 0];
+  const gSpeeds = [0.62, 0.86, 1.12], gOff = [0, 0, 0];
   gsap.ticker.add((time, delta) => {
     if (!introSeen || scrollY > innerHeight * 1.6) return;
     const boost = Math.abs(scrollVel()) * 0.6;
@@ -289,7 +289,8 @@ export function build() {
 // Intro igual a la web actual. Si está la pantalla de contraseña, espera a que se entre.
 function runLoader() {
   const el = $(".loader");
-  if (!el || REDUCED) { if (el) el.remove(); return Promise.resolve(); }
+  // Sin intro si se llega a una sección puntual (igual que la web actual)
+  if (!el || REDUCED || location.hash.length > 1) { if (el) el.remove(); return Promise.resolve(); }
   document.documentElement.classList.add("locked");
   scrollTo(0, 0);
   const frames = $$(".lf", el);
@@ -347,8 +348,22 @@ export function headerMenu() {
   return { reveal: () => hd.classList.add("in") };
 }
 
+// Huincha de marcas de la web actual (logos que destellan en los tres colores al pasar el mouse)
+export function brandStrip(strip) {
+  if (!strip) return;
+  const seq = BRANDS.map((b, bi) => `<span class="svb-brand" style="--m:url(${new URL(A + "brands/" + b + ".png", location.href).href});--c:${["#4EA9FF", "#FFCD59", "#8F00FF"][bi % 3]};--k:${BRAND_SCALE[b] || 1}"><img src="${A}brands/${b}.png" alt="${b}" loading="lazy" decoding="async"></span>`).join("");
+  strip.innerHTML = `<div class="bs-track"><div class="bs-seq">${seq}</div><div class="bs-seq" aria-hidden="true">${seq}</div></div>`;
+  document.addEventListener("mouseover", (e) => {
+    const el = e.target.closest && e.target.closest(".svb-brand");
+    if (!el || el.classList.contains("flash")) return;
+    el.classList.add("flash");
+    const done = () => { el.classList.remove("flash"); el.removeEventListener("animationend", done); };
+    el.addEventListener("animationend", done);
+  });
+}
+
 // El texto parte solo con su contorno y se rellena palabra por palabra con el scroll.
-function strokeFill(el, trig = {}) {
+export function strokeFill(el, trig = {}) {
   if (!el) return;
   const rgb = getComputedStyle(el).color.match(/[\d.]+/g).slice(0, 3).join(",");
   el.classList.add("sf");

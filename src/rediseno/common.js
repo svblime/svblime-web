@@ -8,7 +8,8 @@ gsap.registerPlugin(ScrollTrigger, SplitText);
 export { gsap, ScrollTrigger, SplitText };
 
 // Fotos y videos de las ideas: copia propia en /rediseno/media/, para que la carpeta funcione sola.
-export const A = "media/";
+// Carpeta de fotos y videos: las páginas de servicio (en /servicios/) la declaran con <html data-media="../media/">.
+export const A = (typeof document !== "undefined" && document.documentElement.dataset.media) || "media/";
 export const REDUCED = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 export const TOUCH = window.matchMedia("(hover: none)").matches;
 

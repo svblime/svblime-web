@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="es" data-media="../media/">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
+<style>
+#svb-gate{position:fixed;inset:0;z-index:99999;background:#000;color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;font-family:-apple-system,BlinkMacSystemFont,'Helvetica Neue',Arial,sans-serif;padding:24px;text-align:center}
+#svb-gate .bar{display:flex;width:220px;height:6px}
+#svb-gate .bar i{flex:1}
+#svb-gate h1{font-size:13px;letter-spacing:.28em;text-transform:uppercase;color:#B4B4BC;font-weight:400;margin:0}
+#svb-gate p{font-size:15px;color:#74747E;margin:0}
+#svb-gate form{display:flex;gap:8px;margin-top:6px}
+#svb-gate input{background:#0F0F12;border:1px solid #26262C;color:#fff;padding:12px 14px;font-size:16px;border-radius:4px;outline:none;min-width:220px}
+#svb-gate input:focus{border-color:#4EA9FF}
+#svb-gate button{background:#fff;color:#000;border:0;padding:12px 20px;font-size:15px;border-radius:4px;cursor:pointer}
+@media (max-width:900px){ #svb-gate input{min-width:0;width:100%} #svb-gate form{width:100%;max-width:320px} }
+#svb-gate .err{color:#FFCD59;font-size:13px;min-height:16px}
+body.svb-locked{overflow:hidden}
+</style>
+<script>
+(function(){
+  var KEY='svb-propuesta-rediseno';
+  if(sessionStorage.getItem(KEY)==='1') return;
+  document.addEventListener('DOMContentLoaded',function(){
+    document.body.classList.add('svb-locked');
+    var g=document.createElement('div');
+    g.id='svb-gate';
+    g.innerHTML='<div class="bar"><i style="background:#4EA9FF"></i><i style="background:#FFCD59"></i><i style="background:#8F00FF"></i></div>'+
+      '<h1>SVBLIME</h1><p>Rediseño web · versión 13</p>'+
+      '<form><input type="password" placeholder="Contrase\u00f1a" autocomplete="off" autofocus><button type="submit">Entrar</button></form>'+
+      '<div class="err"></div>';
+    document.body.appendChild(g);
+    var f=g.querySelector('form'), i=g.querySelector('input'), e=g.querySelector('.err');
+    f.addEventListener('submit',function(ev){
+      ev.preventDefault();
+      if(i.value.trim().toLowerCase()==='svblime'){
+        sessionStorage.setItem(KEY,'1');
+        document.body.classList.remove('svb-locked');
+        g.remove();
+      } else { e.textContent='Contrase\u00f1a incorrecta'; i.value=''; i.focus(); }
+    });
+  });
+})();
+</script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Experiencias Visuales para Eventos | SVBLIME</title>
+<meta name="description" content="Experiencias visuales para eventos: iluminación, pantallas, contenido audiovisual y motion design con operación en vivo.">
+<link rel="canonical" href="https://svblime.cl/servicios/experiencias-visuales.html">
+<meta name="theme-color" content="#000000">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="SVBLIME">
+<meta property="og:locale" content="es_CL">
+<meta property="og:title" content="Experiencias Visuales para Eventos | SVBLIME">
+<meta property="og:description" content="Experiencias visuales para eventos: iluminación, pantallas, contenido audiovisual y motion design con operación en vivo.">
+<meta property="og:url" content="https://svblime.cl/servicios/experiencias-visuales.html">
+<meta property="og:image" content="https://svblime.cl/media/og-svblime.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Experiencias Visuales para Eventos | SVBLIME">
+<meta name="twitter:description" content="Experiencias visuales para eventos: iluminación, pantallas, contenido audiovisual y motion design con operación en vivo.">
+<meta name="twitter:image" content="https://svblime.cl/media/og-svblime.jpg">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Service","name":"Experiencias Visuales","serviceType":"Experiencias Visuales","description":"Experiencias visuales para eventos: iluminación, pantallas, contenido audiovisual y motion design con operación en vivo.","areaServed":"CL","provider":{"@type":"Organization","name":"SVBLIME","url":"https://svblime.cl/","email":"hola@svblime.cl"},"url":"https://svblime.cl/servicios/experiencias-visuales.html","image":"https://svblime.cl/media/og-svblime.jpg"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Inicio","item":"https://svblime.cl/"},{"@type":"ListItem","position":2,"name":"Experiencias Visuales","item":"https://svblime.cl/servicios/experiencias-visuales.html"}]}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@300;400;500&family=Instrument+Serif:ital@1&family=JetBrains+Mono:wght@400;500&display=swap">
+<link rel="preload" href="../media/assets/fonts/borscha-semibold.otf" as="font" type="font/otf" crossorigin>
+<link rel="stylesheet" href="../final.css">
+</head>
+<body class="v7 plus v9 v10 v11 srv-page" style="--srv:#FFCD59">
+
+<header class="svb-header">
+  <button type="button" class="svb-burger" aria-label="Abrir menú" aria-expanded="false">
+    <span class="svb-bars"></span><span class="svb-bars"></span><span class="svb-bars"></span>
+    <svg class="svb-chev" width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="#fff" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 8l5 5 5-5"></path></svg>
+  </button>
+  <nav class="svb-nav" data-open="false">
+    <a href="../index.html#agencia">SVBLIME</a>
+    <a href="../index.html#servicios" class="svc-link" aria-expanded="false">Servicios <svg width="10" height="10" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M2.5 4.5 6 8l3.5-3.5"/></svg></a>
+    <div class="svb-svcmenu" data-open="false">
+      <a href="direccion-creativa.html">Dirección Creativa</a>
+      <a href="experiencias-visuales.html" aria-current="page">Experiencias Visuales</a>
+      <a href="produccion-integral.html">Producción Integral</a>
+      <a href="branding-eventos.html">Branding de Eventos</a>
+    </div>
+    <a href="../index.html#clientes">Portafolio</a>
+    <a href="../index.html#trabajo">Galeria</a>
+  </nav>
+  <a href="../contacto.html" class="svb-talk" aria-label="Hablemos" title="Hablemos">
+    <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-5Z"/><path d="M21 11h-3a2 2 0 0 0-2 2v3a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-5Z"/><path d="M3 11v-1a9 9 0 0 1 18 0v1"/><path d="M21 16v2a4 4 0 0 1-4 4h-5"/></svg>
+  </a>
+</header>
+
+<main>
+  <section class="hero srv-hero">
+    <video class="hero-video" src="../media/work/bci-video-2.mp4" muted loop playsinline autoplay preload="auto"></video>
+    <div class="veil"></div>
+    <svg class="beams" viewBox="0 0 1440 900" preserveAspectRatio="none" aria-hidden="true">
+      <line x1="0" y1="0" x2="1440" y2="900"/><line x1="1440" y1="0" x2="0" y2="900"/>
+      <line x1="720" y1="0" x2="720" y2="900"/><line x1="0" y1="450" x2="1440" y2="450"/>
+      <circle cx="720" cy="450" r="330"/><circle cx="720" cy="450" r="520"/>
+    </svg>
+    <div class="srv-text">
+      <p class="mono hero-extra srv-eyebrow"><span class="dot"></span>02 · Experiencias visuales</p>
+      <h1 class="disp hero-title" data-accent><span class="l">Luz, pant[a]llas</span><span class="l">y contenido</span><span class="l">que se si[e]nten</span></h1>
+      <p class="hero-extra srv-lede">Diseñamos, programamos y operamos la parte visual del evento: iluminación, pantallas, motion y contenido en vivo.</p>
+    </div>
+  </section>
+
+  <section class="act cases" aria-label="Casos">
+    <div class="curtain"><i></i><i></i><i></i></div>
+    <div class="tri">
+      <figure class="case-col"><video data-src="../media/work/bci-video-2.mp4" poster="../media/work/poster/bci-video-2.jpg" muted loop playsinline preload="none" aria-label="Banco BCI"></video>
+        <figcaption><span class="mono">01 · Experiencias Visuales</span><h3 class="pv">Banco BCI</h3><p>Programación de iluminación con código de tiempo para un evento corporativo.</p></figcaption></figure><figure class="case-col"><div class="slides"><img src="../media/work/min/blue-1.jpg" alt="Branding Blue Label — Experiencias Visuales SVBLIME" loading="lazy" decoding="async" class="on"><img src="../media/work/min/blue-2.jpg" alt="" loading="lazy" decoding="async"><img src="../media/work/min/blue-3.jpg" alt="" loading="lazy" decoding="async"></div>
+        <figcaption><span class="mono">02 · Experiencias Visuales</span><h3 class="pv">Experiencia inmersiva de lujo</h3><p>Pantalla, audio inmersivo y operación para el branding de Blue Label.</p></figcaption></figure><figure class="case-col"><video data-src="../media/extra/yandel-sinfonico.mp4" poster="../media/extra/yandel-sinfonico.jpg" muted loop playsinline preload="none" aria-label="Yandel Sinfónico · Viña 2025"></video>
+        <figcaption><span class="mono">03 · Experiencias Visuales</span><h3 class="pv">Yandel Sinfónico · Viña 2025</h3><p>Diseño, contenido y operación visual en un escenario televisado.</p></figcaption></figure>
+    </div>
+  </section>
+
+  <section class="act srv-more">
+    <div class="curtain"><i></i><i></i><i></i></div>
+    <a class="mono more-link" href="../index.html#trabajo">Ver la galería completa <span aria-hidden="true">→</span></a>
+    <p class="mono eyebrow">Servicios</p>
+    <div class="srv-cards">
+      <article class="srv-card" style="background:#4EA9FF;color:#111"><span class="num">01</span><h3><span>Dirección</span><span>Creativa</span></h3><a class="mono" href="direccion-creativa.html">Ver servicio <span aria-hidden="true">→</span></a></article>
+      <article class="srv-card is-here" style="background:#FFCD59;color:#111"><span class="num">02</span><h3><span>Experiencias</span><span>Visuales</span></h3><span class="mono here">Estás aquí</span></article>
+      <article class="srv-card" style="background:#8F00FF;color:#fff"><span class="num">03</span><h3><span>Producción</span><span>Integral</span></h3><a class="mono" href="produccion-integral.html">Ver servicio <span aria-hidden="true">→</span></a></article>
+      <article class="srv-card" style="background:#F4F1EA;color:#111"><span class="num">04</span><h3><span>Branding de</span><span>Eventos</span></h3><a class="mono" href="branding-eventos.html">Ver servicio <span aria-hidden="true">→</span></a></article>
+    </div>
+  </section>
+
+  <section id="contacto" class="act end">
+    <div class="curtain"><i></i><i></i><i></i></div>
+    <a class="giant" href="../contacto.html"><span class="giant-track" data-accent>Habl[e]mos · Habl[e]mos · Habl[e]mos · Habl[e]mos ·</span></a>
+    <div class="end-row end-11">
+      <h2 class="end-copy sf-scroll">Cuéntanos la idea general y te proponemos una bajada realista.</h2>
+      <a class="cta-hablemos mono" href="../contacto.html">Hablemos <span aria-hidden="true">→</span></a>
+      <p class="mono end-links"><a href="preguntas-frecuentes.html">Preguntas frecuentes</a> · <a href="mailto:hola@svblime.cl">hola@svblime.cl</a></p>
+    </div>
+    <footer><span class="bars"></span><span>SVBLIME existe para que ninguna gran idea se pierda.</span><span class="mono">Chile · 2026</span></footer>
+    <div class="brand-strip" aria-label="Marcas, corporaciones y artistas que han confiado"></div>
+  </section>
+</main>
+
+<script src="../js/pagina.min.js" defer></script>
+</body>
+</html>
