@@ -104,7 +104,7 @@ body.svb-locked{overflow:hidden}
 <main>
   <div class="intro">
   <section id="inicio" class="hero" data-name="Inicio">
-    <video class="hero-video" src="media/hero.mp4" poster="media/hero-poster.jpg" muted playsinline preload="auto"></video>
+    <video class="hero-video" data-hq="media/hero.mp4" data-m="media/hero-m.mp4" poster="media/hero-poster.jpg" muted playsinline preload="auto"></video><script>!function(v){v.src=matchMedia("(max-width: 760px)").matches?v.dataset.m:v.dataset.hq}(document.currentScript.previousElementSibling)</script>
     <div class="veil"></div>
     <canvas class="swarm"></canvas>
     <svg class="beams" viewBox="0 0 1440 900" preserveAspectRatio="none" aria-hidden="true">

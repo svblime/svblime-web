@@ -9,8 +9,10 @@ const AMBIENT = ["255,255,255", "78,169,255", "255,205,89", "143,0,255"];
 
 export function swarm3(canvas, { shock = false } = {}) {
   const ctx = canvas.getContext("2d");
-  const dpr = Math.min(devicePixelRatio || 1, 2);
-  const N = innerWidth < 760 ? 760 : 2200;
+  // Livianas: el lienzo se dibuja a resolución normal (en partículas no se nota) y la cantidad
+  // se ajusta sola si el computador no alcanza a dibujar fluido.
+  const dpr = 1;
+  let N = Math.round(Math.min(1500, Math.max(700, (innerWidth * innerHeight) / 900)));
   let w = 0, h = 0, p1 = [], p2 = [], shape = null;
   const anchor = { x: 0, y: 0, px: 0, py: 0 }, target = { x: 0, y: 0 };
   let pointerSeen = false, lastMove = 0, agitation = 0;
@@ -74,6 +76,13 @@ export function swarm3(canvas, { shock = false } = {}) {
 
   let visible = true;
   new IntersectionObserver(([e]) => (visible = e.isIntersecting)).observe(canvas);
+  // Medición de fluidez: si los cuadros tardan mucho, se quita un tercio de las partículas (hasta 400)
+  let slow = 0, frames = 0;
+  const lighten = () => {
+    if (N <= 400) return;
+    N = Math.round(N * 0.67);
+    p1 = p1.slice(0, Math.round(N / 4)); p2 = p2.slice(0, N - Math.round(N / 4));
+  };
 
   const batches = {};
   const add = (p, alpha) => {
@@ -81,8 +90,9 @@ export function swarm3(canvas, { shock = false } = {}) {
     (batches[key] = batches[key] || []).push(p);
   };
 
-  gsap.ticker.add(() => {
-    if (!visible || !w) return;
+  gsap.ticker.add((time, delta) => {
+    if (!visible || !w || document.hidden || canvas.style.visibility === "hidden" || canvas.style.opacity === "0") return;
+    if (++frames > 20) { slow = delta > 26 ? slow + 1 : Math.max(0, slow - 1); if (slow > 30) { slow = 0; lighten(); } }
     const dt = Math.min(gsap.ticker.deltaRatio(60), 3);
     const t = performance.now() / 1000;
     if (!pointerSeen || t * 1000 - lastMove > 4000) {

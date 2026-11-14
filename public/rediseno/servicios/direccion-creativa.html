@@ -94,7 +94,7 @@ body.svb-locked{overflow:hidden}
 
 <main>
   <section class="hero srv-hero">
-    <video class="hero-video" src="../media/work/gino-teleton-video.mp4" muted loop playsinline autoplay preload="auto"></video>
+    <video class="hero-video" data-hq="../media/work/gino-teleton-video.mp4" data-m="../media/work/gino-teleton-video-m.mp4" muted loop playsinline autoplay preload="auto"></video><script>!function(v){v.src=matchMedia("(max-width: 760px)").matches?v.dataset.m:v.dataset.hq}(document.currentScript.previousElementSibling)</script>
     <div class="veil"></div>
     <svg class="beams" viewBox="0 0 1440 900" preserveAspectRatio="none" aria-hidden="true">
       <line x1="0" y1="0" x2="1440" y2="900"/><line x1="1440" y1="0" x2="0" y2="900"/>

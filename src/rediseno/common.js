@@ -50,17 +50,24 @@ export function followSpot(area, veil, { radius = 260 } = {}) {
   };
   area.addEventListener("pointermove", set);
   area.addEventListener("pointerdown", set);
+  // Solo se recalcula mientras el inicio está en pantalla, y solo se repinta si la luz se movió
+  let visible = true, last = "";
+  new IntersectionObserver(([e]) => (visible = e.isIntersecting)).observe(area);
   gsap.ticker.add(() => {
+    if (!visible || document.hidden) return;
     idle += 1;
     if (idle > 180 || TOUCH) {
       // Sin mouse: la luz recorre el escenario sola, como un seguidor en un show.
-      const t = performance.now() / 1000, r = area.getBoundingClientRect();
-      pos.x = r.width * (0.5 + 0.28 * Math.sin(t * 0.5));
-      pos.y = r.height * (0.5 + 0.18 * Math.sin(t * 0.8));
+      const t = performance.now() / 1000;
+      pos.x = area.clientWidth * (0.5 + 0.28 * Math.sin(t * 0.5));
+      pos.y = area.clientHeight * (0.5 + 0.18 * Math.sin(t * 0.8));
     }
     cur.x += (pos.x - cur.x) * 0.09; cur.y += (pos.y - cur.y) * 0.09;
-    veil.style.setProperty("--x", cur.x + "px");
-    veil.style.setProperty("--y", cur.y + "px");
+    const key = (cur.x | 0) + "," + (cur.y | 0) + "," + (state.radius | 0);
+    if (key === last) return;
+    last = key;
+    veil.style.setProperty("--x", cur.x.toFixed(1) + "px");
+    veil.style.setProperty("--y", cur.y.toFixed(1) + "px");
     veil.style.setProperty("--r", state.radius + "px");
   });
   return state; // state.radius se puede animar (ej. que la luz crezca al bajar)
@@ -146,12 +153,28 @@ export function galleryTile(w, { interval = 3200, offset = 0 } = {}) {
   return el;
 }
 
-// Video que solo se descarga y reproduce cuando está en pantalla.
+// Celular: pantalla angosta. Ahí se usan las versiones livianas de los videos (archivo "-m.mp4").
+export const MOBILE = window.matchMedia("(max-width: 760px)").matches;
+export const videoSrc = (src) => (MOBILE && src ? src.replace(/\.mp4$/, "-m.mp4") : src);
+
+// Video que solo se descarga y reproduce cuando está en pantalla, y se pausa al salir.
+// En celular además se descarga al salir: los teléfonos reproducen pocos videos a la vez
+// y, si se acumulan, algunos quedan en negro.
 export function lazyVideo(video) {
+  video.muted = true; video.defaultMuted = true;
+  video.setAttribute("muted", ""); video.setAttribute("playsinline", ""); video.setAttribute("webkit-playsinline", "");
+  let on = false;
   new IntersectionObserver(([e]) => {
     if (e.isIntersecting) {
-      if (!video.src) video.src = video.dataset.src;
-      video.play().catch(() => {});
-    } else if (video.src) video.pause();
-  }, { rootMargin: "200px" }).observe(video);
+      on = true;
+      if (!video.getAttribute("src")) video.src = videoSrc(video.dataset.src);
+      const tryPlay = () => on && video.play().catch(() => {});
+      tryPlay();
+      if (video.readyState < 2) video.addEventListener("canplay", tryPlay, { once: true });
+    } else if (video.getAttribute("src")) {
+      on = false;
+      video.pause();
+      if (MOBILE) { video.removeAttribute("src"); video.load(); }
+    }
+  }, { rootMargin: MOBILE ? "120px" : "200px" }).observe(video);
 }

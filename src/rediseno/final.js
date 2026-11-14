@@ -1,5 +1,5 @@
 // Rediseño SVBLIME · versión final (idea 11 + ajustes finales).
-import { gsap, ScrollTrigger, SplitText, A, REDUCED, TOUCH, smoothScroll, accent, followSpot, galleryTile, lazyVideo } from "./common.js";
+import { gsap, ScrollTrigger, SplitText, A, REDUCED, TOUCH, MOBILE, smoothScroll, accent, followSpot, galleryTile, lazyVideo } from "./common.js";
 import { swarm3 } from "./swarm3.js";
 import { WORK, TEAM, LINEUP, CLIENTS, TOPGALLERY } from "./data.js";
 const BRAND = ["#4EA9FF", "#FFCD59", "#8F00FF"];
@@ -39,7 +39,8 @@ export function build() {
   // ---------- 1 · Inicio ----------
   const hero = $(".hero"), video = $(".hero-video"), veil = $(".veil"), canvas = $(".swarm");
   const lines = $$(".hero-title .l"), extras = $$(".hero-extra");
-  swarm3(canvas, { shock: plus });
+  // En celular no hay partículas: el inicio queda más liviano y fluido
+  if (MOBILE) canvas.remove(); else swarm3(canvas, { shock: plus });
   const spot = { radius: Math.max(220, innerWidth * 0.2) };
   if (!REDUCED) {
     gsap.set(veil, { opacity: 0 }); gsap.set(canvas, { opacity: 0 });
@@ -183,7 +184,7 @@ export function build() {
     if (!introSeen || scrollY > innerHeight * 1.6) return;
     const boost = Math.abs(scrollVel()) * 0.6;
     gRows.forEach((tr, i) => {
-      const w = tr.firstElementChild.offsetWidth || 1;
+      const w = cachedWidth(tr.firstElementChild);
       gOff[i] = (gOff[i] + (delta * 0.045 + boost) * gSpeeds[i]) % w;
       tr.style.transform = `translate3d(${-gOff[i]}px,0,0)`;
     });
@@ -236,7 +237,8 @@ export function build() {
   const festDays = $(".fest-days");
   const paintFest = () => {
     festDays.style.setProperty("--gh", festDays.offsetHeight + "px");
-    $$(".tier", festDays).forEach((t) => t.style.setProperty("--gy", t.offsetTop - festDays.offsetTop + "px"));
+    const top = festDays.getBoundingClientRect().top;
+    $$(".tier", festDays).forEach((t) => t.style.setProperty("--gy", t.getBoundingClientRect().top - top - (gsap.getProperty(t, "y") || 0) + "px"));
   };
   paintFest(); addEventListener("resize", paintFest);
   $$(".fest .tier").forEach((t) => gsap.fromTo(t, { opacity: 0, y: 30 }, { opacity: 1, y: 0, ease: "none",
@@ -246,12 +248,12 @@ export function build() {
   // Va después del pin de servicios para que sus posiciones consideren ese tramo.
   const crew = $(".crew"), glow = document.createElement("div");
   glow.className = "crew-glow"; crew.prepend(glow);
-  gsap.timeline({ scrollTrigger: { trigger: crew, start: "top 85%", end: "bottom 15%", scrub: true } })
-    .fromTo(crew, { backgroundColor: "#050506" }, { backgroundColor: "#8F00FF", ease: "none", duration: 0.12 })
-    .fromTo(glow, { opacity: 0 }, { opacity: 1, ease: "none", duration: 0.12 }, 0)
-    .to({}, { duration: 0.76 })
-    .to(crew, { backgroundColor: "#050506", ease: "none", duration: 0.12 })
-    .to(glow, { opacity: 0, ease: "none", duration: 0.12 }, "<");
+  // El magenta es un degradé que desborda la sección y pasa por encima del negro de antes y después;
+  // aparece de a poco al acercarse y se apaga suave al salir.
+  gsap.timeline({ scrollTrigger: { trigger: crew, start: "top 110%", end: "bottom -10%", scrub: true } })
+    .fromTo(glow, { opacity: 0 }, { opacity: 1, ease: "power1.in", duration: 0.3 })
+    .to({}, { duration: 0.4 })
+    .to(glow, { opacity: 0, ease: "power1.out", duration: 0.3 });
   if (plus && !TOUCH) {
     // Idea 10: el brillo del degradé sigue al mouse
     const gx = gsap.quickTo(glow, "--gx", { duration: 0.8, ease: "power3" }), gy = gsap.quickTo(glow, "--gy", { duration: 0.8, ease: "power3" });
@@ -272,7 +274,7 @@ export function build() {
     if (!festOn) return;
     const boost = Math.abs(scrollVel()) * 1.4;
     tiers.forEach((t) => {
-      const w = t.tr.firstElementChild.offsetWidth || 1;
+      const w = cachedWidth(t.tr.firstElementChild);
       const v = t.paused ? 0 : delta * t.base + boost;
       t.off = (t.off + v) % w;
       t.tr.style.transform = `translate3d(${t.dir < 0 ? -t.off : t.off - w}px,0,0)`;
@@ -346,6 +348,16 @@ export function headerMenu() {
   svcLink.addEventListener("click", (e) => { e.preventDefault(); setSvc(!svcOpen); });
   $$("a", hd).forEach((a) => a !== svcLink && a.addEventListener("click", () => setOpen(false)));
   return { reveal: () => hd.classList.add("in") };
+}
+
+// Ancho de una fila guardado (se actualiza solo si cambia): así las filas que corren solas
+// no obligan al navegador a medir la página en cada cuadro, que es lo que la traba en laptops.
+const widths = new WeakMap();
+const ro = typeof ResizeObserver !== "undefined" ? new ResizeObserver((es) => es.forEach((e) => widths.set(e.target, e.target.offsetWidth || 1))) : null;
+function cachedWidth(el) {
+  let w = widths.get(el);
+  if (w === undefined) { w = el.offsetWidth || 1; widths.set(el, w); if (ro) ro.observe(el); }
+  return w;
 }
 
 // Huincha de marcas de la web actual (logos que destellan en los tres colores al pasar el mouse)

@@ -24,6 +24,9 @@ $$(".slides").forEach((box, k) => {
 const hero = $(".srv-hero");
 if (hero) {
   const veil = $(".veil", hero);
+  // El video de fondo parte solo (en celular también, sin sonido)
+  const hv = $("video.hero-video", hero);
+  if (hv) { hv.muted = true; hv.play().catch(() => {}); }
   followSpot(hero, veil, { radius: Math.max(200, innerWidth * 0.18) });
   if (!REDUCED) {
     gsap.from($$(".hero-title .l", hero), { yPercent: 110, opacity: 0, duration: 1.2, ease: "expo.out", stagger: 0.1, delay: 0.25 });

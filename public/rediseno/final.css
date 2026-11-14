@@ -560,3 +560,19 @@ input, textarea { -webkit-user-select: text; user-select: text; }
   .srv-card { min-height: 0; }
   .srv-card:hover { transform: none; }
 }
+
+/* ===== Celular ===== */
+@media (max-width: 760px) {
+  /* Galerías: solo fotos y videos, sin títulos ni textos */
+  .work-grid .tile figcaption, .topgal .gcap { display: none !important; }
+}
+
+/* ===== Equipo: el magenta desborda la sección y pasa sobre el negro de antes y después ===== */
+.v9 .crew { background: transparent; position: relative; z-index: 2; overflow: visible; isolation: isolate; }
+.crew-glow { top: -45vh; bottom: -45vh; z-index: -1;
+  background:
+    radial-gradient(38% 30% at calc(var(--gx) * 1%) calc(var(--gy) * 1%), rgba(214,120,255,.45), transparent 70%),
+    linear-gradient(180deg, rgba(143,0,255,0) 0%, rgba(143,0,255,.18) 12%, rgba(143,0,255,.6) 24%, #8F00FF 34%,
+                            #8F00FF 66%, rgba(143,0,255,.6) 76%, rgba(143,0,255,.18) 88%, rgba(143,0,255,0) 100%); }
+/* Fotos y textos de las secciones vecinas quedan por encima del magenta; solo su fondo negro queda debajo */
+.work > :not(.curtain), .fest > :not(.curtain) { position: relative; z-index: 3; }
